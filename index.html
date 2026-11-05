@@ -2,7 +2,7 @@
 <html lang="nl" data-theme="dark" data-accent="volt" class="sa">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-EdkrXSsiQMAH3ZxYUN43yLQ1WEGjbCCG8ikgbi9/jhg='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-2jPDdTuVA+y2iVeoWtCpONTp966pEx1FOybSbEnS5iw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -560,6 +560,69 @@ i.own{font-style:normal;font-size:11px;font-weight:700;padding:2px 6px;border-ra
 .ppg span{font-size:13px;color:var(--mut)}
 .pp-val{margin-left:auto;font-size:14px;color:var(--txt2);text-align:right}
 [data-theme=light] .seg button.on{background:var(--txt);color:var(--bg)}
+.clock{font:800 20px var(--disp);color:var(--txt);font-variant-numeric:tabular-nums}
+.clock.live{color:var(--acc-t)}
+.statgrid{grid-template-columns:repeat(2,1fr)}
+.done-hero~.statgrid,#sheet .statgrid{grid-template-columns:repeat(3,1fr)}
+.card.coach{border-left:5px solid var(--acc)}
+.ctip{border-top:1px solid var(--stroke);padding:14px 0 4px;margin-top:10px}
+.ctip:first-of-type{border-top:0;margin-top:6px;padding-top:6px}
+.ct-h{display:flex;gap:10px;align-items:center}
+.ct-h b{font:700 20px/1.15 var(--disp);text-transform:uppercase;letter-spacing:.01em}
+.ct-ic{font-size:22px}
+.ct-x{font-size:15px;line-height:1.5;color:var(--txt2);margin-top:6px}
+.ct-x b{color:var(--txt)}
+.ct-b{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.cbtn2{border:1px solid var(--stroke);background:var(--glass2);color:var(--txt);border-radius:10px;padding:10px 14px;font:700 15px var(--body);min-height:44px}
+.cbtn2.go{background:var(--acc);color:var(--onacc);border-color:var(--acc)}
+.badge.coach{border:0;color:var(--txt);background:color-mix(in srgb,#ffb020 22%,var(--glass2));cursor:pointer;font-family:var(--body)}
+.pprow.doubt select{border-color:#ffb020}
+.dbt{color:#ffb020}
+[data-theme=light] .dbt,[data-theme=light] .pprow.unk .pp-raw b{color:#9a5b00}
+.pp-sug{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--mut)}
+.pp-sug button{border:1px solid var(--stroke);background:var(--glass2);color:var(--txt);border-radius:8px;padding:8px 10px;font:600 14px var(--body)}
+.qstep{display:flex;align-items:center;gap:4px;background:var(--glass2);border:1px solid var(--stroke);border-radius:10px;padding:3px}
+.qstep button{width:40px;height:40px;border:0;border-radius:8px;background:var(--glass);color:var(--txt);font-size:20px;font-weight:700}
+.qstep input{width:56px;border:0;background:none;color:var(--txt);font:700 20px var(--disp);text-align:center}
+.qstep.big{justify-content:space-between;margin-top:10px;padding:5px}
+.qstep.big button{width:56px;height:52px;font-size:26px}
+.qstep.big b{font:800 26px var(--disp);text-transform:uppercase}
+.ppU{flex:1;min-width:0;background:var(--glass2);border:1px solid var(--stroke);color:var(--txt);border-radius:10px;padding:12px 8px;font:600 14px var(--body)}
+.pp-val{margin-left:0;text-align:left;font-size:14px}
+.cntrow{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.cntrow button{height:58px;border-radius:10px;border:1px solid var(--stroke);background:var(--glass2);font:800 26px var(--disp);color:var(--txt)}
+.cntrow button.on{background:var(--acc);border-color:var(--acc);color:var(--onacc)}
+.gtag{font-weight:500;opacity:.7;font-size:12px;margin-left:2px}
+.linkbtn{border:0;background:none;color:var(--acc-t);font-weight:700;font-size:15px;padding:8px 0}
+.savebox{display:flex;gap:8px;margin-top:8px}
+.savebox input{flex:1;min-width:0;background:var(--glass2);border:1px solid var(--stroke);color:var(--txt);border-radius:10px;padding:12px;font:16px var(--body)}
+.savebox .cta{width:auto;padding:12px 18px;min-height:48px;font-size:17px}
+.mydishes{display:flex;flex-direction:column;gap:8px}
+.mdish{display:flex;gap:8px;align-items:center}
+.md-add{flex:1;text-align:left;border:1px solid var(--stroke);border-left:4px solid var(--acc);background:var(--glass);color:var(--txt);border-radius:10px;padding:12px 14px;font:700 17px var(--body)}
+.md-add span{display:block;font-weight:500;font-size:13px;color:var(--mut);margin-top:2px}
+.glhead{border-left:5px solid var(--acc)}
+.gl-t{font:800 26px/1.05 var(--disp);text-transform:uppercase;margin-top:2px}
+.gl-edit{width:auto;padding:10px 14px;min-height:46px;font-size:16px}
+.gl-tot{display:flex;align-items:baseline;gap:10px;margin-top:12px;flex-wrap:wrap}
+.gl-tot b{font:800 34px var(--disp);color:var(--acc-t)}
+.gl-tot span{font-size:13.5px;color:var(--mut)}
+.glrow{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--stroke)}
+.glrow:last-child{border-bottom:0}
+.glchk{flex:0 0 34px;height:34px;border-radius:8px;border:2px solid var(--w20);background:none;color:var(--onacc);font-weight:900;font-size:16px}
+.glrow.cart .glchk{background:var(--acc);border-color:var(--acc)}
+.glrow.cart .gl-m .t1{text-decoration:line-through;color:var(--mut)}
+.glrow.have{opacity:.45}
+.glrow.have .gl-m .t1{text-decoration:line-through}
+.gl-m{flex:1;min-width:0}
+.glhave{flex:0 0 auto;border:1px solid var(--stroke);background:var(--glass2);color:var(--txt2);border-radius:8px;padding:7px 9px;font:600 12.5px var(--body)}
+.gtag2{display:block;font-size:13px;line-height:1.4;margin-top:6px;padding:6px 8px;border-radius:7px;background:var(--glass2);color:var(--txt2)}
+.gtag2.bonus{background:color-mix(in srgb,#2aa4ff 18%,var(--glass2));color:var(--txt)}
+.gtag2.prem{background:color-mix(in srgb,var(--acc) 16%,var(--glass2));color:var(--txt)}
+.glstep{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--stroke)}
+.glstep span{font-weight:600;min-width:0}
+.glstep .stepper b{min-width:34px}
+#gAddX{margin-top:10px}
 </style>
 </head>
 <body>
@@ -585,7 +648,7 @@ i.own{font-style:normal;font-size:11px;font-weight:700;padding:2px 6px;border-ra
   <div class="row" style="margin-top:12px;gap:8px;flex-wrap:wrap"><button class="pillbtn" id="trSchema">📋 <span id="trPlanName">Schema</span></button><button class="pillbtn" id="trEdit">✏️ Aanpassen</button></div>
   <div class="chips" id="dayChips" style="margin-top:14px"></div>
   <div class="card tight" id="trProgress">
-    <div class="between"><span class="small" id="setCount">0 / 0 sets</span><span class="small" id="volNow">0 kg volume</span></div>
+    <div class="between"><span class="small" id="setCount">0 / 0 sets</span><span class="clock" id="trClock" hidden>⏱ 0:00</span><span class="small" id="volNow">0 kg volume</span></div>
     <div class="bar" style="margin-top:8px"><i id="setBar" style="width:0"></i></div>
   </div>
   <div id="exList"></div>
@@ -614,7 +677,7 @@ i.own{font-style:normal;font-size:11px;font-weight:700;padding:2px 6px;border-ra
 <section class="v" id="v-deals">
   <div class="eyebrow" id="dealEyebrow">Albert Heijn & Dirk</div>
   <div class="h-l">Shopping</div>
-  <div class="seg" id="dealSeg"><button data-s="ah" class="on">AH Bonus</button><button data-s="dirk">Dirk</button><button data-s="snacks">Tussendoortjes</button></div>
+  <div class="seg" id="dealSeg"><button data-s="ah" class="on">AH Bonus</button><button data-s="dirk">Dirk</button><button data-s="list">🛒 Lijst</button></div>
   <div id="dealBody"></div>
 </section>
 
@@ -623,6 +686,7 @@ i.own{font-style:normal;font-size:11px;font-weight:700;padding:2px 6px;border-ra
 <section class="v" id="v-prog">
   <div class="eyebrow" id="progEyebrow"></div>
   <div class="h-l">Voortgang</div>
+  <div class="card coach" id="coachCard"></div>
   <div class="card hero claude-only" id="ciCard" style="padding:20px"></div>
   <div class="card">
     <div class="row"><input class="winput" type="text" id="wIn" inputmode="decimal" step="0.1" placeholder="Gewicht vandaag (kg)"><button class="plus" id="wAdd">+</button></div>
@@ -915,7 +979,7 @@ document.addEventListener('input',e=>{const t=e.target;if(!t||!('value' in t)||t
 
 /* ================= STATE ================= */
 const KEY2='gymplan_v2',KEY1='gymplan_v1';
-const emptyS=()=>({logs:{},weights:[],meals:{},crea:{},shop:{},checkins:[],chat:[],food:{},myfoods:[],recent:[],myex:{},dayNames:{}});
+const emptyS=()=>({logs:{},weights:[],meals:{},crea:{},shop:{},checkins:[],chat:[],food:{},myfoods:[],recent:[],myex:{},dayNames:{},times:{},coachOff:{},foodLearn:{},mydishes:[],glist:null});
 const ronaldInfo=()=>({name:'Ronald',age:25,h:173,w:69,goal:'bulk',exp:'mid',db:26,focus:[],theme:{mode:'dark',accent:'sunset'}});
 function fromLegacy(old){return{v:2,active:'p1',profiles:{p1:{info:ronaldInfo(),S:Object.assign(emptyS(),old)}},u:old.u||Date.now()};}
 let B={v:2,active:null,profiles:{},u:0};
@@ -1089,7 +1153,7 @@ function renderTrain(){
     $('exList').innerHTML=`<div class="card empty"><div class="t1">${esc(D.name)} heeft nog geen oefeningen.</div><div class="t2">${T&&T.mus.length?'Aanrader voor deze dag: '+T.mus.map(m=>MUSCLES[m]).join(', ').toLowerCase()+'.':'Kies zelf je oefeningen of cardio.'}</div><button class="cta grad" id="emptyFill" style="margin-top:14px">＋ Oefeningen kiezen</button></div>`;return;}
   const log=S.logs[today()+'|'+curDay]||{};
   $('exList').innerHTML=list.map((ex,i)=>isCardio(ex)?cardioCard(ex,i,log):strengthCard(ex,i,log)).join('');
-  updateTrainBar();
+  updateTrainBar();tickClock();
 }
 function strengthCard(ex,i,log){
   const sg=suggest(ex);const ns=exS(ex);
@@ -1099,7 +1163,7 @@ function strengthCard(ex,i,log){
   for(let s=0;s<ns;s++){const v=(log[ex.k]||[])[s]||{};
     rows+=`<div class="n">${s+1}</div><input type="text" inputmode="decimal" data-k="${ex.k}" data-s="${s}" data-f="kg" placeholder="${kgLbl}" value="${v.kg??''}"><input type="text" inputmode="numeric" data-k="${ex.k}" data-s="${s}" data-f="reps" placeholder="${esc(ex.r)}" value="${v.reps??''}"><button class="sbtn ${v.done?'on':''}" data-k="${ex.k}" data-s="${s}" aria-label="Set ${s+1} klaar">✓</button>`;}
   return `<div class="card ex"><div class="row" style="align-items:flex-start"><div class="num">${i+1}</div><div style="flex:1;min-width:0"><div class="name">${esc(ex.n)}</div><div class="meta">${ns} × ${esc(ex.r)} ${ex.k==='plank'?'sec':'reps'} · rust ${esc(ex.rest)}</div></div>${ex.extra?`<button class="xbtn" data-rmx="${ex.k}" aria-label="Verwijder extra oefening">✕</button>`:''}</div>
-    ${ex.extra?'<span class="badge xtra">＋ Extra vandaag</span> ':''}${ex.own?'<span class="badge">⭐ Eigen oefening</span> ':''}<span class="badge ${sg.up?'up':''}">${sg.up?'⬆︎ Tijd voor meer: '+sg.kg+' kg':'🎯 Doel: '+(kgLbl==='BW'?'lichaamsgewicht':kgLbl+' kg')}</span>${isFocus(ex)?' <span class="badge focus">⭐ Focus · +1 set</span>':''}
+    ${ex.extra?'<span class="badge xtra">＋ Extra vandaag</span> ':''}${ex.own?'<span class="badge">⭐ Eigen oefening</span> ':''}<span class="badge ${sg.up?'up':''}">${sg.up?'⬆︎ Tijd voor meer: '+sg.kg+' kg':'🎯 Doel: '+(kgLbl==='BW'?'lichaamsgewicht':kgLbl+' kg')}</span>${isFocus(ex)?' <span class="badge focus">⭐ Focus · +1 set</span>':''}${(c=>c?` <button class="badge coach" data-go-prog>💡 ${c.lab}</button>`:'')(coachFor(ex.k))}
     <div class="prev">${prev}</div><div class="tipx">💡 ${esc(ex.tip)}</div><div class="sets">${rows}</div></div>`;}
 function lastCardio(k){const keys=Object.keys(S.logs).filter(x=>x.split('|')[0]!==today()).sort().reverse();for(const key of keys){const v=((S.logs[key]||{})[k]||[])[0];if(v&&v.reps)return{date:key.split('|')[0],v};}return null;}
 const INTS=[['rustig','Rustig'],['gemiddeld','Gemiddeld'],['zwaar','Zwaar']];
@@ -1135,6 +1199,7 @@ function renderEditor(D){
 }
 $('exList').addEventListener('click',e=>{
   if(e.target.closest('#emptySchema'))return openSchema();
+  if(e.target.closest('[data-go-prog]')){go('prog');setTimeout(()=>{const c=$('coachCard');if(c)c.scrollIntoView({behavior:'smooth',block:'start'});},80);return;}
   if(e.target.closest('#emptyFill')){trEdit=true;renderTrain();return openAddEx('plan');}
   const ed=e.target.closest('[data-ed]');
   if(ed){const P=planDay(curDay),i=+ed.dataset.i,a=ed.dataset.ed;const x=P.ex[i];
@@ -1151,12 +1216,12 @@ $('exList').addEventListener('click',e=>{
   const lk=today()+'|'+curDay;const cur=((S.logs[lk]||{})[k]||[])[s]||{};
   if(cur.done){setVal(k,s,'done','');b.classList.remove('on');save();updateTrainBar();renderHome();return;}
   if(isCardio(ex)){const mIn=document.querySelector(`input[data-k="${k}"][data-f="min"]`);let m=num(mIn.value);if(!(m>0)){m=range(ex.r)[1]||20;mIn.value=m;}
-    setVal(k,0,'reps',m);setVal(k,0,'kg',0);setVal(k,0,'done',1);b.classList.add('on');save();updateTrainBar();renderHome();toast('🏃 '+ex.n+': '+m+' min. Lekker bezig!');return;}
+    setVal(k,0,'reps',m);setVal(k,0,'kg',0);setVal(k,0,'done',1);markTime(lk);b.classList.add('on');save();tickClock();updateTrainBar();renderHome();toast('🏃 '+ex.n+': '+m+' min. Lekker bezig!');return;}
   const kgIn=document.querySelector(`input[data-k="${k}"][data-s="${s}"][data-f="kg"]`);const rIn=document.querySelector(`input[data-k="${k}"][data-s="${s}"][data-f="reps"]`);
   if(kgIn.value===''){const p=kgIn.placeholder;kgIn.value=p==='BW'?0:p;}
   setVal(k,s,'kg',num(kgIn.value)||0);if(rIn.value!=='')setVal(k,s,'reps',num(rIn.value));
   if(rIn.value===''){const hi=range(ex.r)[1];rIn.value=hi;setVal(k,s,'reps',hi);}
-  setVal(k,s,'done',1);b.classList.add('on');save();updateTrainBar();renderHome();
+  setVal(k,s,'done',1);markTime(lk);b.classList.add('on');save();tickClock();updateTrainBar();renderHome();
   const sec=restSec(ex.rest);const last=(ex===list[list.length-1]&&s===exS(ex)-1);if(sec&&!last)startTimer(sec,ex.n);
 });
 function updateTrainBar(){const D=curD();if(!D)return;const list=dayEx(D,today());const tot=list.reduce((a,e)=>a+exS(e),0);const log=S.logs[today()+'|'+curDay]||{};
@@ -1178,15 +1243,104 @@ $('finish').addEventListener('click',()=>{
   const ups=list.filter(ex=>{const L=(log[ex.k]||[]).filter(s=>s&&s.reps);const hi=range(ex.r)[1];return !isCardio(ex)&&L.length>=ex.s&&L.every(s=>+s.reps>=hi)&&ex.inc>0;}).map(e=>e.n);
   const skipped=list.filter(ex=>!(log[ex.k]||[]).some(s=>s&&s.reps)).map(e=>e.n);
   const cmin=list.filter(isCardio).reduce((a,ex)=>a+(+(((log[ex.k]||[])[0]||{}).reps)||0),0);
-  stopTimer();
+  stopTimer();if(S.times&&S.times[lk]&&S.times[lk].s){S.times[lk].e=Date.now();save();tickClock();}const dm=durMin(lk);
   openSheet(`<div class="done-hero"><div class="big">🏆</div><div class="h-l">Top gedaan, <span class="gt">${esc(INFO.name)}</span>!</div><div class="small">${esc(D.name)} afgerond</div></div>
-   <div class="statgrid" style="margin:18px 0"><div class="stat"><b>${st.sets}/${tot}</b><span>sets gedaan</span></div><div class="stat"><b>${cmin&&!st.vol?cmin+'′':nl((st.vol/1000).toFixed(1))+'t'}</b><span>${cmin&&!st.vol?'cardio':'volume'}</span></div><div class="stat"><b>${Object.keys(S.logs).filter(k=>dayStats(k).sets).length}</b><span>trainingen</span></div></div>
+   <div class="statgrid" style="margin:18px 0"><div class="stat"><b>${st.sets}/${tot}</b><span>sets gedaan</span></div><div class="stat"><b>${cmin&&!st.vol?cmin+'′':nl((st.vol/1000).toFixed(1))+'t'}</b><span>${cmin&&!st.vol?'cardio':'volume'}</span></div><div class="stat"><b>${dm?fmtDur(dm).replace(' min','′'):Object.keys(S.logs).filter(k=>dayStats(k).sets).length}</b><span>${dm?'trainingstijd':'trainingen'}</span></div></div>
    ${ups.length?`<div class="card tight" style="border-color:rgba(62,224,143,.4)"><div class="t1" style="color:var(--ok)">⬆︎ Volgende keer zwaarder</div><div class="t2">${ups.map(esc).join(' · ')}</div></div>`:`<div class="card tight"><div class="t1">Volgende keer</div><div class="t2">Zelfde gewicht, probeer per set 1 rep meer.</div></div>`}
    ${cmin?`<div class="card tight"><div class="t1">🏃 Cardio</div><div class="t2">${cmin} minuten. Goed voor je hart en je herstel.</div></div>`:''}
    ${skipped.length?`<div class="card tight"><div class="t1">⏭️ Overgeslagen</div><div class="t2">${skipped.map(esc).join(' · ')}</div></div>`:''}
    <div class="card tight"><div class="t1">🍽️ Nu: eten!</div><div class="t2">Binnen 1–2 uur een maaltijd met eiwit en koolhydraten.</div></div>
    <button class="cta grad" data-close>Lekker bezig 💪</button>`);
 });
+
+
+/* ================= TRAININGSTIJD ================= */
+function markTime(lk){S.times=S.times||{};const t=S.times[lk]=S.times[lk]||{};const now=Date.now();if(!t.s)t.s=now;t.l=now;delete t.e;}
+function durMin(lk){const t=(S.times||{})[lk];if(!t||!t.s)return null;let end=t.e?Math.min(t.e,(t.l||t.s)+15*60e3):(t.l||t.s)+2*60e3;
+  if(!t.e&&lk.startsWith(today()+'|')&&Date.now()-(t.l||t.s)<20*60e3)end=Date.now();return Math.max(1,Math.round((end-t.s)/60000));}
+function fmtDur(m){return m>=60?Math.floor(m/60)+' u '+String(m%60).padStart(2,'0'):m+' min';}
+function tickClock(){const el=$('trClock');if(!el)return;const lk=today()+'|'+curDay;const t=(S.times||{})[lk];
+  if(!t||!t.s||trEdit){el.hidden=true;return;}el.hidden=false;
+  if(t.e){el.textContent='⏱ '+fmtDur(durMin(lk));el.classList.remove('live');return;}
+  const sec=Math.max(0,Math.round((Date.now()-t.s)/1000));if(Date.now()-(t.l||t.s)>20*60e3){el.textContent='⏱ '+fmtDur(durMin(lk));el.classList.remove('live');return;}
+  el.textContent='⏱ '+Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');el.classList.add('live');}
+setInterval(()=>{if($('v-train').classList.contains('show'))tickClock();},1000);
+function avgDur(days){const from=shiftDate(today(),-days);const ds=Object.keys(S.times||{}).filter(k=>k.split('|')[0]>=from&&dayStats(k).sets).map(durMin).filter(x=>x);return ds.length?{avg:Math.round(ds.reduce((a,b)=>a+b,0)/ds.length),n:ds.length}:null;}
+
+/* ================= COACH ================= */
+const VARIANTS={bench:'dbbench',dbbench:'bench',incbar:'incdb',incdb:'incbar',chestpress:'dbbench',fly:'chestpress',dips:'cgbench',squat:'hack',frontsq:'squat',hack:'legpress',legpress:'hack',goblet:'bss',bss:'lunge',lunge:'bss',legext:'bss',
+ bbrow:'tbar',tbar:'bbrow',cablerow:'csrow',csrow:'sarow',sarow:'csrow',pulldown:'pullups',pullups:'pulldown',straightarm:'pulldown',deadlift:'rdl',rdl:'deadlift',
+ ohp:'dbshoulder',dbshoulder:'arnold',arnold:'ohp',latraise:'cablelat',cablelat:'latraise',facepull:'reardelt',reardelt:'facepull',
+ ezcurl:'inccurl',inccurl:'preacher',preacher:'cablecurl',cablecurl:'ezcurl',hammer:'cablecurl',pushdown:'ohext',ohext:'skull',skull:'ohext',cgbench:'dips',
+ lyingcurl:'seatedcurl',seatedcurl:'lyingcurl',hipthrust:'cablekick',standcalf:'seatedcalf',seatedcalf:'standcalf',crunch:'legraise',kneeraise:'legraise',legraise:'kneeraise'};
+const PULLX=['facepull','reardelt'];
+function exSessions(k){const L=LIB[k];const lo=L&&!isCardio(L)?(range(L.r)[0]||0):0;
+  return Object.keys(S.logs).filter(key=>((S.logs[key]||{})[k]||[]).some(s=>s&&s.reps)).sort().map(key=>{const sets=S.logs[key][k].filter(s=>s&&s.reps);
+    const top=Math.max(...sets.map(s=>+s.kg||0));const reps=Math.max(...sets.filter(s=>(+s.kg||0)===top).map(s=>+s.reps));
+    const m=top>0?Math.max(...sets.map(s=>(+s.kg||0)*(1+s.reps/30))):Math.max(...sets.map(s=>+s.reps));
+    return{d:key.split('|')[0],top,reps,m,n:sets.length,low:sets.filter(s=>+s.reps<lo).length};});}
+const daysAgo=d=>Math.round((new Date(today()+'T12:00')-new Date(d+'T12:00'))/864e5);
+function planHas(k){return (S.plan.days||[]).some(d=>d.ex.some(e=>e.k===k));}
+function coachAll(){
+  const out=[];const off=S.coachOff||{};const add=a=>{const o=off[a.id];if(o&&daysAgo(o)<(a.snooze||21))return;out.push(a);};
+  const keys=[...new Set((S.plan.days||[]).flatMap(d=>d.ex.map(e=>e.k)))].filter(k=>LIB[k]&&!isCardio(LIB[k]));
+  keys.forEach(k=>{const L=LIB[k];const ss=exSessions(k);if(ss.length<3)return;const last=ss[ss.length-1];if(daysAgo(last.d)>21)return;
+    const l3=ss.slice(-3);const f=l3[0];const span=daysAgo(f.d)-daysAgo(last.d);const v=VARIANTS[k]&&LIB[VARIANTS[k]]?VARIANTS[k]:null;
+    const stalled=span>=14&&Math.max(...l3.map(x=>x.m))<=f.m*1.01&&last.top<=f.top;
+    const weeks=Math.max(3,Math.round(span/7)+1);
+    const lowSets=l3.reduce((a,x)=>a+x.low,0),allSets=l3.reduce((a,x)=>a+x.n,0);
+    if(allSets>=6&&lowSets/allSets>=0.5&&last.top>0){const lower=Math.max(0,Math.round(last.top*0.92/(L.inc||2.5))*(L.inc||2.5));
+      add({id:'heavy_'+k,k,pr:80,ic:'🎯',lab:'Iets te zwaar?',t:esc(L.n)+': net iets te zwaar',
+        x:`Bij ${esc(L.n)} haal je vaak geen ${range(L.r)[0]} reps. Ga naar <b>${nl(lower)} kg</b>: met alle reps goed groei je sneller én blijf je blessurevrij.`});return;}
+    if(stalled){const lower=f.top>0?Math.max(0,Math.round(f.top*0.9/(L.inc||2.5))*(L.inc||2.5)):0;
+      add({id:'stall_'+k,k,pr:90,ic:'🧗',lab:'Staat al '+weeks+' weken stil',t:esc(L.n)+': even een plateau',
+        x:`Je zit al ${weeks} weken rond ${f.top>0?nl(f.top)+' kg':last.reps+' reps'}. Heel normaal: je lichaam went eraan. ${f.top>0?`Probeer 2 weken 5×5 op <b>${nl(lower)} kg</b> en bouw daarna weer op.`:'Probeer een paar weken een zwaardere variant of extra gewicht.'}${v?` Of wissel even naar <b>${esc(LIB[v].n)}</b>.`:''} Daarna kom je vaak sterker terug! 💪`,
+        act:v&&planHas(k)?{l:'Wissel naar '+LIB[v].n,fn:'swap',a:k,b:v}:null});return;}
+    if(span<=28&&last.m>=f.m*1.05&&f.top>0)add({id:'fast_'+k+'_'+last.d,k,pr:30,pos:1,ic:'🚀',t:esc(L.n)+' gaat hard!',
+        x:`Van ${nl(f.top)} naar <b>${nl(last.top)} kg</b> in ${Math.max(1,Math.round(span/7))} ${Math.round(span/7)===1?'week':'weken'}. Knap! Blijf letten op je techniek: rustig laten zakken, volledige beweging.`});
+    const first=ss[0];if(daysAgo(first.d)>=56&&ss.length>=8&&v&&planHas(k))add({id:'long_'+k,k,pr:40,ic:'🔄',t:'Tijd voor variatie',snooze:42,
+        x:`Je doet ${esc(L.n)} al ${Math.round(daysAgo(first.d)/7)} weken. Een paar weken een variant geeft je spieren een nieuwe prikkel. Probeer <b>${esc(LIB[v].n)}</b>.`,act:{l:'Wissel naar '+LIB[v].n,fn:'swap',a:k,b:v}});
+  });
+  // spierbalans (laatste 28 dagen)
+  const from=shiftDate(today(),-28);const lk28=Object.keys(S.logs).filter(x=>x.split('|')[0]>=from&&dayStats(x).sets);
+  if(lk28.length>=4){const m={};lk28.forEach(key=>Object.entries(S.logs[key]).forEach(([k,sets])=>{const L=LIB[k];if(!L||isCardio(L))return;const n=(sets||[]).filter(s=>s&&s.reps).length;const g=PULLX.includes(k)?'pull':L.m==='back'?'pull':(L.m==='chest'||L.m==='shoulders')?'push':['quads','hams','glutes','calves'].includes(L.m)?'legs':L.m==='arms'?'arms':'other';m[g]=(m[g]||0)+n;}));
+    const push=m.push||0,pull=m.pull||0,legs=m.legs||0,up=push+pull+(m.arms||0);
+    if(push>=12&&push>pull*1.5)add({id:'bal_push',pr:60,ic:'⚖️',t:'Meer trekken dan duwen',x:`De laatste 4 weken deed je ${push} sets duwen (borst/schouders) en ${pull} sets trekken (rug). Een extra rugoefening is goed voor je schouders en je houding, en geeft een bredere rug.`,act:{l:'Rugoefening toevoegen',fn:'addm',a:'back'}});
+    else if(pull>=12&&pull>push*1.6)add({id:'bal_pull',pr:60,ic:'⚖️',t:'Vergeet je borst niet',x:`Je doet veel meer rug (${pull} sets) dan borst en schouders (${push} sets). Een extra duw-oefening maakt je bovenlichaam in balans.`,act:{l:'Duw-oefening toevoegen',fn:'addm',a:'chest'}});
+    if(up>=20&&legs<up*0.35)add({id:'bal_legs',pr:58,ic:'🦵',t:'Je benen willen ook!',x:`Je deed ${up} sets bovenlichaam en ${legs} sets benen. Benen zijn je grootste spieren: meer beentraining geeft meer kracht en meer groei, overal.`,act:{l:'Beenoefening toevoegen',fn:'addm',a:'quads'}});}
+  // trainingstrouw
+  (S.plan.days||[]).forEach(D=>{let miss=0,seen=0;[-1,-2,-3].forEach(o=>{const r=weekReport(o).rows.find(x=>x.D.id===D.id);if(!r||r.before)return;seen++;if(!r.done&&r.key<today())miss++;});
+    if(seen>=3&&miss>=2){const used=new Set(S.plan.days.map(d=>d.wd));const free=[1,2,3,4,5,6,0,1,2,3,4,5,6,0].slice(WEEKORDER.indexOf(D.wd)+1).find(w=>!used.has(w));
+      add({id:'miss_'+D.id,pr:65,ic:'📅',t:WDL[D.wd][0].toUpperCase()+WDL[D.wd].slice(1)+' lukt vaak niet',x:`${esc(D.name)} op ${WDL[D.wd]} is de laatste 3 weken ${miss}× niet gelukt. Geen probleem, het leven gebeurt! Misschien past een andere dag beter${free!==undefined?`, bijvoorbeeld <b>${WDL[free]}</b>`:''}.`,act:free!==undefined?{l:'Verplaats naar '+WDL[free],fn:'move',a:D.id,b:free}:null});}});
+  // herstelweek
+  {let run=0;for(let o=-1;o>=-10;o--){const n=weekReport(o).rows.filter(r=>r.done>0).length;if(n>=Math.max(2,DAYS.length-1))run++;else break;}
+   if(run>=6)add({id:'deload',pr:55,snooze:28,ic:'🔋',t:'Tijd voor een herstelweek',x:`Je traint al ${run} weken op rij heel goed. Knap! Plan nu een lichtere week: halve sets, zelfde gewicht. Daarna ben je fris en word je weer sterker.`});}
+  // gewicht
+  {const W=S.weights.slice().sort((a,b)=>a.d<b.d?-1:1).filter(w=>daysAgo(w.d)<=35);if(W.length>=3){const a=W[0],b=W[W.length-1];const days=daysAgo(a.d)-daysAgo(b.d);
+    if(days>=14){const pw=(b.kg-a.kg)/days*7;const g=INFO.goal;
+      if(g==='bulk'&&pw<0.1)add({id:'w_bulk',pr:70,ic:'🍽️',t:'Tijd om iets meer te eten',x:`Je gewicht stond de laatste ${Math.round(days/7)} weken bijna stil. Voor spiergroei eet je ± <b>200 kcal meer</b> per dag: bijv. een extra glas melk en een boterham met pindakaas.`});
+      else if(g==='bulk'&&pw>0.7)add({id:'w_fast',pr:68,ic:'🍽️',t:'Je komt snel aan',x:`Je komt ${nl(pw.toFixed(1))} kg per week aan. Iets rustiger is beter: eet ± <b>200 kcal minder</b>, dan wordt het vooral spier.`});
+      else if(g==='cut'&&pw>-0.15)add({id:'w_cut',pr:70,ic:'🍽️',t:'Kleine aanpassing in je eten',x:`Je gewicht daalt nog niet echt. Eet ± <b>200 kcal minder</b> per dag, bijv. de krentenbollen of een snack overslaan. Eiwit hoog houden!`});}}}
+  // cardio
+  {const f14=shiftDate(today(),-14);const ks=Object.keys(S.logs).filter(x=>x.split('|')[0]>=f14&&dayStats(x).sets);let min=0;ks.forEach(key=>Object.entries(S.logs[key]).forEach(([k,sets])=>{if(isCardio(LIB[k]))min+=+((sets||[])[0]||{}).reps||0;}));
+   if(ks.length>=3){const pw=min/2;if(INFO.goal==='cut'&&pw<60)add({id:'c_cut',pr:50,ic:'🏃',t:'Een beetje cardio erbij?',x:`Je doet nu ± ${Math.round(pw)} min cardio per week. Voor vet verliezen helpt 2 tot 3 keer 30 minuten rustige cardio. Bijvoorbeeld na je training.`,act:{l:'Cardio toevoegen',fn:'cardio'}});
+     else if(INFO.goal==='bulk'&&pw>200)add({id:'c_bulk',pr:50,ic:'🏃',t:'Veel cardio en bulken',x:`Je doet ± ${Math.round(pw)} min cardio per week. Super voor je conditie! Eet wel genoeg: zo'n 100 kcal extra per half uur cardio.`});}}
+  out.sort((a,b)=>b.pr-a.pr);return out;}
+function coachTop(){const all=coachAll();let top=all.slice(0,3);const pos=all.find(x=>x.pos);if(pos&&!top.includes(pos))top=[...top.slice(0,2),pos];return top;}
+function coachFor(k){return coachAll().find(a=>a.k===k&&a.lab);}
+function coachAct(id){const a=coachAll().find(x=>x.id===id);if(!a||!a.act)return;const c=a.act;
+  if(c.fn==='swap'){S.plan.days.forEach(d=>d.ex.forEach(e=>{if(e.k===c.a)e.k=c.b;}));toast('🔄 '+LIB[c.a].n+' → '+LIB[c.b].n);}
+  if(c.fn==='move'){const D=S.plan.days.find(d=>d.id===c.a);if(D)D.wd=c.b;toast('📅 Verplaatst naar '+WDL[c.b]);}
+  if(c.fn==='addm'){S.coachOff[id]=today();save();buildDays();const D=DAYS[0];if(D){curDay=(DAYS.find(d=>{const T=DAYTYPES[(planDay(d.id)||{}).tpl];return T&&T.mus.includes(c.a);})||todayDay()||D).id;trEdit=true;go('train');openAddEx('plan',c.a);}return;}
+  if(c.fn==='cardio'){S.coachOff[id]=today();save();go('train');openAddEx('today','cardio');return;}
+  S.coachOff[id]=today();save();buildDays();renderAll();}
+function coachSkip(id){S.coachOff=S.coachOff||{};S.coachOff[id]=today();save();renderProg();toast('Oké, ik laat het even rusten');}
+function renderCoach(){const el=$('coachCard');if(!el)return;const top=coachTop();
+  const n=Object.keys(S.logs).filter(k=>dayStats(k).sets).length;
+  el.innerHTML=`<div class="between"><div class="eyebrow" style="color:var(--acc-t)">Coach-advies</div><span class="small">${top.length?top.length+(top.length===1?' tip':' tips'):''}</span></div>`+
+   (top.length?top.map(a=>`<div class="ctip ${a.pos?'pos':''}"><div class="ct-h"><span class="ct-ic">${a.ic}</span><b>${a.t}</b></div><div class="ct-x">${a.x}</div><div class="ct-b">${a.act?`<button class="cbtn2 go" data-cact="${a.id}">${esc(a.act.l)}</button>`:''}<button class="cbtn2" data-cskip="${a.id}">${a.pos?'Top! 💪':a.act?'Negeer':'Begrepen'}</button></div></div>`).join('')
+   :`<div class="ct-x" style="margin-top:8px">${n<3?'Na een paar trainingen kijk ik mee en geef ik tips. Ik heb minimaal 3 trainingen per oefening nodig. 💪':'Alles ziet er goed uit! Geen tips op dit moment. Ga zo door. 🔥'}</div>`);}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-cact]');if(a){coachAct(a.dataset.cact);return;}const s=e.target.closest('[data-cskip]');if(s)coachSkip(s.dataset.cskip);});
 
 /* ================= MIJN SCHEMA ================= */
 let wz=null;
@@ -1416,7 +1570,62 @@ const FOODS=[
  ['Koffie met melk',15,1,1.5,0.5,'kop 150 ml',150,'Drinken'],['Cappuccino',40,2.2,3.5,2,'kop 180 ml',180,'Drinken'],['Thee',1,0,0,0,'kop 200 ml',200,'Drinken'],
  ['Water',0,0,0,0,'glas 250 ml',250,'Drinken'],
  ['Pesto',450,5,4,45,'eetlepel 15 g',15,'Sauzen'],['Knoflooksaus',400,1,6,40,'eetlepel 15 g',15,'Sauzen'],['Mosterd',100,6,5,6,'theelepel 5 g',5,'Sauzen'],
- ['Slagroom',330,2,3,35,'portie 20 g',20,'Sauzen']
+ ['Slagroom',330,2,3,35,'portie 20 g',20,'Sauzen'],
+ ['Meergranenbrood',250,10,40,5,'snee 35 g',35,'Brood'],['Speltbrood',240,9,42,3,'snee 35 g',35,'Brood'],['Stokbrood',260,9,52,1.5,'stuk 60 g',60,'Brood'],
+ ['Turks brood',270,9,53,2,'portie 100 g',100,'Brood'],['Ciabatta',260,9,48,4,'stuk 80 g',80,'Brood'],['Bagel',260,10,50,1.5,'stuk 85 g',85,'Brood'],
+ ['Volkoren bolletje',250,10,44,3.5,'stuk 55 g',55,'Brood'],['Roti (plaat)',300,7,45,10,'plaat 120 g',120,'Brood'],['Wentelteefje',230,8,28,9,'stuk 70 g',70,'Brood'],
+ ['Witte wrap',310,8,52,7,'wrap 60 g',60,'Brood'],['Naanbrood',290,9,50,6,'stuk 90 g',90,'Brood'],['Weetabix',360,12,69,2,'stuk 19 g',19,'Ontbijt'],['Special K',380,9,77,1.5,'kom 30 g',30,'Ontbijt'],
+ ['Optimel drinkyoghurt',35,3.5,4.5,0.1,'glas 250 ml',250,'Zuivel'],['Almhof yoghurt',95,3.8,8,5,'schaaltje 150 g',150,'Zuivel'],['Arla Protein yoghurt',60,10,4,0.2,'beker 200 g',200,'Zuivel'],
+ ['Arla Protein drink',60,10,4,0.5,'flesje 250 ml',250,'Zuivel'],['Danone Activia',85,3.5,12,2.5,'bekertje 125 g',125,'Zuivel'],['Volle kwark',115,8,4,7,'bakje 250 g',250,'Zuivel'],
+ ['Volle yoghurt',60,3.5,4.5,3,'schaaltje 150 g',150,'Zuivel'],['Hüttenkäse',100,12,3,4.5,'bakje 200 g',200,'Zuivel'],['Roomkaas',250,6,4,23,'portie 20 g',20,'Beleg'],
+ ['Parmezaan',400,35,0,29,'eetlepel 5 g',5,'Zuivel'],['Brie',330,20,0,28,'plak 20 g',20,'Beleg'],['Geitenkaas',300,19,1,25,'plak 20 g',20,'Beleg'],
+ ['Kefir',55,3.5,4,3,'glas 250 ml',250,'Zuivel'],['Koffiemelk',130,7,10,7,'scheutje 15 ml',15,'Zuivel'],['Fristi',60,2.8,10,0.5,'glas 250 ml',250,'Zuivel'],
+ ['Kookroom',180,2.5,4,17,'scheut 50 ml',50,'Zuivel'],['Suiker',400,0,100,0,'theelepel 4 g',4,'Sauzen'],
+ ['Pastrami',130,22,1,4.5,'plak 10 g',10,'Beleg'],['Boterhamworst',220,12,4,17,'plak 10 g',10,'Beleg'],['Pindakaas 100% pinda',610,27,10,50,'eetlepel 15 g',15,'Beleg'],
+ ['Calvé pindakaas',630,22,15,52,'eetlepel 15 g',15,'Beleg'],['Kipkerriesalade',230,9,6,19,'portie 30 g',30,'Beleg'],['Tonijnsalade',230,12,4,18,'portie 30 g',30,'Beleg'],
+ ['Chocoladevlokken',520,5,62,28,'portie 15 g',15,'Beleg'],['Speculoospasta',580,3,57,38,'portie 15 g',15,'Beleg'],['Sandwichspread',220,1.5,22,14,'portie 20 g',20,'Beleg'],
+ ['Carpaccio',130,22,0,4.5,'portie 80 g',80,'Beleg'],
+ ['Bacon / spekjes',400,15,1,38,'portie 30 g',30,'Eiwit'],['Schnitzel',240,18,12,13,'stuk 150 g',150,'Eiwit'],['Kipschnitzel',230,19,13,11,'stuk 150 g',150,'Eiwit'],
+ ['Slavink',280,14,4,23,'stuk 100 g',100,'Eiwit'],['Kipgehakt',150,20,0,8,'portie 150 g',150,'Eiwit'],['Kipsaté',190,25,5,8,'stokje 40 g',40,'Eiwit'],
+ ['Babi pangang',230,13,18,12,'portie 250 g',250,'Uit eten & snel'],['Foe yong hai',150,8,8,10,'portie 250 g',250,'Uit eten & snel'],['Kip tandoori',160,25,4,5,'portie 150 g',150,'Eiwit'],
+ ['Kippenvleugel',250,22,2,17,'stuk 40 g',40,'Eiwit'],['Haring',200,16,0,15,'stuk 80 g',80,'Eiwit'],['Kibbeling',230,14,12,14,'portie 150 g',150,'Uit eten & snel'],
+ ['Lekkerbekje',230,14,14,13,'stuk 150 g',150,'Uit eten & snel'],['Vissticks',200,12,18,9,'stuk 30 g',30,'Eiwit'],['Sardines in olie',220,24,0,14,'blikje 90 g',90,'Eiwit'],
+ ['Tonijn in olie',190,26,0,9,'blikje 110 g',110,'Eiwit'],['Tempeh',190,19,9,11,'portie 100 g',100,'Eiwit'],['Falafel',330,13,32,18,'stuk 20 g',20,'Eiwit'],
+ ['Quorn stukjes',100,14,4,2.6,'portie 100 g',100,'Eiwit'],['Edamame',120,11,9,5,'portie 100 g',100,'Eiwit'],['Witte bonen in tomatensaus',80,5,13,0.5,'portie 200 g',200,'Eiwit'],
+ ['Rundvlees / stoofvlees',180,27,0,8,'portie 150 g',150,'Eiwit'],['Vegetarische kipstukjes',150,18,5,6,'portie 100 g',100,'Eiwit'],['Eiwit (van ei)',48,11,0.7,0.2,'eiwit 33 g',33,'Eiwit'],
+ ['Bulgur (gekookt)',85,3,19,0.2,'portie 180 g',180,'Koolhydraten'],['Gnocchi',150,4,32,0.5,'portie 200 g',200,'Koolhydraten'],['Tortellini / ravioli',250,10,38,6,'portie 200 g',200,'Koolhydraten'],
+ ['Mie (gekookt)',140,5,26,2,'portie 200 g',200,'Koolhydraten'],['Rijstnoedels (gekookt)',110,1.8,25,0.2,'portie 200 g',200,'Koolhydraten'],['Pofaardappel',95,2.5,21,0.1,'stuk 250 g',250,'Koolhydraten'],
+ ['Boerenkool',45,3.5,4,0.9,'portie 200 g',200,'Groente & fruit'],['Zuurkool',20,1.3,2,0.1,'portie 200 g',200,'Groente & fruit'],['Andijvie',15,1.4,1.5,0.2,'portie 200 g',200,'Groente & fruit'],
+ ['Jus',50,1,4,3,'scheut 40 g',40,'Sauzen'],['Rode kool',35,1,7,0.2,'portie 150 g',150,'Groente & fruit'],['Rode bieten',40,1.5,7,0.1,'portie 150 g',150,'Groente & fruit'],
+ ['Courgette',18,1.2,2.5,0.3,'stuk 250 g',250,'Groente & fruit'],['Aubergine',20,1,3,0.2,'portie 150 g',150,'Groente & fruit'],['Spruitjes',40,3.5,4,0.5,'portie 200 g',200,'Groente & fruit'],
+ ['Doperwten',80,5.5,10,0.4,'portie 150 g',150,'Groente & fruit'],['Mais',90,3,15,1.2,'portie 100 g',100,'Groente & fruit'],['Prei',30,1.5,4.5,0.3,'portie 150 g',150,'Groente & fruit'],
+ ['Rucola',25,2.6,2,0.7,'handje 25 g',25,'Groente & fruit'],['Peultjes',40,3,6,0.2,'portie 150 g',150,'Groente & fruit'],['Asperges',20,2,2,0.2,'portie 200 g',200,'Groente & fruit'],
+ ['Pompoen',30,1,6,0.1,'portie 200 g',200,'Groente & fruit'],['Taugé',30,3,3,0.2,'portie 100 g',100,'Groente & fruit'],['Kousenband',30,2,5,0.2,'portie 150 g',150,'Groente & fruit'],
+ ['Watermeloen',30,0.6,7,0.2,'punt 200 g',200,'Groente & fruit'],['Meloen',35,0.8,8,0.2,'punt 200 g',200,'Groente & fruit'],['Frambozen',50,1.2,7,0.5,'bakje 125 g',125,'Groente & fruit'],
+ ['Perzik / nectarine',45,1,10,0.2,'stuk 150 g',150,'Groente & fruit'],['Pruim',45,0.7,10,0.3,'stuk 60 g',60,'Groente & fruit'],['Granaatappel',80,1.5,17,1,'halve 120 g',120,'Groente & fruit'],
+ ['Grapefruit',40,0.8,8,0.1,'halve 150 g',150,'Groente & fruit'],['Dadels',280,2.5,66,0.4,'stuk 8 g',8,'Groente & fruit'],['Gedroogde abrikozen',240,3,55,0.5,'stuk 8 g',8,'Groente & fruit'],
+ ['Appelmoes',75,0.2,18,0.1,'schaaltje 100 g',100,'Groente & fruit'],['Fruitsalade',55,0.7,13,0.2,'bakje 200 g',200,'Groente & fruit'],
+ ['Mars',450,4,70,17,'reep 51 g',51,'Snacks'],['Snickers',490,9,58,24,'reep 50 g',50,'Snacks'],['Twix',495,4.5,64,24,'reep 50 g',50,'Snacks'],['Bounty',480,4,58,26,'reep 57 g',57,'Snacks'],
+ ['KitKat',520,6,62,27,'reep 41 g',41,'Snacks'],['M&M\'s',490,5,68,21,'zakje 45 g',45,'Snacks'],['Lay\'s chips',540,6,50,34,'zakje 40 g',40,'Snacks'],['Doritos',500,7,60,25,'zakje 44 g',44,'Snacks'],
+ ['Pringles',530,4,52,33,'handje 25 g',25,'Snacks'],['Borrelnootjes',500,13,45,30,'handje 25 g',25,'Snacks'],['Cashewnoten',600,18,26,48,'handje 25 g',25,'Snacks'],
+ ['Walnoten',690,15,7,65,'handje 25 g',25,'Snacks'],['Rijstwafel met chocolade',480,7,63,22,'stuk 17 g',17,'Snacks'],['Liga',450,7,66,17,'koek 18 g',18,'Snacks'],
+ ['Sultana',400,6,70,10,'koek 15 g',15,'Snacks'],['Speculaas',470,6,70,18,'stuk 15 g',15,'Snacks'],['Tompouce',300,4,38,15,'stuk 100 g',100,'Snacks'],
+ ['Muffin',400,6,50,20,'stuk 80 g',80,'Snacks'],['Brownie',420,5,55,20,'stuk 60 g',60,'Snacks'],['Oreo',480,5,69,20,'koekje 11 g',11,'Snacks'],
+ ['Barebells proteïnereep',360,36,35,13,'reep 55 g',55,'Snacks'],['Magnum',330,4,30,21,'stuk 80 g',80,'Snacks'],
+ ['Fanta / Sprite',38,0,9,0,'blikje 330 ml',330,'Drinken'],['Bier 0.0',22,0.4,5,0,'blikje 330 ml',330,'Drinken'],['Radler',40,0.3,9,0,'flesje 300 ml',300,'Drinken'],
+ ['Sterke drank',230,0,0,0,'shot 35 ml',35,'Drinken'],['Kokoswater',20,0.2,4.5,0,'pakje 330 ml',330,'Drinken'],['Latte',50,3,4.5,2.4,'beker 300 ml',300,'Drinken'],
+ ['Multivruchtensap',48,0.4,11,0,'glas 250 ml',250,'Drinken'],
+ ['Big Mac',236,12,20,12,'stuk 215 g',215,'Uit eten & snel'],['McChicken',230,10,24,10,'stuk 170 g',170,'Uit eten & snel'],['Cheeseburger',250,13,26,11,'stuk 118 g',118,'Uit eten & snel'],
+ ['McNuggets',250,15,15,15,'nugget 17 g',17,'Uit eten & snel'],['McDonald\'s friet',320,3.5,40,15,'medium 114 g',114,'Uit eten & snel'],['McFlurry',190,4,30,6,'beker 200 g',200,'Uit eten & snel'],
+ ['KFC kipstuk',250,18,8,16,'stuk 120 g',120,'Uit eten & snel'],['KFC Zinger burger',240,13,23,11,'stuk 200 g',200,'Uit eten & snel'],['KFC hot wings',290,21,7,20,'stuk 30 g',30,'Uit eten & snel'],
+ ['Subway sub (kip, 15 cm)',160,11,20,3.5,'sub 230 g',230,'Uit eten & snel'],['Domino\'s pizza',260,11,30,10,'punt 100 g',100,'Uit eten & snel'],['Kebab broodje',230,12,25,9,'stuk 300 g',300,'Uit eten & snel'],
+ ['Dürüm',220,11,22,10,'stuk 350 g',350,'Uit eten & snel'],['Lahmacun',210,9,30,6,'stuk 150 g',150,'Uit eten & snel'],['Pide',250,11,32,9,'stuk 300 g',300,'Uit eten & snel'],
+ ['Poké bowl',140,8,18,4,'bowl 450 g',450,'Uit eten & snel'],['Roti kip (compleet)',180,8,22,7,'portie 550 g',550,'Uit eten & snel'],['Broodje pom',250,10,28,11,'stuk 200 g',200,'Uit eten & snel'],
+ ['Moksi meti met rijst',190,10,22,7,'portie 400 g',400,'Uit eten & snel'],['Kaassoufflé',300,9,25,18,'stuk 70 g',70,'Uit eten & snel'],['Bamischijf',260,6,25,15,'stuk 100 g',100,'Uit eten & snel'],
+ ['Nasibal',250,6,26,13,'stuk 100 g',100,'Uit eten & snel'],
+ ['Stroop (pannenkoek)',300,0,75,0,'eetlepel 20 g',20,'Sauzen'],['Fritessaus',300,1,8,30,'eetlepel 15 g',15,'Sauzen'],['Sambal',60,1.5,8,2,'theelepel 5 g',5,'Sauzen'],
+ ['Sojasaus',60,8,6,0,'eetlepel 15 g',15,'Sauzen'],['Kruidenboter',650,1,1,72,'plakje 10 g',10,'Sauzen'],['Unox soep',45,2.5,5,1.5,'kom 300 ml',300,'Uit eten & snel'],
+ ['Knorr wereldgerecht',140,5,20,4,'portie 350 g',350,'Uit eten & snel']
 ].map(a=>({n:a[0],k:a[1],p:a[2],c:a[3],f:a[4],pn:a[5],pg:a[6],cat:a[7]}));
 const MOMENTS=[['ontbijt','Ontbijt'],['lunch','Lunch'],['diner','Diner'],['snack','Tussendoor']];
 let fdDate=today();
@@ -1452,7 +1661,7 @@ function renderFood(){
   $('fdLog').innerHTML=items.length?MOMENTS.map(([mk,ml])=>{const its=items.map((e,i)=>({...e,i})).filter(e=>e.m===mk);if(!its.length)return '';
     const sk=its.reduce((a,e)=>a+e.k,0);
     return `<div class="between" style="margin:14px 2px 0"><b style="font-family:var(--disp)">${ml}</b><span class="small">${sk} kcal</span></div><div class="card" style="padding-top:2px;padding-bottom:2px;margin-top:6px">`+
-      its.map(e=>`<div class="li" style="padding:11px 0;align-items:center"><div style="flex:1;min-width:0"><div class="t1">${esc(e.n)}</div><div class="t2">${e.g?e.g+' g':esc(e.q||'1 portie')} · ${e.k} kcal · <b style="color:var(--txt)">${Math.round(e.p)} g eiwit</b> · ${Math.round(e.c)} g koolh · ${Math.round(e.f)} g vet</div></div><button class="xbtn" data-del="${e.i}" aria-label="Verwijder">✕</button></div>`).join('')+'</div>';}).join('')
+      its.map(e=>`<div class="li" style="padding:11px 0;align-items:center"><div style="flex:1;min-width:0"><div class="t1">${esc(e.n)}</div><div class="t2">${e.q?esc(e.q)+' ('+e.g+' g)':e.g?e.g+' g':'1 portie'} · ${e.k} kcal · <b style="color:var(--txt)">${Math.round(e.p)} g eiwit</b> · ${Math.round(e.c)} g koolh · ${Math.round(e.f)} g vet</div></div><button class="xbtn" data-del="${e.i}" aria-label="Verwijder">✕</button></div>`).join('')+'</div>';}).join('')
     :`<div class="small" style="margin:10px 2px 0">At je iets anders of extra? Voeg het toe, dan rekent de app de voedingswaarden voor je uit.</div>`;
   $('fCrea').style.display=isToday?'':'none';
   $('fCrea').className='tile'+(cr?' on':'');
@@ -1477,11 +1686,13 @@ function openAddFood(prefill){
   openSheet(`<div class="h-l">Eten toevoegen</div><div class="small">${dateLabel(fdDate)}</div>
    <div class="parsebox"><label for="fpTxt">✍️ Typ wat je at</label><textarea id="fpTxt" rows="3" placeholder="Bijv. 2 boterhammen met kaas, een banaan en een glas melk">${esc(prefill||'')}</textarea>
    <div class="small">🎤 Tik op de microfoon van je toetsenbord om in te spreken.</div><button class="cta grad" id="fpGo">Herken mijn eten</button></div>
+   ${(S.mydishes||[]).length?`<div class="h-s sm">Mijn gerechten</div><div class="mydishes" id="fdMy">${S.mydishes.map((d,i)=>`<div class="mdish"><button class="md-add" data-md="${i}">⭐ ${esc(d.n)}<span>${d.items.reduce((a,x)=>{const it=allFoods().find(f=>f.n===x.n);return a+(it?calc(it,x.g).k:0);},0)} kcal · tik = toevoegen</span></button><button class="xbtn" data-mdx="${i}" aria-label="Verwijder ${esc(d.n)}">✕</button></div>`).join('')}</div>`:''}
    <div class="h-s sm">Of zoek een product</div>
    <div class="field" style="margin-top:4px"><input id="fdQ" placeholder="Zoek: kip, banaan, pasta, pizza…" autocomplete="off" enterkeyhint="search"></div>
    <div id="fdList"></div>
    <button class="cta ghost" id="fdOwn" style="margin-top:12px">+ Eigen product (van het etiket)</button>
    <button class="cta ghost" data-close style="margin-top:8px">Sluiten</button>`);
+  const my=$('fdMy');if(my)my.onclick=e=>{const a=e.target.closest('[data-md]');if(a){addMyDish(+a.dataset.md);return;}const x=e.target.closest('[data-mdx]');if(x){if(x.dataset.armed){S.mydishes.splice(+x.dataset.mdx,1);save();openAddFood();toast('Gerecht verwijderd');}else{x.dataset.armed=1;x.textContent='?';toast('Tik nog een keer om te verwijderen');}}};
   $('fpGo').onclick=()=>{const t=$('fpTxt').value.trim();if(!t){toast('Typ eerst wat je at');$('fpTxt').focus();return;}openParsed(t,parseMeal(t));};
   const sb=$('sheetBody');const list=sb.querySelector('#fdList');
   const draw=()=>{const q=norm(sb.querySelector('#fdQ').value.trim());const all=allFoods();let res;
@@ -1490,101 +1701,312 @@ function openAddFood(prefill){
       list.innerHTML=(rec.length?`<div class="h-s" style="font-size:15px;margin:14px 0 6px">Recent</div><div class="card" style="padding:2px 14px;margin:0">${rec.map(row).join('')}</div>`:'')+
         [...new Set(all.map(x=>x.cat))].map(cat=>`<div class="h-s" style="font-size:15px;margin:14px 0 6px">${esc(cat)}</div><div class="card" style="padding:2px 14px;margin:0">${all.filter(x=>x.cat===cat).map(row).join('')}</div>`).join('');return;}
     list.innerHTML=res.length?`<div class="card" style="padding:2px 14px;margin-top:10px">${res.map(row).join('')}</div>`:`<div class="note">Niets gevonden voor "${esc(sb.querySelector('#fdQ').value)}". Voeg het toe als eigen product, met de waarden van het etiket.</div>`;};
-  function row(x){const v=calc(x,x.pg);return `<button class="li fditem" data-n="${esc(x.n)}" style="width:100%;background:none;border:0;border-bottom:1px solid var(--stroke);text-align:left;padding:11px 0;color:var(--txt)"><div style="flex:1"><div class="t1">${esc(x.n)}</div><div class="t2">${esc(x.pn)} · ${v.k} kcal · ${Math.round(v.p)} g eiwit</div></div><span class="chev">›</span></button>`;}
+  function row(x){const v=calc(x,x.pg);return `<button class="li fditem" data-n="${esc(x.n)}" style="width:100%;background:none;border:0;border-bottom:1px solid var(--stroke);text-align:left;padding:11px 0;color:var(--txt)"><div style="flex:1"><div class="t1">${esc(x.n)}</div><div class="t2">${(u=>esc('1 '+u.s+' ('+u.g+' g)'))(unitsFor(x)[0])} · ${calc(x,unitsFor(x)[0].g).k} kcal · ${Math.round(calc(x,unitsFor(x)[0].g).p)} g eiwit</div></div><span class="chev">›</span></button>`;}
   sb.querySelector('#fdQ').addEventListener('input',draw);draw();
   list.addEventListener('click',e=>{const b=e.target.closest('.fditem');if(!b)return;const it=allFoods().find(x=>x.n===b.dataset.n);if(it)openAmount(it);});
   sb.querySelector('#fdOwn').onclick=openOwnFood;
 }
+/* ================= NATUURLIJKE EENHEDEN ================= */
+const SZ='stuk (middel)|stuks (middel)|pg;stuk (klein)|stuks (klein)|pg*0.75;stuk (groot)|stuks (groot)|pg*1.3';
+const PLATE='bord|borden|pg;half bord|halve borden|pg*0.5;groot bord|grote borden|pg*1.4;opscheplepel|opscheplepels|60';
+const SPOON='eetlepel|eetlepels|15;theelepel|theelepels|5;klodder|klodders|20';
+const SPREAD='boterham besmeerd|boterhammen besmeerd|15;eetlepel|eetlepels|20';
+const GLASS='glas|glazen|250;beker|bekers|300;scheutje|scheutjes|50';
+const UNIT_RULES=[
+ [/^tonijn in|sardines/,'blikje|blikjes|pg;half blikje|halve blikjes|pg*0.5'],[/domino/,'punt|punten|pg'],
+ [/melkchocolade|pure chocolade/,'blokje|blokjes|5;rij|rijen|20;hele reep|hele repen|100'],
+ [/reep|^mars|snickers|twix|bounty|kitkat/,'reep|repen|pg;mini|mini\'s|pg*0.35'],
+ [/^ei$/,'ei (middel)|eieren (middel)|55;ei (klein)|eieren (klein)|45;ei (groot)|eieren (groot)|65'],
+ [/^eiwit \(van ei\)/,'eiwit|eiwitten|33'],
+ [/^kaas 30|^kaas 48|^brie|^geitenkaas/,'plakje|plakjes|20;dikke plak|dikke plakken|30'],
+ [/geraspte kaas/,'handje|handjes|30;eetlepel|eetlepels|8'],[/parmezaan/,'eetlepel|eetlepels|5'],
+ [/mozzarella/,'bol|bollen|125;halve bol|halve bollen|62'],[/^feta/,'blokje|blokjes|25;portie|porties|50'],
+ [/carpaccio/,'portie|porties|80'],
+ [/^ham$|kipfilet \(vlees|salami|rookvlees|pastrami|boterhamworst/,'plakje|plakjes|pg;dikke plak|dikke plakken|pg*1.6'],
+ [/pindakaas/,'boterham dun besmeerd|boterhammen dun besmeerd|10;boterham dik besmeerd|boterhammen dik besmeerd|20;eetlepel|eetlepels|15;theelepel|theelepels|6'],
+ [/honing|stroop/,'eetlepel|eetlepels|20;theelepel|theelepels|7'],
+ [/^jam/,SPREAD],[/hagelslag|chocoladevlokken/,'boterham|boterhammen|15;eetlepel|eetlepels|10'],
+ [/chocoladepasta|speculoospasta|smeerkaas|roomkaas|hummus|filet americain|leverworst|eiersalade|kipkerriesalade|tonijnsalade|sandwichspread/,SPREAD],
+ [/kruidenboter/,'plakje|plakjes|10'],[/boter/,'boterham besmeerd|boterhammen besmeerd|5;eetlepel|eetlepels|10;klontje|klontjes|10'],
+ [/^suiker/,'theelepel|theelepels|4;klontje|klontjes|5;eetlepel|eetlepels|12'],
+ [/olie/,'eetlepel|eetlepels|10;theelepel|theelepels|4;scheutje|scheutjes|10'],
+ [/pindasaus/,'portie|porties|50;eetlepel|eetlepels|15'],
+ [/mayonaise|fritessaus|knoflooksaus|ketchup|sweet chili|pesto|ketjap|sojasaus/,SPOON],[/mosterd|sambal/,'theelepel|theelepels|5;eetlepel|eetlepels|15'],
+ [/slagroom/,'toef|toeven|20;eetlepel|eetlepels|15'],[/kookroom/,'scheut|scheuten|50;eetlepel|eetlepels|15'],[/^jus$/,'scheut|scheuten|40;eetlepel|eetlepels|20'],
+ [/volkoren brood|wit brood|bruin brood|meergranen|speltbrood/,'snee|sneetjes|35'],
+ [/^stokbrood/,'stuk|stukken|60;heel stokbrood|hele stokbroden|250'],[/turks brood/,'portie|porties|100;half brood|halve broden|200'],
+ [/wrap/,'wrap|wraps|pg'],[/tosti/,"tosti|tosti's|pg"],[/^roti \(plaat/,'roti|roti\'s|pg'],
+ [/pistolet|bolletje|bagel|ciabatta|krentenbol|croissant|pitabroodje|naanbrood|beschuit|cracker|rijstwafel|weetabix|pannenkoek|wentelteef/,'stuk|stuks|pg'],
+ [/havermout|brinta/,'portie|porties|pg;halve portie|halve porties|pg*0.5;eetlepel|eetlepels|10'],
+ [/muesli|granola|cruesli|cornflakes|special k/,'kom|kommen|pg;handje|handjes|25;eetlepel|eetlepels|10'],
+ [/koffiemelk/,'scheutje|scheutjes|15;cupje|cupjes|7'],
+ [/energiedrank/,'blikje|blikjes|250;groot blik|grote blikken|500'],
+ [/^cola|fanta|bier 0/,'blikje|blikjes|330;glas|glazen|250;flesje (0,5 l)|flesjes (0,5 l)|500'],
+ [/^bier$|radler/,'glas|glazen|250;flesje|flesjes|300;blikje|blikjes|330;halve liter|halve liters|500'],
+ [/^wijn/,'glas|glazen|125;fles|flessen|750'],[/sterke drank/,'shot|shots|35'],[/sportdrank/,'flesje|flesjes|500;glas|glazen|250'],
+ [/^water/,'glas|glazen|250;flesje (0,5 l)|flesjes (0,5 l)|500;liter|liter|1000'],
+ [/^latte/,'beker|bekers|300;kopje|kopjes|180'],[/koffie|^thee|cappuccino/,'kopje|kopjes|pg;mok|mokken|250'],
+ [/melk|kefir|drinkyoghurt|protein drink|sap$|limonade|ice tea|fristi|smoothie|kokoswater/,GLASS],
+ [/kwark|yoghurt|skyr|^vla|pudding|huttenkase|activia/,'schaaltje|schaaltjes|150;bakje|bakjes|pg;eetlepel|eetlepels|20'],
+ [/avocado/,'hele|hele|140;halve|halve|70'],
+ [/^banaan|^appel$|^peer|^sinaasappel$|^kiwi|^mandarijn|^perzik|^pruim/,SZ],
+ [/rozijnen/,'handje|handjes|30;doosje|doosjes|14'],
+ [/aardbeien|frambozen|blauwe bessen|druiven/,'handje|handjes|50;bakje|bakjes|pg;schaaltje|schaaltjes|125'],
+ [/watermeloen|^meloen/,'punt|punten|pg'],[/dadels|abrikozen/,'stuk|stuks|pg'],[/granaatappel|grapefruit/,'halve|halve|pg;hele|hele|pg*2'],
+ [/appelmoes|fruitsalade/,'schaaltje|schaaltjes|pg;eetlepel|eetlepels|25'],[/mango|ananas/,'portie|porties|pg;halve|halve|pg*1.5'],
+ [/^tomaat|^paprika|^ui$|courgette/,'stuk|stuks|pg;halve|halve|pg*0.5'],[/komkommer/,'halve|halve|150;hele|hele|300;handje plakjes|handjes plakjes|50'],
+ [/^sla|rucola/,'handje|handjes|25;portie|porties|pg'],
+ [/wokgroente|broccoli|sperziebonen|spinazie|wortel|champignons|bloemkool|boerenkool|zuurkool|andijvie|rode kool|rode bieten|aubergine|spruitjes|doperwten|mais|prei|peultjes|asperges|pompoen|tauge|kousenband|edamame/,'portie|porties|pg;opscheplepel|opscheplepels|60'],
+ [/\(gekookt\)|aardappelpuree|nasi \/ bami|gnocchi|tortellini/,PLATE],
+ [/couscous|quinoa|bulgur/,PLATE],
+ [/^aardappelen/,'aardappel|aardappels|70;portie|porties|pg'],[/gebakken aardappelen/,'portie|porties|pg;opscheplepel|opscheplepels|60'],
+ [/ongekookt/,'portie (droog)|porties (droog)|pg'],
+ [/mcdonald.s friet/,'medium|medium|114;klein|klein|80;groot|groot|150'],
+ [/patat|ovenfriet/,'patatje (middel)|patatjes (middel)|150;klein|kleine|100;groot|grote|225'],
+ [/pizza$|^pizza/,'hele|hele|350;halve|halve|175;punt|punten|44'],[/domino/,'punt|punten|pg'],
+ [/sushi/,'stukje|stukjes|25;8 stukjes|keer 8 stukjes|200'],
+ [/mcnuggets/,'nugget|nuggets|17'],[/kipnuggets/,'nugget|nuggets|20;portie|porties|120'],
+ [/kipsate/,'stokje|stokjes|pg'],
+ [/eiwitshake|whey/,'schep|scheppen|30;halve schep|halve scheppen|15'],
+ [/noten|pinda.s|amandelen|cashew|walnoten|borrelnootjes/,'handje|handjes|25;zakje|zakjes|100'],
+ [/^chips|lay.s|doritos|pringles/,'handje|handjes|25;klein zakje|kleine zakjes|40;grote zak|grote zakken|200'],
+ [/popcorn/,'kom|kommen|30;grote bak|grote bakken|100'],
+ [/melkchocolade|pure chocolade/,'blokje|blokjes|5;rij|rijen|20;hele reep|hele repen|100'],
+ [/snoep/,'handje|handjes|30;zakje|zakjes|100'],[/^ijs$/,'bolletje|bolletjes|50;bakje|bakjes|100'],
+ [/appeltaart/,'punt|punten|pg'],[/ontbijtkoek/,'plak|plakken|pg'],
+ [/reep|^mars|snickers|twix|bounty|kitkat/,'reep|repen|pg;mini|mini\'s|pg*0.35'],
+ [/soep/,'kom|kommen|pg;beker|bekers|250'],
+ [/tonijn|sardines/,'blikje|blikjes|pg;half blikje|halve blikjes|pg*0.5'],
+ [/witte bonen|kidneybonen|kikkererwten|linzen/,'portie|porties|pg;opscheplepel|opscheplepels|60'],
+];
+const PLUR={stuk:'stuks',plak:'plakken',plakje:'plakjes',snee:'sneetjes',glas:'glazen',beker:'bekers',blikje:'blikjes',flesje:'flesjes',eetlepel:'eetlepels',theelepel:'theelepels',
+ handje:'handjes',bakje:'bakjes',schaaltje:'schaaltjes',portie:'porties',bord:'borden',punt:'punten',stukje:'stukjes',kop:'kopjes',kopje:'kopjes',reep:'repen',bolletje:'bolletjes',
+ filet:'filets',schep:'scheppen',wrap:'wraps',zakje:'zakjes',koek:'koeken',koekje:'koekjes',kom:'kommen',bekertje:'bekertjes',pakje:'pakjes',stokje:'stokjes',plaat:"roti's",nugget:'nuggets',
+ shot:'shots',sub:'subs',bowl:'bowls',bak:'bakken',scheut:'scheuten',scheutje:'scheutjes',halve:'halve',hele:'hele',bol:'bollen',burger:'burgers',ei:'eieren',medium:'medium',tosti:"tosti's",eiwit:'eiwitten'};
+const _uc={};
+function unitsFor(f){if(!f)return[];const key=f.n+'|'+f.pg;if(_uc[key])return _uc[key];const nn=norm(f.n);let spec=null;
+  for(const [re,sp] of UNIT_RULES){if(re.test(nn)){spec=sp;break;}}
+  let us;if(spec){us=spec.split(';').map(x=>{const [s,p,g]=x.split('|');const gv=g==='pg'?f.pg:g.startsWith('pg*')?Math.round(f.pg*parseFloat(g.slice(3))):+g;return{s,p,g:gv};});}
+  else{const w=norm(f.pn).split(' ')[0];us=[{s:w,p:PLUR[w]||w,g:f.pg}];if(w!=='portie')us.push({s:'portie',p:'porties',g:f.pg});}
+  if(f.own&&!spec)us=[{s:'portie',p:'porties',g:f.pg}];
+  return _uc[key]=us;}
+const GRAM={s:'gram',p:'gram',g:1};
+const fmtN=n=>n===0.5?'½':n===1.5?'1½':n===2.5?'2½':nl(Math.round(n*10)/10);
+function qtyLabel(n,u){if(u.s==='gram')return Math.round(n)+' g';return fmtN(n)+' '+(n>1?u.p:u.s);}
+
 /* ================= ETEN TYPEN IN EEN ZIN ================= */
-const SYNTXT=`Volkoren brood|boterham,boterhammen,brood,snee brood,sneetje brood,sneetjes brood,volkorenbrood,volkoren boterham;Wit brood|wit brood,witbrood,witte boterham,witte boterhammen;Bruin brood|bruin brood,bruine boterham,bruine boterhammen;Kaas 48+|kaas,jong belegen,belegen kaas,oude kaas,plak kaas,plakjes kaas,kaasje;Kaas 30+|30+ kaas,30 kaas,magere kaas;Geraspte kaas|geraspte kaas;Halfvolle melk|melk,halfvolle melk,glas melk;Volle melk|volle melk;Magere melk|magere melk;Chocolademelk|chocomel,chocolademelk,warme chocolademelk;Magere kwark|kwark,magere kwark;Magere yoghurt|yoghurt,magere yoghurt,yogurt;Griekse yoghurt 10%|griekse yoghurt;Ei|ei,eieren,eitje,eitjes,gekookt ei,gebakken ei,roerei,omelet,spiegelei;Kipfilet (bereid)|kip,kipfilet,kipstukjes,kipreepjes,kippenvlees,kippenborst;Kipdijfilet (bereid)|kipdij,kipdijen,kipdijfilet,kippendij;Kipdrumstick (bereid)|drumstick,drumsticks,kippenpoot,kippenpootje;Gehakt half-om-half|gehakt,half om half;Mager rundergehakt|rundergehakt,mager gehakt;Gehaktbal|gehaktbal,gehaktballen,bal gehakt;Hamburger met broodje|hamburger,hamburgers,burger,burgers,cheeseburger,big mac;Vegaburger|vegaburger,vega burger,veggie burger;Kipburger met broodje|kipburger,chickenburger;Biefstuk|biefstuk,steak,entrecote;Zalm|zalm,zalmfilet;Gerookte zalm|gerookte zalm;Tonijn in water (blik)|tonijn;Witvis / kabeljauw|vis,kabeljauw,witvis,pangasius,koolvis,visfilet;Speklapje|speklap,speklapjes,spek;Kidneybonen|bonen,kidneybonen,bruine bonen;Rijst (gekookt)|rijst,witte rijst,basmati,basmatirijst,zilvervliesrijst,bord rijst;Pasta (gekookt)|pasta,spaghetti,macaroni,penne,tagliatelle,fusilli,bord pasta;Volkoren pasta (gekookt)|volkoren pasta,volkorenpasta;Aardappelen|aardappel,aardappelen,aardappels,piepers,krieltjes,gekookte aardappelen;Aardappelpuree|puree,aardappelpuree,stamppot;Gebakken aardappelen|gebakken aardappelen,gebakken aardappeltjes,baby aardappeltjes;Noedels (ongekookt)|noedels,mie;Nasi / bami|nasi,bami,nasi goreng,bami goreng;Patat (friettent)|friet,patat,frietjes,patatje,franse frietjes,frieten;Volkoren wrap|wrap,wraps,tortilla;Pitabroodje|pita,pitabroodje,pitabroodjes;Pistolet / bolletje|bolletje,bolletjes,broodje,broodjes,pistolet,pistoletje,kaiserbroodje;Krentenbol|krentenbol,krentenbollen;Cracker|cracker,crackers,knackebrod;Rijstwafel|rijstwafel,rijstwafels;Tosti ham-kaas|tosti,tosti ham kaas,tostis;Pannenkoek|pannenkoek,pannenkoeken;Havermout|havermout,oats,havervlokken,overnight oats,pap;Sinaasappelsap|sap,jus,jus d orange,sinaasappelsap,verse jus;Cola|cola,coca cola;Cola zero / light|cola zero,cola light,pepsi max;Bier|bier,biertje,biertjes,pils,pilsje,pilsjes,speciaalbier;Wijn|wijn,wijntje,rode wijn,witte wijn,rose;Energiedrank|red bull,monster,energy,energydrank,energiedrank;Ice tea|ice tea,icetea,lipton;Limonade|limonade,ranja,siroop;Koffie (zwart)|koffie,zwarte koffie,espresso,koffietje;Koffie met melk|koffie met melk,latte,koffie verkeerd,latte macchiato;Thee|thee,theetje;Water|water,watertje;Sportdrank|sportdrank,aa drink,isostar;Eiwitshake (whey, met water)|whey,shake,eiwitshake,proteine shake,proteineshake,protein shake,eiwit shake;Proteïnereep|eiwitreep,proteinereep,protein bar,proteine reep,eiwitrepen;Koekje|koek,koekje,koekjes,biscuit,biscuitje,biscuitjes;Melkchocolade|chocolade,chocola,reep chocolade,stukje chocolade;Chocoladereep|mars,snickers,twix,bounty,chocoladereep,kitkat;Chips|chips,zak chips,chipjes;Gemengde noten|noten,nootjes,cashew,cashewnoten,walnoten;Pinda's|pinda,pindas,pinda s;IJs|ijs,ijsje,ijsjes,magnum;Appeltaart|appeltaart,taart,gebak;Snoep / winegums|snoep,winegums,drop,snoepjes;Hagelslag|hagelslag,hagel;Boter / margarine|boter,margarine,roomboter,halvarine;Chocoladepasta|nutella,chocopasta,chocoladepasta;Appelstroop|appelstroop,stroop;Leverworst|leverworst,smeerworst;Filet americain|filet americain,americain;Ham|ham,hammetje,beenham;Pizza|pizza,pizzas;Shoarma / kebab (vlees)|shoarma,kebab,doner,gyros;Bitterbal|bitterbal,bitterballen;Frikandel|frikandel,frikandellen,frikandelletje;Kroket|kroket,kroketten,kroketje;Kipnuggets|nuggets,kipnuggets,chicken nuggets;Mayonaise|mayo,mayonaise,fritessaus;Ketchup|ketchup,curry,currysaus;Pindasaus (satésaus)|pindasaus,satesaus,sate saus;Pastasaus|pastasaus,tomatensaus,bolognese,bolognesesaus;Lasagne|lasagne;Chili con carne|chili,chili con carne;Soep|soep,soepje,tomatensoep,groentesoep,kippensoep;Erwtensoep|erwtensoep,snert;Knoflooksaus|knoflooksaus,looksaus;Olijfolie|olie,olijfolie,bakolie;Wokgroente|groente,groenten,wokgroente,wokgroenten;Sperziebonen|sperziebonen,boontjes;Sla / salade|sla,salade;Tomaat|tomaat,tomaten,tomaatje,tomaatjes,cherrytomaatjes;Wortel|wortel,wortels,worteltjes,winterpeen;Champignons|champignon,champignons;Ui|ui,uien,uitje;Mandarijn|mandarijn,mandarijnen,clementine,clementines;Peer|peer,peren;Aardbeien|aardbei,aardbeien;Blauwe bessen|bessen,blauwe bessen,blauwbessen;Druiven|druif,druiven;Banaan|banaan,bananen;Appel|appel,appels,appeltje;Sinaasappel|sinaasappel,sinaasappels`;
+const SYNTXT=`Volkoren brood|boterham,boterhammen,brood,snee brood,sneetje brood,sneetjes brood,volkorenbrood,volkoren boterham;Wit brood|wit brood,witbrood,witte boterham,witte boterhammen,casino brood,casinobrood;Bruin brood|bruin brood,bruine boterham,bruine boterhammen,tarwebrood;Meergranenbrood|meergranen,meergranenbrood;Speltbrood|spelt,speltbrood;Stokbrood|stokbrood;Turks brood|turks brood;Ciabatta|ciabatta;Bagel|bagel,bagels;Volkoren bolletje|volkoren bolletje,bruin bolletje;Naanbrood|naan,naanbrood;Witte wrap|witte wrap;Wentelteefje|wentelteefje,wentelteefjes;Weetabix|weetabix;Special K|special k;Kaas 48+|kaas,jong belegen,belegen kaas,oude kaas,plak kaas,plakjes kaas,kaasje,goudse kaas,48+ kaas;Kaas 30+|30+ kaas,30 kaas,magere kaas;Geraspte kaas|geraspte kaas,raspkaas;Parmezaan|parmezaan,parmezaanse kaas,parmigiano;Brie|brie;Geitenkaas|geitenkaas;Mozzarella|mozzarella;Feta|feta;Roomkaas|roomkaas,philadelphia;Smeerkaas|smeerkaas;Hüttenkäse|huttenkase,cottage cheese;Halfvolle melk|melk,halfvolle melk,glas melk;Volle melk|volle melk;Magere melk|magere melk;Chocolademelk|chocomel,chocolademelk,warme chocolademelk;Fristi|fristi;Kefir|kefir;Koffiemelk|koffiemelk;Kookroom|kookroom,room;Magere kwark|kwark,magere kwark;Volle kwark|volle kwark;Magere yoghurt|yoghurt,magere yoghurt,yogurt;Volle yoghurt|volle yoghurt;Griekse yoghurt 10%|griekse yoghurt;Optimel drinkyoghurt|optimel;Almhof yoghurt|almhof;Arla Protein yoghurt|arla protein,arla yoghurt,arla protein yoghurt,proteine yoghurt,protein yoghurt,eiwit yoghurt,eiwityoghurt,high protein yoghurt;Skyr naturel|skyr,proteine kwark,eiwitkwark,protein kwark;Proteïne pudding|proteine pudding,protein pudding,eiwitpudding;Arla Protein drink|arla drink,arla protein drink,protein drink;Danone Activia|activia,danone;Ei|ei,eieren,eitje,eitjes,gekookt ei,gebakken ei,roerei,spiegelei,gekookte eieren;Eiwit (van ei)|eiwitten,eiwit van ei;Kipfilet (bereid)|kip,kipfilet,kipstukjes,kipreepjes,kippenvlees,kippenborst,kipblokjes;Kipdijfilet (bereid)|kipdij,kipdijen,kipdijfilet,kippendij;Kipdrumstick (bereid)|drumstick,drumsticks,kippenpoot,kippenpootje;Kippenvleugel|kippenvleugel,kippenvleugels,vleugels,vleugeltjes;Kipgehakt|kipgehakt;Gehakt half-om-half|gehakt,half om half;Mager rundergehakt|rundergehakt,mager gehakt;Gehaktbal|gehaktbal,gehaktballen,bal gehakt;Hamburger met broodje|hamburger,hamburgers,burger,burgers,broodje hamburger;Hamburger (los)|hamburger los,los hamburgertje;Vegaburger|vegaburger,vega burger,veggie burger;Kipburger met broodje|kipburger,chickenburger;Biefstuk|biefstuk,steak,entrecote;Rundvlees / stoofvlees|stoofvlees,rundvlees,hachee,draadjesvlees;Varkenshaas|varkenshaas,varkensvlees;Kalkoenfilet|kalkoen,kalkoenfilet;Schnitzel|schnitzel;Kipschnitzel|kipschnitzel;Slavink|slavink,slavinken;Bacon / spekjes|bacon,spekjes,ontbijtspek;Speklapje|speklap,speklapjes,spek;Kipsaté|sate,kipsate,saté,sateetjes,satestokjes;Zalm|zalm,zalmfilet;Gerookte zalm|gerookte zalm;Tonijn in water (blik)|tonijn;Tonijn in olie|tonijn in olie;Sardines in olie|sardines,sardientjes;Witvis / kabeljauw|vis,kabeljauw,witvis,pangasius,koolvis,visfilet,tilapia;Haring|haring,haringje,hollandse nieuwe;Kibbeling|kibbeling;Lekkerbekje|lekkerbekje;Vissticks|vissticks,fishsticks,visstick;Makreel|makreel;Tempeh|tempeh;Tofu|tofu;Falafel|falafel;Quorn stukjes|quorn;Edamame|edamame;Vegetarische kipstukjes|vega kip,vegetarische kip,vegakip;Kidneybonen|bonen,kidneybonen,bruine bonen;Witte bonen in tomatensaus|witte bonen,baked beans,bonen in tomatensaus;Kikkererwten|kikkererwten;Linzen (gekookt)|linzen;Rijst (gekookt)|rijst,witte rijst,basmati,basmatirijst,zilvervliesrijst,bord rijst,pandan rijst;Pasta (gekookt)|pasta,spaghetti,macaroni,penne,tagliatelle,fusilli,bord pasta,farfalle;Volkoren pasta (gekookt)|volkoren pasta,volkorenpasta;Couscous (ongekookt)|couscous;Quinoa (gekookt)|quinoa;Bulgur (gekookt)|bulgur;Gnocchi|gnocchi;Tortellini / ravioli|tortellini,ravioli;Mie (gekookt)|mie,mihoen;Rijstnoedels (gekookt)|rijstnoedels;Noedels (ongekookt)|noedels,ramen,instant noedels;Aardappelen|aardappel,aardappelen,aardappels,piepers,krieltjes,gekookte aardappelen;Pofaardappel|pofaardappel;Aardappelpuree|puree,aardappelpuree,stamppot;Gebakken aardappelen|gebakken aardappelen,gebakken aardappeltjes,baby aardappeltjes;Nasi / bami|nasi,bami,nasi goreng,bami goreng;Patat (friettent)|friet,patat,frietjes,patatje,franse frietjes,frieten,patat zonder;Volkoren wrap|wrap,wraps,tortilla;Pitabroodje|pita,pitabroodje,pitabroodjes;Pistolet / bolletje|bolletje,bolletjes,broodje,broodjes,pistolet,pistoletje,kaiserbroodje,puntje;Krentenbol|krentenbol,krentenbollen;Cracker|cracker,crackers,knackebrod;Rijstwafel|rijstwafel,rijstwafels;Tosti ham-kaas|tosti,tosti ham kaas,tostis,tosti kaas;Pannenkoek|pannenkoek,pannenkoeken;Havermout|havermout,oats,havervlokken,pap,havermoutpap;Sinaasappelsap|sap,jus,jus d orange,sinaasappelsap,verse jus;Multivruchtensap|multivruchtensap,multivitamine sap;Cola|cola,coca cola,coke;Cola zero / light|cola zero,cola light,pepsi max,zero;Fanta / Sprite|fanta,sprite,7up,seven up,frisdrank;Bier|bier,biertje,biertjes,pils,pilsje,pilsjes,speciaalbier,heineken;Bier 0.0|bier 0.0,0.0,alcoholvrij bier,nul punt nul;Radler|radler;Wijn|wijn,wijntje,rode wijn,witte wijn,rose;Sterke drank|wodka,whisky,rum,gin,shot,shotje,jenever;Energiedrank|red bull,monster,energy,energydrank,energiedrank;Ice tea|ice tea,icetea,lipton;Limonade|limonade,ranja,siroop,diksap;Koffie (zwart)|koffie,zwarte koffie,espresso,koffietje,americano;Koffie met melk|koffie met melk,koffie verkeerd,latte macchiato,flat white;Latte|latte,caffe latte,ijskoffie;Thee|thee,theetje;Water|water,watertje,spa,spa rood,bruiswater;Sportdrank|sportdrank,aa drink,isostar;Kokoswater|kokoswater;Eiwitshake (whey, met water)|whey,shake,eiwitshake,proteine shake,proteineshake,protein shake,eiwit shake;Proteïnereep|eiwitreep,proteinereep,protein bar,proteine reep,eiwitrepen;Barebells proteïnereep|barebells;Mueslireep|mueslireep,mueslirepen,granenreep;Koekje|koek,koekje,koekjes,biscuit,biscuitje,biscuitjes;Liga|liga;Sultana|sultana;Speculaas|speculaas,speculaasje,speculoos;Oreo|oreo,oreos;Melkchocolade|chocolade,chocola,reep chocolade,stukje chocolade,tony chocolonely;Pure chocolade|pure chocolade,puur;Chocoladereep|chocoladereep;Mars|mars;Snickers|snickers;Twix|twix;Bounty|bounty;KitKat|kitkat,kit kat;M&M's|m m s,mms,m ms,m&ms;Chips|chips,zak chips,chipjes;Lay's chips|lays,lay s;Doritos|doritos,tortillachips,nachos;Pringles|pringles;Gemengde noten|noten,nootjes,gemengde noten;Cashewnoten|cashew,cashewnoten;Walnoten|walnoten;Borrelnootjes|borrelnootjes;Pinda's|pinda,pindas,pinda s;Amandelen|amandelen,amandel;Popcorn|popcorn;IJs|ijs,ijsje,ijsjes,schepijs;Magnum|magnum;Appeltaart|appeltaart,taart,gebak;Tompouce|tompouce,tompoes;Muffin|muffin,muffins;Brownie|brownie,brownies;Donut|donut,donuts;Gevulde koek|gevulde koek;Snoep / winegums|snoep,winegums,drop,snoepjes,haribo;Hagelslag|hagelslag,hagel;Chocoladevlokken|vlokken,chocoladevlokken;Boter / margarine|boter,margarine,roomboter,halvarine,blue band;Chocoladepasta|nutella,chocopasta,chocoladepasta;Speculoospasta|speculoospasta,lotus pasta;Appelstroop|appelstroop;Stroop (pannenkoek)|stroop,schenkstroop,pannenkoekenstroop;Leverworst|leverworst,smeerworst;Filet americain|filet americain,americain;Pastrami|pastrami;Boterhamworst|boterhamworst,worst;Pindakaas|pindakaas;Pindakaas 100% pinda|100% pindakaas,pindakaas zonder suiker,100 procent pindakaas;Calvé pindakaas|calve,calve pindakaas;Kipkerriesalade|kipkerrie,kip kerrie salade,kipkerriesalade;Tonijnsalade|tonijnsalade;Sandwichspread|sandwichspread;Carpaccio|carpaccio;Ham|ham,hammetje,beenham,achterham;Pizza|pizza,pizzas,pizza margherita,pizza salami;Domino's pizza|dominos,domino s;Shoarma / kebab (vlees)|shoarma,kebab,doner,gyros,shawarma;Kebab broodje|kebab broodje,broodje kebab,broodje doner;Dürüm|durum,durum doner,durum kebab;Lahmacun|lahmacun,turkse pizza;Pide|pide;Bitterbal|bitterbal,bitterballen;Frikandel|frikandel,frikandellen,frikandelletje;Kroket|kroket,kroketten,kroketje;Kaassoufflé|kaassouffle,kaassoufle;Bamischijf|bamischijf,bamihap;Nasibal|nasibal;Kipcorn|kipcorn;Kipnuggets|nuggets,kipnuggets,chicken nuggets;McNuggets|mcnuggets,mc nuggets;Big Mac|big mac,bigmac;McChicken|mcchicken,mc chicken;Cheeseburger|cheeseburger;McDonald's friet|mac friet,mcdonalds friet,mc friet;McFlurry|mcflurry,mc flurry;KFC kipstuk|kfc,kfc kip;KFC Zinger burger|zinger,zinger burger;KFC hot wings|hot wings,hotwings;Subway sub (kip, 15 cm)|subway,sub;Poké bowl|poke,poke bowl,pokebowl;Roti kip (compleet)|roti,roti kip,roti met kip;Roti (plaat)|roti plaat,rotiplaat;Broodje pom|pom,broodje pom;Moksi meti met rijst|moksi meti;Babi pangang|babi pangang;Foe yong hai|foe yong hai,fu yong hai;Kip tandoori|tandoori,kip tandoori;Loempia|loempia,loempias;Sushi|sushi,maki,nigiri;Lasagne|lasagne;Chili con carne|chili,chili con carne;Soep|soep,soepje,tomatensoep,groentesoep,kippensoep;Unox soep|unox,unox soep;Erwtensoep|erwtensoep,snert;Knorr wereldgerecht|knorr,wereldgerecht;Mayonaise|mayo,mayonaise,calve mayonaise;Fritessaus|fritessaus;Ketchup|ketchup,curry,currysaus,tomatenketchup;Pindasaus (satésaus)|pindasaus,satesaus,sate saus;Pastasaus|pastasaus,tomatensaus,bolognese,bolognesesaus;Knoflooksaus|knoflooksaus,looksaus;Sambal|sambal;Sojasaus|sojasaus,soja;Kruidenboter|kruidenboter;Olijfolie|olie,olijfolie,bakolie;Suiker|suiker,suikerklontje,klontje suiker;Jus|jus de veau;Wokgroente|groente,groenten,wokgroente,wokgroenten;Sperziebonen|sperziebonen,boontjes;Sla / salade|sla,salade,slaatje;Rucola|rucola;Tomaat|tomaat,tomaten,tomaatje,tomaatjes,cherrytomaatjes;Wortel|wortel,wortels,worteltjes,winterpeen;Champignons|champignon,champignons;Ui|ui,uien,uitje,uitjes;Boerenkool|boerenkool;Zuurkool|zuurkool;Andijvie|andijvie;Rode kool|rode kool;Rode bieten|bieten,rode bieten,bietjes;Courgette|courgette;Aubergine|aubergine;Spruitjes|spruitjes,spruiten;Doperwten|doperwten,erwtjes,erwten;Mais|mais;Prei|prei;Peultjes|peultjes;Asperges|asperges;Pompoen|pompoen;Taugé|tauge;Kousenband|kousenband;Mandarijn|mandarijn,mandarijnen,clementine,clementines;Peer|peer,peren;Aardbeien|aardbei,aardbeien;Frambozen|framboos,frambozen;Blauwe bessen|bessen,blauwe bessen,blauwbessen;Druiven|druif,druiven;Banaan|banaan,bananen;Appel|appel,appels,appeltje;Sinaasappel|sinaasappel,sinaasappels;Watermeloen|watermeloen;Meloen|meloen;Perzik / nectarine|perzik,perziken,nectarine,nectarines;Pruim|pruim,pruimen;Granaatappel|granaatappel;Grapefruit|grapefruit;Dadels|dadel,dadels;Gedroogde abrikozen|abrikozen,abrikoos;Appelmoes|appelmoes;Fruitsalade|fruitsalade,fruit,stukjes fruit`;
 const SYN=(()=>{const m=[];SYNTXT.split(';').forEach(l=>{const [f,ss]=l.split('|');ss.split(',').forEach(x=>m.push([norm(x).replace(/[^a-z0-9+ ]/g,' ').replace(/\s+/g,' ').trim(),f]));});return m.sort((a,b)=>b[0].length-a[0].length);})();
-const NUMW={een:1,eentje:1,twee:2,drie:3,vier:4,vijf:5,zes:6,zeven:7,acht:8,negen:9,tien:10,half:.5,halve:.5,halfje:.5,anderhalf:1.5,anderhalve:1.5,paar:2,dubbele:2};
+/* Samengestelde gerechten: [namen], [[product, aantal, eenheid]], standaard aantal */
+const DISHES=[
+ [['broodje gezond','broodjes gezond','broodje gezonde'],[['Pistolet / bolletje',1,'stuk'],['Kaas 48+',1,'plakje'],['Ham',1,'plakje'],['Ei',0.5,'ei (middel)'],['Sla / salade',1,'handje'],['Tomaat',1,'halve'],['Komkommer',0.5,'handje plakjes'],['Mayonaise',1,'eetlepel']]],
+ [['broodje ham kaas','broodje kaas ham','broodje ham en kaas','broodjes ham kaas'],[['Pistolet / bolletje',1,'stuk'],['Ham',1,'plakje'],['Kaas 48+',1,'plakje'],['Boter / margarine',1,'boterham besmeerd']]],
+ [['broodje kaas','broodjes kaas','broodje met kaas'],[['Pistolet / bolletje',1,'stuk'],['Kaas 48+',2,'plakje'],['Boter / margarine',1,'boterham besmeerd']]],
+ [['broodje ham','broodjes ham'],[['Pistolet / bolletje',1,'stuk'],['Ham',2,'plakje'],['Boter / margarine',1,'boterham besmeerd']]],
+ [['broodje kip','broodje kipfilet','broodjes kip'],[['Pistolet / bolletje',1,'stuk'],['Kipfilet (vleeswaren)',2,'plakje'],['Sla / salade',0.5,'handje'],['Boter / margarine',1,'boterham besmeerd']]],
+ [['broodje tonijn','broodje tonijnsalade'],[['Pistolet / bolletje',1,'stuk'],['Tonijnsalade',2,'boterham besmeerd']]],
+ [['broodje zalm'],[['Pistolet / bolletje',1,'stuk'],['Gerookte zalm',1,'portie'],['Roomkaas',1,'boterham besmeerd']]],
+ [['broodje kroket','broodjes kroket'],[['Pistolet / bolletje',1,'stuk'],['Kroket',1,'stuk'],['Mosterd',1,'theelepel']]],
+ [['broodje frikandel','frikandelbroodje'],[['Pistolet / bolletje',1,'stuk'],['Frikandel',1,'stuk'],['Ketchup',1,'eetlepel']]],
+ [['broodje shoarma','broodje shoarma kip','broodje gyros'],[['Pitabroodje',1,'stuk'],['Shoarma / kebab (vlees)',1,'portie'],['Knoflooksaus',1,'eetlepel'],['Sla / salade',1,'handje']]],
+ [['broodje filet americain','broodje americain','broodje martino'],[['Pistolet / bolletje',1,'stuk'],['Filet americain',2,'boterham besmeerd'],['Ui',0.2,'stuk']]],
+ [['broodje ei','broodje eiersalade'],[['Pistolet / bolletje',1,'stuk'],['Ei',1,'ei (middel)'],['Mayonaise',1,'theelepel']]],
+ [['broodje pindakaas'],[['Pistolet / bolletje',1,'stuk'],['Pindakaas',1,'boterham dik besmeerd']]],
+ [['club sandwich','clubsandwich'],[['Wit brood',3,'snee'],['Kipfilet (vleeswaren)',2,'plakje'],['Bacon / spekjes',1,'portie'],['Ei',1,'ei (middel)'],['Sla / salade',1,'handje'],['Tomaat',1,'halve'],['Mayonaise',1,'eetlepel']]],
+ [['uitsmijter','uitsmijter ham kaas'],[['Wit brood',2,'snee'],['Ei',3,'ei (middel)'],['Ham',2,'plakje'],['Kaas 48+',2,'plakje'],['Boter / margarine',1,'eetlepel']]],
+ [['wrap kip','wrap met kip','kipwrap'],[['Volkoren wrap',1,'wrap'],['Kipfilet (bereid)',0.5,'portie'],['Sla / salade',1,'handje'],['Paprika',1,'halve'],['Knoflooksaus',1,'eetlepel']]],
+ [['wraps met kip','kip wraps','kipwraps'],[['Volkoren wrap',1,'wrap'],['Kipfilet (bereid)',0.5,'portie'],['Sla / salade',1,'handje'],['Paprika',1,'halve'],['Geraspte kaas',0.5,'handje'],['Knoflooksaus',1,'eetlepel']],2],
+ [['pistolet carpaccio','broodje carpaccio'],[['Pistolet / bolletje',1,'stuk'],['Carpaccio',1,'portie'],['Parmezaan',2,'eetlepel'],['Rucola',1,'handje'],['Pesto',1,'eetlepel']]],
+ [['overnight oats','overnight oat'],[['Havermout',1,'portie'],['Halfvolle melk',150,'gram'],['Magere kwark',100,'gram'],['Blauwe bessen',1,'handje'],['Honing',1,'theelepel']]],
+ [['havermout met banaan en honing','havermout met banaan','havermoutpap met banaan'],[['Havermout',1,'portie'],['Halfvolle melk',1,'glas'],['Banaan',1,'stuk (middel)'],['Honing',1,'eetlepel']]],
+ [['kwark met granola','kwark met granola en fruit','skyr met granola'],[['Magere kwark',1,'schaaltje'],['Granola',1,'kom'],['Blauwe bessen',1,'handje']]],
+ [['yoghurt met granola','yoghurt met granola en fruit','yoghurt met muesli'],[['Magere yoghurt',1,'schaaltje'],['Granola',1,'kom'],['Blauwe bessen',1,'handje']]],
+ [['eieren met spek','eitjes met spek','ei met spek','bacon and eggs'],[['Ei',2,'ei (middel)'],['Bacon / spekjes',1,'portie'],['Boter / margarine',0.5,'eetlepel']]],
+ [['omelet met kaas en ham','omelet ham kaas','omelet met ham en kaas'],[['Ei',3,'ei (middel)'],['Kaas 48+',2,'plakje'],['Ham',2,'plakje'],['Boter / margarine',0.5,'eetlepel']]],
+ [['omelet','omelette','roerei'],[['Ei',3,'ei (middel)'],['Boter / margarine',0.5,'eetlepel']]],
+ [['pannenkoeken met stroop','pannenkoek met stroop','pannenkoeken met suiker'],[['Pannenkoek',1,'stuk'],['Stroop (pannenkoek)',1,'eetlepel']],3],
+ [['engels ontbijt','english breakfast'],[['Ei',2,'ei (middel)'],['Bacon / spekjes',1,'portie'],['Witte bonen in tomatensaus',1,'portie'],['Wit brood',2,'snee'],['Champignons',1,'opscheplepel'],['Tomaat',1,'halve'],['Rookworst',60,'gram']]],
+ [['smoothie bowl','smoothiebowl'],[['Banaan',1,'stuk (middel)'],['Blauwe bessen',2,'handje'],['Magere yoghurt',1,'schaaltje'],['Granola',0.5,'kom']]],
+ [['stamppot boerenkool','boerenkool met worst','boerenkool met rookworst','boerenkoolstamppot','stamppot boerenkool met rookworst','boerenkool stamppot'],[['Aardappelpuree',1,'bord'],['Boerenkool',1,'portie'],['Rookworst',1,'portie'],['Jus',1,'scheut']]],
+ [['hutspot','hutspot met worst','hutspot met rookworst'],[['Aardappelpuree',1,'bord'],['Wortel',1,'portie'],['Ui',1,'halve'],['Rookworst',1,'portie'],['Jus',1,'scheut']]],
+ [['zuurkool stamppot','zuurkoolstamppot','stamppot zuurkool','zuurkool met worst'],[['Aardappelpuree',1,'bord'],['Zuurkool',1,'portie'],['Rookworst',1,'portie']]],
+ [['andijviestamppot','stamppot andijvie','andijvie stamppot'],[['Aardappelpuree',1,'bord'],['Andijvie',1,'portie'],['Bacon / spekjes',1,'portie']]],
+ [['aardappelen met vlees en groente','aardappelen vlees groente','aardappels vlees groente','avg','aardappelen groente vlees'],[['Aardappelen',1,'portie'],['Biefstuk',125,'gram'],['Sperziebonen',1,'portie'],['Jus',1,'scheut']]],
+ [['gehaktbal met jus','gehaktballen met jus'],[['Gehaktbal',1,'stuk'],['Jus',1,'scheut']]],
+ [['macaroni','macaroni met ham en kaas','macaroni met gehakt'],[['Pasta (gekookt)',1,'bord'],['Mager rundergehakt',100,'gram'],['Pastasaus',1,'portie'],['Geraspte kaas',1,'handje']]],
+ [['spaghetti bolognese','spaghetti bolognaise','pasta bolognese','spaghetti met gehakt'],[['Pasta (gekookt)',1,'bord'],['Mager rundergehakt',100,'gram'],['Pastasaus',1,'portie'],['Parmezaan',2,'eetlepel']]],
+ [['pasta pesto','pasta met pesto'],[['Pasta (gekookt)',1,'bord'],['Pesto',2,'eetlepel'],['Parmezaan',1,'eetlepel']]],
+ [['pasta carbonara','spaghetti carbonara','carbonara'],[['Pasta (gekookt)',1,'bord'],['Bacon / spekjes',60,'gram'],['Ei',1,'ei (middel)'],['Parmezaan',3,'eetlepel'],['Kookroom',1,'scheut']]],
+ [['ovenschotel','ovenschotel met gehakt'],[['Aardappelen',1,'portie'],['Mager rundergehakt',100,'gram'],['Broccoli',1,'portie'],['Geraspte kaas',1,'handje'],['Kookroom',1,'scheut']]],
+ [['zalm met krieltjes','zalm met aardappelen','zalm met aardappeltjes'],[['Zalm',1,'filet'],['Aardappelen',1,'portie'],['Sperziebonen',1,'portie'],['Olijfolie',1,'eetlepel']]],
+ [['roerbak met noedels','roerbakschotel','roerbak','wokschotel','noedels met kip en groente'],[['Mie (gekookt)',1,'bord'],['Kipfilet (bereid)',125,'gram'],['Wokgroente',1,'portie'],['Ketjap',1,'eetlepel'],['Olijfolie',1,'eetlepel']]],
+ [['patatje oorlog','patat oorlog','friet oorlog'],[['Patat (friettent)',1,'patatje (middel)'],['Mayonaise',2,'eetlepel'],['Pindasaus (satésaus)',1,'portie'],['Ui',20,'gram']]],
+ [['patatje speciaal','patat speciaal','friet speciaal','frietje speciaal'],[['Patat (friettent)',1,'patatje (middel)'],['Mayonaise',2,'eetlepel'],['Ketchup',1,'eetlepel'],['Ui',20,'gram']]],
+ [['patatje mayo','patat mayo','friet mayo','friet met mayo','patat met mayo','patatje met'],[['Patat (friettent)',1,'patatje (middel)'],['Mayonaise',2,'eetlepel']]],
+ [['frikandel speciaal'],[['Frikandel',1,'stuk'],['Mayonaise',1,'eetlepel'],['Ketchup',1,'eetlepel'],['Ui',15,'gram']]],
+ [['kebab met friet','shoarma met friet','doner met friet','shoarma schotel','shoarmaschotel'],[['Shoarma / kebab (vlees)',1,'portie'],['Patat (friettent)',1,'patatje (middel)'],['Knoflooksaus',2,'eetlepel'],['Sla / salade',1,'handje']]],
+ [['big mac menu','burger menu','mc menu','mcmenu','big mac menuutje'],[['Big Mac',1,'stuk'],["McDonald's friet",1,'medium'],['Cola',400,'gram']]],
+ [['cheeseburger menu'],[['Cheeseburger',1,'stuk'],["McDonald's friet",1,'medium'],['Cola',400,'gram']]],
+ [['mcchicken menu'],[['McChicken',1,'stuk'],["McDonald's friet",1,'medium'],['Cola',400,'gram']]],
+ [['kfc menu','kfc bucket','zinger menu'],[['KFC kipstuk',2,'stuk'],['Patat (friettent)',1,'patatje (middel)'],['Cola',400,'gram']]],
+ [['kipsate met friet','sate met friet','sate met patat','sate friet'],[['Kipsaté',4,'stokje'],['Pindasaus (satésaus)',1,'portie'],['Patat (friettent)',1,'patatje (middel)']]],
+ [['kipsate met rijst','sate met rijst','nasi met sate','rijst met sate'],[['Kipsaté',4,'stokje'],['Pindasaus (satésaus)',1,'portie'],['Rijst (gekookt)',1,'bord']]],
+ [['eiwitshake met melk en banaan','shake met melk en banaan','proteineshake met melk en banaan','whey met melk en banaan'],[['Eiwitshake (whey, met water)',1,'schep'],['Halfvolle melk',300,'gram'],['Banaan',1,'stuk (middel)']]],
+ [['rijstwafel met pindakaas','rijstwafels met pindakaas'],[['Rijstwafel',1,'stuk'],['Pindakaas',1,'boterham dun besmeerd']],2],
+ [['appel met pindakaas'],[['Appel',1,'stuk (middel)'],['Pindakaas',1,'eetlepel']]]
+];
+const DISHIDX=(()=>{const m=[];DISHES.forEach((d,i)=>d[0].forEach(n=>m.push([norm(n),i])));return m.sort((a,b)=>b[0].length-a[0].length);})();
+const NUMW={een:1,eentje:1,twee:2,drie:3,vier:4,vijf:5,zes:6,zeven:7,acht:8,negen:9,tien:10,half:.5,halve:.5,halfje:.5,anderhalf:1.5,anderhalve:1.5,paar:2,dubbele:2,enkele:2};
 const MASS={g:1,gr:1,gram:1,grams:1,kg:1000,kilo:1000,ml:1,cl:10,dl:100,l:1000,liter:1000};
-const UNITW={glas:'glas',glazen:'glas',glaasje:'glas',glaasjes:'glas',kop:'kop',kopje:'kop',kopjes:'kop',koppen:'kop',beker:'kop',bekers:'kop',mok:'kop',snee:'snee',sneetje:'snee',sneetjes:'snee',sneden:'snee',plak:'plak',plakje:'plak',plakjes:'plak',plakken:'plak',stuk:'stuk',stuks:'stuk',stukje:'stuk',stukjes:'stuk',stukken:'stuk',eetlepel:'eetlepel',eetlepels:'eetlepel',el:'eetlepel',lepel:'eetlepel',lepels:'eetlepel',schep:'schep',scheppen:'schep',schepje:'schep',theelepel:'theelepel',theelepels:'theelepel',tl:'theelepel',handje:'handje',handjes:'handje',hand:'handje',bord:'bord',borden:'bord',bordje:'bord',kom:'bakje',kommetje:'bakje',schaaltje:'bakje',bakje:'bakje',bakjes:'bakje',blik:'blikje',blikje:'blikje',blikjes:'blikje',flesje:'flesje',fles:'flesje',flessen:'flesje',flesjes:'flesje',reep:'reep',repen:'reep',reepje:'reep',portie:'portie',porties:'portie',zak:'portie',zakje:'portie',bolletje:'bolletje',bolletjes:'bolletje',punt:'punt',puntje:'punt'};
-const UNITG={glas:250,kop:150,snee:35,plak:20,eetlepel:15,schep:30,theelepel:5,handje:25};
-const FILL=new Set('ik heb had at eet ate gegeten gedronken drink dronk nam neem vandaag vanochtend vanmorgen vanmiddag vanavond gisteren als ontbijt lunch diner avondeten tussendoor snack beetje wat de het mijn nog ook van voor bij erbij er toen daarna verder grote groot kleine klein lekker vers verse gewoon soort'.split(' '));
+const UNITW={glas:'glas',glazen:'glas',glaasje:'glas',glaasjes:'glas',kop:'kop',kopje:'kop',kopjes:'kop',koppen:'kop',beker:'beker',bekers:'beker',mok:'kop',mokken:'kop',snee:'snee',sneetje:'snee',sneetjes:'snee',sneden:'snee',plak:'plak',plakje:'plak',plakjes:'plak',plakken:'plak',stuk:'stuk',stuks:'stuk',stukje:'stukje',stukjes:'stukje',stukken:'stuk',eetlepel:'eetlepel',eetlepels:'eetlepel',el:'eetlepel',lepel:'eetlepel',lepels:'eetlepel',schep:'schep',scheppen:'schep',schepje:'schep',theelepel:'theelepel',theelepels:'theelepel',tl:'theelepel',handje:'handje',handjes:'handje',hand:'handje',bord:'bord',borden:'bord',bordje:'bord',kom:'kom',kommetje:'kom',kommen:'kom',schaaltje:'schaaltje',schaaltjes:'schaaltje',bakje:'bakje',bakjes:'bakje',blik:'blikje',blikje:'blikje',blikjes:'blikje',flesje:'flesje',fles:'fles',flessen:'fles',flesjes:'flesje',reep:'reep',repen:'reep',reepje:'reep',portie:'portie',porties:'portie',zak:'zak',zakje:'zakje',zakjes:'zakje',punt:'punt',puntje:'punt',punten:'punt',scheut:'scheut',scheutje:'scheut',klodder:'klodder',toef:'toef',blokje:'blokje',blokjes:'blokje',rij:'rij',rijtje:'rij',rijen:'rij',opscheplepel:'opscheplepel',opscheplepels:'opscheplepel',stokje:'stokje',stokjes:'stokje',bol:'bol',klontje:'klontje',klontjes:'klontje',shot:'shot',shots:'shot',shotje:'shot'};
+const UNITG={glas:250,kop:150,beker:300,snee:35,plak:20,eetlepel:15,schep:30,theelepel:5,handje:25,scheut:30,klodder:20,stukje:20,opscheplepel:60,klontje:5,shot:35};
+const UNITMAP={plak:['plakje','plak','dikke plak'],snee:['snee','boterham'],kop:['kopje','mok'],beker:['beker','glas'],bakje:['bakje','schaaltje','kom'],schaaltje:['schaaltje','bakje','kom'],kom:['kom','schaaltje','bakje'],bord:['bord','portie'],portie:['portie','bord'],stuk:['stuk','ei ','wrap','tosti','reep','punt','bol','stokje','nugget'],stukje:['stukje','stuk','nugget','blokje'],zak:['grote zak','zakje','klein zakje'],zakje:['zakje','klein zakje'],fles:['fles','flesje'],blokje:['blokje'],rij:['rij']};
+const SIZEW={klein:'klein',kleine:'klein',kleintje:'klein',groot:'groot',grote:'groot',middel:'middel',middelgrote:'middel',normaal:'middel',normale:'middel'};
+const FILL=new Set('ik heb had at eet ate gegeten gedronken drink dronk nam neem vandaag vanochtend vanmorgen vanmiddag vanavond gisteren als ontbijt lunch diner avondeten tussendoor snack beetje wat de het mijn nog ook van voor bij erbij er toen daarna verder lekker vers verse gewoon soort zo n zon heel hele heerlijk'.split(' '));
 const MOMW={ontbijt:'ontbijt',vanochtend:'ontbijt',vanmorgen:'ontbijt',lunch:'lunch',vanmiddag:'lunch',diner:'diner',avondeten:'diner',vanavond:'diner',snack:'snack',tussendoor:'snack'};
+const TYPO={boteram:'boterham',boterams:'boterhammen',boterhamen:'boterhammen',bottram:'boterham',advocado:'avocado',avokado:'avocado',avacado:'avocado',pindakas:'pindakaas',pinakaas:'pindakaas',kippie:'kip',kipje:'kip',kipfillet:'kipfilet',brootje:'broodje',brootjes:'broodjes',pattat:'patat',frietje:'friet',fritje:'friet',majo:'mayo',mayonaisse:'mayonaise',joghurt:'yoghurt',yoghurth:'yoghurt',spagetti:'spaghetti',spageti:'spaghetti',spaghettie:'spaghetti',banana:'banaan',bannaan:'banaan',bannan:'banaan',eieiren:'eieren',eiren:'eieren',havermoud:'havermout',hafermout:'havermout',choco:'chocolade',chocola:'chocolade',kapsalon:'kapsalon',kroepoek:'chips',rijstwafels:'rijstwafels',shoarme:'shoarma',sjoarma:'shoarma',kebap:'kebab',doner:'doner',frikadel:'frikandel',frikandellen:'frikandellen',krokket:'kroket',bitterballen:'bitterballen',protein:'proteine',proteïne:'proteine',protiene:'proteine',wey:'whey',vla:'vla',cola:'cola',cocacola:'cola',redbull:'red bull'};
+function lev(a,b,max){if(Math.abs(a.length-b.length)>max)return max+1;const v=new Array(b.length+1);for(let j=0;j<=b.length;j++)v[j]=j;
+  for(let i=1;i<=a.length;i++){let prev=v[0];v[0]=i;let mn=v[0];for(let j=1;j<=b.length;j++){const t=v[j];v[j]=Math.min(v[j]+1,v[j-1]+1,prev+(a[i-1]===b[j-1]?0:1));prev=t;if(v[j]<mn)mn=v[j];}if(mn>max)return max+1;}return v[b.length];}
+let VOCAB=null;function vocab(){if(VOCAB)return VOCAB;const v=new Set();const addW=t=>norm(t).split(/[^a-z0-9]+/).forEach(w=>{if(w.length>1)v.add(w);});
+  SYN.forEach(([k])=>addW(k));DISHIDX.forEach(([k])=>addW(k));allFoods().forEach(f=>addW(f.n));Object.keys(NUMW).concat(Object.keys(UNITW),Object.keys(MASS),Object.keys(SIZEW),[...FILL],Object.keys(MOMW),['met','en','zonder','op']).forEach(w=>v.add(w));return VOCAB=v;}
+function fixTypos(t){const V=vocab();const arr=[...V];return t.split(' ').map(w=>{if(!w||/\d/.test(w))return w;if(TYPO[w])return TYPO[w];if(V.has(w)||w.length<4)return w;
+  const max=w.length>=7?2:1;let best=null,bd=max+1;for(const c of arr){if(Math.abs(c.length-w.length)>max||c[0]!==w[0]&&max===1)continue;const d=lev(w,c,max);if(d<bd){bd=d;best=c;if(d===1&&max===1)break;}}return best&&bd<=max?best:w;}).join(' ');}
 const stem=w=>w.length>4?w.replace(/(tjes|jes|en|s)$/,''):w;
 function synFind(q){const t=' '+q+' ';for(const [k,f] of SYN){if(k&&t.includes(' '+k+' ')){const it=allFoods().find(x=>x.n===f);if(it)return{it,k};}}return null;}
-function findFood(q,unit){const t=' '+q+' ';
-  for(const [k,f] of SYN){if(k&&t.includes(' '+k+' ')){let name=f;if(unit==='plak'&&name==='Kipfilet (bereid)')name='Kipfilet (vleeswaren)';const it=allFoods().find(x=>x.n===name);if(it)return it;}}
-  const qt=q.split(' ').filter(w=>w&&!FILL.has(w)).map(stem);if(!qt.length)return null;let best=null,bs=0;
+function fuzzyList(q){const qt=q.split(' ').filter(w=>w&&!FILL.has(w)).map(stem);if(!qt.length)return[];const res=[];
   allFoods().forEach(x=>{const ft=norm(x.n).replace(/\([^)]*\)/g,' ').split(/[^a-z0-9]+/).filter(w=>w.length>1).map(stem);if(!ft.length)return;
-    const hit=ft.filter(w=>qt.includes(w)).length;if(!hit)return;const sc=hit/ft.length+hit*0.01+(x.own?0.05:0);if(sc>bs){bs=sc;best=x;}});
-  return bs>=0.5?best:null;}
-function unitGrams(u,it){if(!u)return it.pg;const first=norm(it.pn).split(' ')[0];if(first===u||(u==='bakje'&&/bakje|schaaltje|portie/.test(first)))return it.pg;
-  if(u==='glas'&&/flesje|blikje|kop/.test(first))return 250;if(UNITG[u])return UNITG[u];return it.pg;}
+    const hit=ft.filter(w=>qt.includes(w)).length;if(!hit)return;res.push({it:x,sc:hit/ft.length+hit*0.01+(x.own?0.05:0)});});
+  return res.sort((a,b)=>b.sc-a.sc);}
+function findFood(q){if(!q)return{it:null,sure:false,sugg:[]};const L=(S.foodLearn||{})[q];if(L){const it=allFoods().find(x=>x.n===L);if(it)return{it,sure:true,sugg:[]};}
+  const s=synFind(q);if(s)return{it:s.it,sure:true,sugg:[],k:s.k};
+  const fl=fuzzyList(q);const best=fl[0];const sugg=fl.filter(x=>x.sc>=0.3).slice(0,4).map(x=>x.it);
+  if(best&&best.sc>=0.5){const sure=best.sc>=1&&!(fl[1]&&fl[1].sc>=best.sc-0.02);return{it:best.it,sure,sugg:sugg.filter(x=>x!==best.it).slice(0,3)};}
+  return{it:null,sure:false,sugg:sugg.slice(0,3)};}
+function pickUnit(it,p){const us=unitsFor(it);if(!us.length)return GRAM;
+  if(p.half){const u=us.find(u=>/^hal(f|ve)/.test(u.s));if(u)return u;}
+  if(p.whole){const u=us.find(u=>/^he(le|el)/.test(u.s));if(u)return u;}
+  let cands=null;if(p.unit){const keys=UNITMAP[p.unit]||[p.unit];for(const k of keys){const m=us.filter(u=>u.s.startsWith(k));if(m.length){cands=m;break;}}}
+  if(p.size){const pool=cands||us;const u=pool.find(u=>u.s.includes('('+p.size+')')||u.s.startsWith(p.size));if(u)return u;}
+  if(cands)return cands[0];
+  if(p.unit&&UNITG[p.unit])return{s:p.unit,p:PLUR[p.unit]||p.unit,g:UNITG[p.unit]};
+  return us[0];}
 function parsePiece(raw){let q=norm(raw).replace(/½/g,' 0.5 ').replace(/(\d)\s*\/\s*2/g,'$1 0.5').replace(/(\d+(?:[.,]\d+)?)\s*(kg|gr|gram|g|ml|cl|dl|l|liter|kilo)\b/g,' $1 $2 ').replace(/[^a-z0-9+., ]/g,' ').replace(/\s+/g,' ').trim();
-  let w=q.split(' ');let n=null,mass=null,unit=null;const rest=[];
+  const w=q.split(' ');let n=null,mass=null,unit=null,size=null,half=false,whole=false;const rest=[];
   for(let i=0;i<w.length;i++){const x=w[i];
     if(/^\d+([.,]\d+)?$/.test(x)){const v=parseFloat(x.replace(',','.'));if(n===null)n=v;else if(v===0.5)n+=0.5;continue;}
+    if(x==='halve'||x==='half'||x==='halfje'){half=true;continue;}
+    if(x==='hele'||x==='heel'){whole=true;continue;}
     if(NUMW[x]!==undefined&&n===null){n=NUMW[x];continue;}
     if(MASS[x]&&n!==null&&mass===null){mass=n*MASS[x];continue;}
-    if(UNITW[x]&&!unit){unit=UNITW[x];if(unit==='bolletje'){rest.push(x);}continue;}
+    if(SIZEW[x]){size=SIZEW[x];continue;}
+    if(UNITW[x]&&!unit){unit=UNITW[x];continue;}
     rest.push(x);}
-  q=rest.filter(x=>!FILL.has(x)&&x!=='een').join(' ');
+  q=rest.filter(x=>!FILL.has(x)&&x!=='een'&&x!=='en').join(' ').replace(/^met |\smet$/g,'').trim();
   if(unit==='snee'&&!q)q='brood';
-  return{raw:raw.trim(),q,n,mass,unit};}
+  return{raw:raw.trim(),q,n,mass,unit,size,half,whole};}
+function mkItem(raw,q,it,n,u,sure,sugg){return{raw,q,it,n:Math.round(n*100)/100,u,sure:sure!==false,sugg:sugg||[]};}
+function itemFromPiece(p,cnt){const f=findFood(p.q);if(f.it&&p.unit==='plak'&&f.it.n==='Kipfilet (bereid)')f.it=allFoods().find(x=>x.n==='Kipfilet (vleeswaren)')||f.it;if(!f.it)return mkItem(p.raw,p.q,null,cnt||1,GRAM,false,f.sugg);
+  if(p.mass!==null)return mkItem(p.raw,p.q,f.it,p.mass,GRAM,f.sure,f.sugg);
+  const u=pickUnit(f.it,p);let n=cnt!=null?cnt:(p.n!=null?p.n:(p.half&&!/^hal/.test(u.s)?0.5:1));if(p.half&&p.n!=null&&/^hal/.test(u.s))n=p.n;
+  return mkItem(p.raw,p.q,f.it,n,u,f.sure,f.sugg);}
+function dishItems(di,mult,raw){const d=DISHES[di];return d[1].map(([name,n,us])=>{const it=allFoods().find(x=>x.n===name);if(!it)return null;
+  const u=us==='gram'?GRAM:(unitsFor(it).find(u=>u.s===us)||unitsFor(it).find(u=>u.s.startsWith(us))||unitsFor(it)[0]);return mkItem(raw,'',it,n*mult,u,true,[]);}).filter(Boolean);}
 function parseMeal(text){
   const T=norm(text);let mom=null;for(const [k,v] of Object.entries(MOMW)){if(new RegExp('\\b'+k+'\\b').test(T)){mom=v;break;}}
-  const KEEP=SYN.map(x=>x[0]).filter(k=>k.includes(' met '));
   const chunks=text.split(/(?<!\d),(?!\d)|;|\+|\n|\ben daarna\b|\bdaarna\b|\bplus\b|\s&\s/i).map(x=>x.trim()).filter(Boolean);const items=[];
-  const push=(p,it,cnt)=>{const g=p.mass!==null?p.mass:it?cnt*unitGrams(p.unit,it):0;items.push({raw:p.raw,it,g:Math.round(g)});};
-  const one=(m)=>{const p=parsePiece(m);if(!p.q&&!p.n)return null;let it=findFood(p.q,p.unit);push(p,it,p.n||1);
-    const sf=synFind(p.q);if(sf){const rest=(' '+p.q+' ').replace(' '+sf.k+' ',' ').trim();const r2=rest&&synFind(rest);if(r2&&r2.it.n!==sf.it.n&&(!it||r2.it.n!==it.n))items.push({raw:rest,it:r2.it,g:r2.it.pg});}
-    return{p,it};};
-  chunks.forEach(ch=>{const nc=norm(ch);const keep=KEEP.some(k=>nc.includes(k));const parts=keep?[ch]:ch.split(/\s+met\s+/i);const tops=parts.slice(1).join(' en ');
-    const mains=parts[0].split(/\s+en\s+/i);let last=null;mains.forEach(m=>{const r=one(m);if(r)last=r;});
-    if(tops&&last){const {p,it}=last;const breadish=it&&(it.cat==='Brood'||/brood|cracker|beschuit|rijstwafel|wrap|pannenkoek/i.test(it.n));
-      tops.split(/\s+en\s+/i).forEach(t=>{const tp=parsePiece(t);if(!tp.q)return;const ti=findFood(tp.q,tp.unit);
-        const cnt=tp.n!==null?tp.n:(breadish&&ti&&/Beleg|Zuivel/.test(ti.cat)?(p.n||1):1);push(tp,ti,cnt);});}});
+  const myd=(S.mydishes||[]).map(d=>[norm(d.n).replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim(),d]).filter(x=>x[0]).sort((a,b)=>b[0].length-a[0].length);
+  chunks.forEach(ch0=>{let c=fixTypos(norm(ch0).replace(/½/g,' 0.5 ').replace(/[^a-z0-9+.,% ]/g,' ').replace(/\s+/g,' ').trim());
+    const cut=(ph)=>{const t=' '+c+' ';const i=t.indexOf(' '+ph+' ');if(i<0)return null;const before=t.slice(0,i).trim().split(' ');let n=null;
+      const last=before[before.length-1];if(last&&/^\d+([.,]\d+)?$/.test(last)){n=parseFloat(last.replace(',','.'));before.pop();}else if(last&&NUMW[last]!==undefined){n=NUMW[last];before.pop();}
+      c=(before.join(' ')+' '+t.slice(i+ph.length+2)).replace(/\s+/g,' ').trim();return{n};};
+    let guard=0;let found=true;
+    while(found&&guard++<6){found=false;
+      for(const [nm,d] of myd){const r=cut(nm);if(r){const m=r.n||1;d.items.forEach(x=>{const it=allFoods().find(f=>f.n===x.n);if(!it)return;const u=x.u==='gram'?GRAM:(unitsFor(it).find(u=>u.s===x.u)||GRAM);items.push(mkItem('⭐ '+d.n,'',it,(x.u==='gram'?x.g:x.qn)*m,u,true,[]));});found=true;break;}}
+      if(found)continue;
+      for(const [nm,di] of DISHIDX){const r=cut(nm);if(r){const m=r.n||DISHES[di][2]||1;items.push(...dishItems(di,m,ch0.length<40?ch0:nm));found=true;break;}}}
+    c=c.replace(/^(en|met|,)\s+|\s+(en|met)$/g,'').trim();if(!c)return;
+    const parts=c.split(/\s+met\s+/);const keepMet=SYN.some(([k])=>k.includes(' met ')&&(' '+c+' ').includes(' '+k+' '));
+    const ps=keepMet?[c]:parts;const tops=ps.slice(1).join(' en ');
+    const mains=ps[0].split(/\s+en\s+/);let last=null;
+    mains.forEach(m=>{const p=parsePiece(m);if(!p.q&&p.n==null)return;if(!p.q)return;
+      const sf=synFind(p.q);const it=itemFromPiece(p);items.push(it);last={p,it};
+      if(sf){const rest=(' '+p.q+' ').replace(' '+sf.k+' ',' ').trim();const r2=rest&&synFind(rest);if(r2&&r2.it.n!==sf.it.n){items.push(mkItem(rest,rest,r2.it,1,unitsFor(r2.it)[0],true,[]));}}});
+    if(tops&&last){const bread=last.it.it&&(last.it.it.cat==='Brood'||/brood|cracker|beschuit|rijstwafel|wrap|pannenkoek|bolletje/i.test(last.it.it.n));const bn=last.it.u.s==='gram'?1:last.it.n;
+      tops.split(/\s+en\s+/).forEach(t=>{const tp=parsePiece(t);if(!tp.q)return;const f=findFood(tp.q);
+        const inherit=tp.n==null&&tp.mass===null&&bread&&f.it&&/Beleg|Zuivel/.test(f.it.cat);items.push(itemFromPiece(tp,inherit?bn:null));});}});
   return{items,mom};}
+
 function foodSelect(cur){const all=allFoods();const cats=[...new Set(all.map(x=>x.cat))];
   return `<option value="">❓ Kies een product…</option>`+cats.map(c=>`<optgroup label="${esc(c)}">${all.filter(x=>x.cat===c).map(x=>`<option value="${esc(x.n)}" ${cur&&cur.n===x.n?'selected':''}>${esc(x.n)}</option>`).join('')}</optgroup>`).join('');}
+const itemG=x=>Math.round(x.n*x.u.g);
+function logFood(it,n,u,mom){const g=Math.round(n*u.g);const v=calc(it,g);S.food=S.food||{};(S.food[fdDate]=S.food[fdDate]||[]).push({n:it.n,g,m:mom,q:u.s==='gram'?'':qtyLabel(n,u),...v});
+  S.recent=[it.n,...(S.recent||[]).filter(y=>y!==it.n)].slice(0,8);return v;}
 function openParsed(text,res){
-  let items=res.items.map(x=>({...x}));let mom=res.mom||defMoment();
-  const draw=()=>{const ok=items.filter(x=>x.it&&x.g>0);const tot=ok.reduce((a,x)=>{const v=calc(x.it,x.g);a.k+=v.k;a.p+=v.p;return a;},{k:0,p:0});
-    openSheet(`<button class="backlink" id="ppBack">‹ Terug</button><div class="h-l">Klopt dit?</div><div class="small">Controleer wat de app heeft herkend. Pas het product of de grammen aan als het niet klopt.</div>
-     <div class="card list" id="ppList" style="margin-top:12px">${items.map((x,i)=>{const v=x.it?calc(x.it,x.g):null;return `<div class="pprow ${x.it?'':'unk'}">
-       <div class="pp-raw">“${esc(x.raw)}”${x.it?'':' · <b>niet herkend</b>'}</div>
+  let items=res.items.map(x=>({...x}));let mom=res.mom||defMoment();let saving=false;
+  const draw=()=>{const ok=items.filter(x=>x.it&&itemG(x)>0);const tot=ok.reduce((a,x)=>{const v=calc(x.it,itemG(x));a.k+=v.k;a.p+=v.p;return a;},{k:0,p:0});
+    openSheet(`<button class="backlink" id="ppBack">‹ Terug</button><div class="h-l">Klopt dit?</div><div class="small">Controleer wat de app heeft herkend. Pas het product, het aantal of de maat aan als het niet klopt.</div>
+     <div class="card list" id="ppList" style="margin-top:12px">${items.map((x,i)=>{const v=x.it?calc(x.it,itemG(x)):null;const us=x.it?unitsFor(x.it):[];const showSug=(!x.it||!x.sure)&&x.sugg&&x.sugg.length;
+       return `<div class="pprow ${x.it?(x.sure?'':'doubt'):'unk'}">
+       <div class="pp-raw">“${esc(x.raw)}”${x.it?(x.sure?'':' · <b class="dbt">klopt dit product?</b>'):' · <b>niet herkend</b>'}</div>
        <div class="pp-line"><select data-i="${i}" class="ppSel" aria-label="Product">${foodSelect(x.it)}</select><button class="xbtn" data-del="${i}" aria-label="Verwijder">✕</button></div>
-       <div class="pp-line"><label class="ppg"><input type="text" inputmode="decimal" data-g="${i}" value="${x.g||''}" placeholder="gram"><span>g / ml</span></label><span class="pp-val">${v?`${v.k} kcal · <b>${Math.round(v.p)} g eiwit</b>`:'—'}</span></div></div>`;}).join('')||'<div class="li"><div class="t2">Niets herkend. Probeer het anders te typen, of zoek een product.</div></div>'}</div>
+       ${showSug?`<div class="pp-sug"><span>Bedoel je:</span>${x.sugg.map(f=>`<button data-sug="${i}" data-n="${esc(f.n)}">${esc(f.n)}</button>`).join('')}</div>`:''}
+       ${x.it?`<div class="pp-line"><div class="qstep"><button data-qm="${i}" aria-label="Minder">−</button><input type="text" inputmode="decimal" data-qn="${i}" value="${x.u.s==='gram'?Math.round(x.n):fmtN(x.n).replace('½','0,5').replace('1½','1,5')}"><button data-qp="${i}" aria-label="Meer">+</button></div>
+         <select class="ppU" data-u="${i}" aria-label="Eenheid">${us.map((u,j)=>`<option value="${j}" ${u.s===x.u.s?'selected':''}>${esc(u.p)} (${u.g} g)</option>`).join('')}<option value="g" ${x.u.s==='gram'?'selected':''}>gram</option></select></div>
+         <div class="pp-val">${esc(qtyLabel(x.n,x.u))} · ${itemG(x)} g · ${v.k} kcal · <b>${Math.round(v.p)} g eiwit</b></div>`:''}</div>`;}).join('')||'<div class="li"><div class="t2">Niets herkend. Probeer het anders te typen, of zoek een product.</div></div>'}</div>
      <div class="field"><label>Moment</label><div class="seg" id="ppMom" style="margin:0">${MOMENTS.map(([k,l])=>`<button data-k="${k}" class="${k===mom?'on':''}">${l}</button>`).join('')}</div></div>
      <div class="note"><b>Totaal: ${tot.k} kcal · ${Math.round(tot.p)} g eiwit</b>${items.some(x=>!x.it)?'<br>Producten die niet herkend zijn, worden niet toegevoegd. Kies ze zelf of verwijder ze.':''}</div>
-     <button class="cta grad" id="ppAdd" ${ok.length?'':'disabled'}>✅ Toevoegen (${ok.length})</button>`);
+     <button class="cta grad" id="ppAdd" ${ok.length?'':'disabled'}>✅ Toevoegen (${ok.length})</button>
+     ${ok.length>1?(saving?`<div class="savebox"><input id="ppDn" maxlength="30" placeholder="Naam, bijv. Mijn ontbijt" value="${esc(text.length<30?text:'')}"><button class="cta ghost" id="ppDs">Bewaar</button></div>`:`<button class="cta ghost" id="ppSave" style="margin-top:8px">⭐ Bewaar als eigen gerecht</button>`):''}`);
     const sb=$('sheetBody');
     sb.querySelector('#ppBack').onclick=()=>openAddFood(text);
-    sb.querySelectorAll('.ppSel').forEach(el=>el.onchange=()=>{const i=+el.dataset.i;const it=allFoods().find(x=>x.n===el.value)||null;items[i].it=it;if(it&&!(items[i].g>0))items[i].g=it.pg;draw();});
-    sb.querySelectorAll('[data-g]').forEach(el=>el.onchange=()=>{const i=+el.dataset.g;const v=num(el.value);items[i].g=v>0?Math.round(v):0;draw();});
+    const setProd=(i,name)=>{const it=allFoods().find(x=>x.n===name)||null;const x=items[i];if(x.q&&it&&x.q.length<40){S.foodLearn=S.foodLearn||{};S.foodLearn[x.q]=it.n;save();}
+      x.it=it;x.sure=true;if(it){x.u=unitsFor(it)[0]||GRAM;if(x.u.s==='gram'||!(x.n>0)||x.n>20)x.n=x.u.s==='gram'?it.pg:1;}draw();};
+    sb.querySelectorAll('.ppSel').forEach(el=>el.onchange=()=>setProd(+el.dataset.i,el.value));
+    sb.querySelectorAll('[data-sug]').forEach(el=>el.onclick=()=>setProd(+el.dataset.sug,el.dataset.n));
+    sb.querySelectorAll('.ppU').forEach(el=>el.onchange=()=>{const x=items[+el.dataset.u];const g=itemG(x);if(el.value==='g'){x.u=GRAM;x.n=g;}else{const u=unitsFor(x.it)[+el.value];if(x.u.s==='gram')x.n=Math.max(0.5,Math.round(g/u.g*2)/2);x.u=u;}draw();});
+    sb.querySelectorAll('[data-qn]').forEach(el=>el.onchange=()=>{const v=num(el.value);items[+el.dataset.qn].n=v>0?v:0;draw();});
+    sb.querySelectorAll('[data-qm]').forEach(el=>el.onclick=()=>{const x=items[+el.dataset.qm];const st=x.u.s==='gram'?10:(x.n<=1?0.5:1);x.n=Math.max(st,Math.round((x.n-st)*100)/100);draw();});
+    sb.querySelectorAll('[data-qp]').forEach(el=>el.onclick=()=>{const x=items[+el.dataset.qp];const st=x.u.s==='gram'?10:(x.n<1?0.5:1);x.n=Math.round((x.n+st)*100)/100;draw();});
     sb.querySelectorAll('[data-del]').forEach(el=>el.onclick=()=>{items.splice(+el.dataset.del,1);draw();});
     sb.querySelector('#ppMom').onclick=e=>{const b=e.target.closest('[data-k]');if(!b)return;mom=b.dataset.k;sb.querySelectorAll('#ppMom button').forEach(x=>x.classList.toggle('on',x===b));};
-    sb.querySelector('#ppAdd').onclick=()=>{const ok=items.filter(x=>x.it&&x.g>0);if(!ok.length)return;S.food=S.food||{};const arr=(S.food[fdDate]=S.food[fdDate]||[]);let k=0;
-      ok.forEach(x=>{const v=calc(x.it,x.g);k+=v.k;arr.push({n:x.it.n,g:x.g,m:mom,...v});S.recent=[x.it.n,...(S.recent||[]).filter(y=>y!==x.it.n)].slice(0,8);});
-      save();closeSheet();renderFood();renderHome();toast('✅ '+ok.length+(ok.length===1?' product':' producten')+' toegevoegd · '+k+' kcal');};};
+    const sv=sb.querySelector('#ppSave');if(sv)sv.onclick=()=>{saving=true;draw();setTimeout(()=>{const i=$('ppDn');if(i)i.focus();},50);};
+    const ds=sb.querySelector('#ppDs');if(ds)ds.onclick=()=>{const n=$('ppDn').value.trim();if(!n){toast('Geef je gerecht een naam');return;}
+      S.mydishes=(S.mydishes||[]).filter(d=>norm(d.n)!==norm(n));S.mydishes.push({n,items:items.filter(x=>x.it&&itemG(x)>0).map(x=>({n:x.it.n,u:x.u.s,qn:x.n,g:itemG(x)}))});save();saving=false;draw();toast('⭐ '+n+' bewaard. Typ de naam of tik hem aan bij Eten toevoegen.');};
+    sb.querySelector('#ppAdd').onclick=()=>{const ok=items.filter(x=>x.it&&itemG(x)>0);if(!ok.length)return;let k=0;
+      ok.forEach(x=>{k+=logFood(x.it,x.n,x.u,mom).k;});save();closeSheet();renderFood();renderHome();toast('✅ '+ok.length+(ok.length===1?' product':' producten')+' toegevoegd · '+k+' kcal');};};
+  draw();}
+function addMyDish(i){const d=(S.mydishes||[])[i];if(!d)return;const mom=defMoment();let k=0,n=0;
+  d.items.forEach(x=>{const it=allFoods().find(f=>f.n===x.n);if(!it)return;const u=x.u==='gram'?GRAM:(unitsFor(it).find(u=>u.s===x.u)||GRAM);k+=logFood(it,x.u==='gram'?x.g:x.qn,u,mom).k;n++;});
+  save();closeSheet();renderFood();renderHome();toast('⭐ '+d.n+' toegevoegd · '+k+' kcal');}
+function openAmount(it){
+  const us=unitsFor(it);let ui=0,n=1,gmode=false,gv=it.pg,mom=defMoment();
+  const draw=()=>{const u=us[ui]||GRAM;const g=gmode?gv:Math.round(n*u.g);const v=calc(it,g);
+    openSheet(`<button class="backlink" id="faBack">‹ Terug</button>
+     <div class="h-l" style="font-size:30px">${esc(it.n)}</div><div class="small">Per 100 g: ${it.k} kcal · ${it.p} g eiwit · ${it.c} g koolh · ${it.f} g vet</div>
+     ${gmode?`<div class="field"><label>Precies in gram / ml</label><input id="faG" type="text" inputmode="decimal" value="${gv}"></div><button class="linkbtn" id="faMode">‹ Terug naar ${esc(us[0].p)}</button>`:
+     `<div class="field"><label>Hoeveel ${esc(u.p)}?</label><div class="cntrow" id="faN">${[0.5,1,2,3,4].map(x=>`<button data-x="${x}" class="${x===n?'on':''}">${fmtN(x)}</button>`).join('')}</div>
+       <div class="qstep big"><button id="faM" aria-label="Minder">−</button><b>${esc(qtyLabel(n,u))}</b><button id="faP" aria-label="Meer">+</button></div></div>
+      ${us.length>1?`<div class="field"><label>Maat</label><div class="chips wrap" id="faU">${us.map((x,j)=>`<button class="chip mini ${j===ui?'on':''}" data-j="${j}">${esc(x.s)} <span class="gtag">${x.g} g</span></button>`).join('')}</div></div>`:''}
+      <button class="linkbtn" id="faMode">Precies in gram invullen</button>`}
+     <div class="field"><label>Moment</label><div class="seg" id="faMom" style="margin:0">${MOMENTS.map(([k,l])=>`<button data-k="${k}" class="${k===mom?'on':''}">${l}</button>`).join('')}</div></div>
+     <div class="statgrid" style="grid-template-columns:repeat(4,1fr);margin:14px 0"><div class="stat"><b style="font-size:22px">${v.k}</b><span>kcal</span></div><div class="stat"><b style="font-size:22px">${Math.round(v.p)}g</b><span>eiwit</span></div><div class="stat"><b style="font-size:22px">${Math.round(v.c)}g</b><span>koolh</span></div><div class="stat"><b style="font-size:22px">${Math.round(v.f)}g</b><span>vet</span></div></div>
+     <button class="cta grad" id="faAdd">Toevoegen · ${gmode?g+' g':esc(qtyLabel(n,u))+' ('+g+' g)'}</button>
+     ${it.own?'<button class="cta ghost danger" id="faDel" style="margin-top:8px">Eigen product verwijderen</button>':''}`);
+    const sb=$('sheetBody');
+    sb.querySelector('#faBack').onclick=()=>openAddFood();
+    sb.querySelector('#faMode').onclick=()=>{if(!gmode)gv=g;gmode=!gmode;draw();};
+    const N=sb.querySelector('#faN');if(N)N.onclick=e=>{const b=e.target.closest('[data-x]');if(!b)return;n=+b.dataset.x;draw();};
+    const U=sb.querySelector('#faU');if(U)U.onclick=e=>{const b=e.target.closest('[data-j]');if(!b)return;ui=+b.dataset.j;draw();};
+    const M=sb.querySelector('#faM');if(M){M.onclick=()=>{n=Math.max(0.5,n<=1?0.5:n-1);draw();};sb.querySelector('#faP').onclick=()=>{n=n<1?1:n+1;draw();};}
+    const G=sb.querySelector('#faG');if(G){G.oninput=e=>{const x=num(e.target.value);gv=x>0?x:0;const vv=calc(it,gv);sb.querySelector('#faAdd').textContent='Toevoegen · '+Math.round(gv)+' g';
+      sb.querySelectorAll('.statgrid .stat b')[0].textContent=vv.k;sb.querySelectorAll('.statgrid .stat b')[1].textContent=Math.round(vv.p)+'g';sb.querySelectorAll('.statgrid .stat b')[2].textContent=Math.round(vv.c)+'g';sb.querySelectorAll('.statgrid .stat b')[3].textContent=Math.round(vv.f)+'g';};}
+    sb.querySelector('#faMom').onclick=e=>{const b=e.target.closest('[data-k]');if(!b)return;mom=b.dataset.k;sb.querySelectorAll('#faMom button').forEach(x=>x.classList.toggle('on',x===b));};
+    sb.querySelector('#faAdd').onclick=()=>{const gg=gmode?Math.round(gv):Math.round(n*u.g);if(!(gg>0)){toast('Vul een hoeveelheid in');return;}
+      const vv=gmode?logFood(it,gg,GRAM,mom):logFood(it,n,u,mom);save();closeSheet();renderFood();renderHome();toast('✅ '+it.n+' toegevoegd · '+vv.k+' kcal');};
+    const del=sb.querySelector('#faDel');if(del){let armed=false;del.onclick=()=>{if(!armed){armed=true;del.textContent='Zeker weten? Tik nogmaals';return;}S.myfoods=(S.myfoods||[]).filter(x=>x.n!==it.n);save();openAddFood();toast('Product verwijderd');};}
+  };
   draw();}
 
-function openAmount(it){
-  let g=it.pg,mom=defMoment();
-  openSheet(`<button id="faBack" style="border:0;background:none;color:var(--a2);font-weight:700;padding:0;margin-bottom:6px">‹ Terug</button>
-   <div class="h-l" style="font-size:26px">${esc(it.n)}</div><div class="small">Per 100 g: ${it.k} kcal · ${it.p} g eiwit · ${it.c} g koolh · ${it.f} g vet</div>
-   <div class="field"><label>Hoeveel? (1 = ${esc(it.pn)})</label><div class="seg" id="faPort" style="margin:0">${[0.5,1,1.5,2,3].map(x=>`<button data-x="${x}" class="${x===1?'on':''}">${String(x).replace('.5','½').replace(/^0½/,'½')}</button>`).join('')}</div></div>
-   <div class="field"><label>Of precies in gram / ml</label><input id="faG" type="text" inputmode="decimal" value="${g}"></div>
-   <div class="field"><label>Moment</label><div class="seg" id="faMom" style="margin:0">${MOMENTS.map(([k,l])=>`<button data-k="${k}" class="${k===mom?'on':''}">${l}</button>`).join('')}</div></div>
-   <div class="statgrid" id="faPrev" style="grid-template-columns:repeat(4,1fr);margin:14px 0"></div>
-   <button class="cta grad" id="faAdd">Toevoegen</button>
-   ${it.own?'<button class="cta ghost danger" id="faDel" style="margin-top:8px">Eigen product verwijderen</button>':''}`);
-  const sb=$('sheetBody');
-  const prev=()=>{const v=calc(it,g);sb.querySelector('#faPrev').innerHTML=`<div class="stat"><b style="font-size:19px">${v.k}</b><span>kcal</span></div><div class="stat"><b style="font-size:19px">${Math.round(v.p)}g</b><span>eiwit</span></div><div class="stat"><b style="font-size:19px">${Math.round(v.c)}g</b><span>koolh</span></div><div class="stat"><b style="font-size:19px">${Math.round(v.f)}g</b><span>vet</span></div>`;};
-  prev();
-  sb.querySelector('#faPort').onclick=e=>{const b=e.target.closest('[data-x]');if(!b)return;g=Math.round(it.pg*+b.dataset.x);sb.querySelector('#faG').value=g;sb.querySelectorAll('#faPort button').forEach(x=>x.classList.toggle('on',x===b));prev();};
-  sb.querySelector('#faG').oninput=e=>{const v=num(e.target.value);g=v>0?v:0;sb.querySelectorAll('#faPort button').forEach(x=>x.classList.remove('on'));prev();};
-  sb.querySelector('#faMom').onclick=e=>{const b=e.target.closest('[data-k]');if(!b)return;mom=b.dataset.k;sb.querySelectorAll('#faMom button').forEach(x=>x.classList.toggle('on',x===b));};
-  sb.querySelector('#faBack').onclick=openAddFood;
-  sb.querySelector('#faAdd').onclick=()=>{if(!(g>0)){toast('Vul een hoeveelheid in');return;}const v=calc(it,g);
-    S.food=S.food||{};(S.food[fdDate]=S.food[fdDate]||[]).push({n:it.n,g:Math.round(g),m:mom,...v});
-    S.recent=[it.n,...(S.recent||[]).filter(x=>x!==it.n)].slice(0,8);save();closeSheet();renderFood();renderHome();toast('✅ '+it.n+' toegevoegd · '+v.k+' kcal');};
-  const del=sb.querySelector('#faDel');if(del){let armed=false;del.onclick=()=>{if(!armed){armed=true;del.textContent='Zeker weten? Tik nogmaals';return;}S.myfoods=(S.myfoods||[]).filter(x=>x.n!==it.n);save();openAddFood();toast('Product verwijderd');};}
-}
 function openOwnFood(){
   openSheet(`<button id="foBack" style="border:0;background:none;color:var(--a2);font-weight:700;padding:0;margin-bottom:6px">‹ Terug</button>
    <div class="h-l" style="font-size:26px">Eigen product</div><div class="small">Neem de waarden <b>per 100 g</b> over van het etiket. Het product wordt bewaard, zodat je het later snel terugvindt.</div>
@@ -1601,7 +2023,7 @@ function openOwnFood(){
 }
 
 /* ================= AH-LIJST & DEALS ================= */
-let dealTab='ah';
+let dealTab='ah';if(location.hash==='#deals-list')dealTab='list';
 const SNACKS=[
  ['🫐','Kwark met blauwe bessen','250 g AH magere kwark + 75 g blauwe bessen',186,23,19,1,'Veel eiwit, bijna geen vet. Ideaal als avondsnack.'],
  ['🥛','Skyr met honing','150 g skyr naturel + 1 theelepel honing',118,17,12,0,'Romig en eiwitrijk, klaar in 10 seconden.'],
@@ -1616,13 +2038,138 @@ const SNACKS=[
  ['🍎','Appel met kaasblokjes','1 appel + 30 g 30+ kaas',162,10,18,5,'Zoet en hartig tegelijk.'],
  ['🌰','Handje ongezouten noten','25 g gemengde noten',152,5,3,13,'Gezonde vetten. Klein handje: het zijn veel calorieën.']
 ];
+/* ================= BOODSCHAPPENLIJST ================= */
+const DEPTS=['Groente & fruit','Brood','Zuivel & eieren','Vlees & vis','Houdbaar','Diepvries','Overig'];
+/* per product: afdeling, verpakkingen [inhoud, prijs AH, prijs Dirk, label], st = gram per stuk (stuks-producten), kw = zoekwoorden voor aanbiedingen */
+const BUY={
+ havermout:{n:'Havermout',d:'Houdbaar',packs:[[1000,1.59,1.29,'pak 1 kg'],[500,0.99,0.89,'pak 500 g']],kw:['havermout']},
+ melk:{n:'Halfvolle melk',d:'Zuivel & eieren',packs:[[1500,1.69,1.49,'fles 1,5 L'],[1000,1.15,1.05,'pak 1 L']],kw:['halfvolle melk','melk']},
+ banaan:{n:'Bananen',d:'Groente & fruit',st:120,packs:[[1,0.25,0.22,'stuk']],kw:['banan']},
+ appel:{n:'Appels',d:'Groente & fruit',st:150,packs:[[1,0.35,0.30,'stuk']],kw:['appel']},
+ avocado:{n:'Avocado (eetrijp)',d:'Groente & fruit',st:140,packs:[[1,0.99,0.89,'stuk']],kw:['avocado'],prem:'Eetrijp is iets duurder, maar je kunt hem meteen eten en gooit niets weg.'},
+ paprika:{n:'Paprika',d:'Groente & fruit',st:150,packs:[[1,0.69,0.59,'stuk']],kw:['paprika']},
+ krieltjes:{n:'Krieltjes',d:'Groente & fruit',packs:[[750,1.99,1.79,'zak 750 g']],kw:['krieltjes','aardappel']},
+ sperziebonen:{n:'Sperziebonen',d:'Groente & fruit',packs:[[400,1.79,1.59,'zak 400 g']],kw:['sperziebonen','boontjes']},
+ pindakaas:{n:'Pindakaas',d:'Houdbaar',packs:[[600,2.99,2.69,'pot 600 g'],[350,2.19,1.99,'pot 350 g']],kw:['pindakaas'],prem:'Kies 100% pinda zonder suiker of palmolie: iets duurder, maar veel gezonder.'},
+ kwark:{n:'Magere kwark',d:'Zuivel & eieren',packs:[[1000,2.39,2.19,'bak 1 kg'],[500,1.35,1.19,'bak 500 g']],kw:['kwark','skyr']},
+ yoghurt:{n:'Magere yoghurt',d:'Zuivel & eieren',packs:[[1000,1.19,1.05,'pak 1 L']],kw:['yoghurt']},
+ granola:{n:'Granola',d:'Houdbaar',packs:[[500,2.79,2.49,'zak 500 g']],kw:['granola','muesli','cruesli']},
+ honing:{n:'Honing',d:'Houdbaar',packs:[[350,2.69,2.39,'knijpfles 350 g']],kw:['honing']},
+ brood:{n:'Volkoren brood',d:'Brood',packs:[[800,1.99,1.69,'heel brood (± 22 sneetjes)'],[400,1.29,1.09,'half brood']],kw:['volkoren'],tip:'Vries de helft in: dan blijft het vers.'},
+ kaas:{n:'Kaas 30+ (plakken)',d:'Zuivel & eieren',packs:[[400,4.29,3.99,'plakken 400 g'],[200,2.49,2.29,'plakken 200 g']],kw:['kaas']},
+ geraspte:{n:'Geraspte kaas',d:'Zuivel & eieren',packs:[[175,2.19,1.99,'zak 175 g']],kw:['geraspte kaas','raspkaas']},
+ eieren:{n:'Eieren',d:'Zuivel & eieren',st:55,packs:[[10,3.29,2.99,'doos 10 stuks'],[6,1.99,1.89,'doos 6 stuks']],kw:['eieren','scharrel']},
+ kipbeleg:{n:'Kipfilet (beleg)',d:'Vlees & vis',packs:[[100,1.69,1.49,'bakje 100 g']],kw:['kipfilet beleg','gerookte kip']},
+ kipdij:{n:'Kipdijfilet',d:'Vlees & vis',packs:[[500,5.99,5.49,'bak 500 g'],[300,3.99,3.69,'bak 300 g']],kw:['kipdij']},
+ kipfilet:{n:'Kipfilet(reepjes)',d:'Vlees & vis',packs:[[1000,10.49,9.49,'voordeelbak 1 kg'],[500,5.99,5.29,'bak 500 g']],kw:['kipfilet','kipreepjes','kip']},
+ gehakt:{n:'Mager rundergehakt',d:'Vlees & vis',packs:[[500,5.49,4.99,'bak 500 g'],[300,3.79,3.49,'bak 300 g']],kw:['rundergehakt','gehakt']},
+ zalm:{n:'Zalmfilet (diepvries)',d:'Diepvries',packs:[[250,5.99,5.49,'2 filets 250 g']],kw:['zalm'],prem:'Vette vis met omega-3, goed voor je herstel. Diepvries is goedkoper dan vers.'},
+ rijst:{n:'Zilvervliesrijst',d:'Houdbaar',packs:[[1000,2.19,1.89,'pak 1 kg'],[400,1.19,0.99,'pak 400 g']],kw:['rijst','basmati']},
+ pasta:{n:'Volkoren pasta',d:'Houdbaar',packs:[[500,1.19,0.99,'pak 500 g']],kw:['pasta','penne','fusilli','spaghetti']},
+ pastasaus:{n:'Pastasaus',d:'Houdbaar',packs:[[500,1.49,1.29,'pot 500 g']],kw:['pastasaus','tomatensaus']},
+ wraps:{n:'Volkoren wraps',d:'Brood',st:60,packs:[[8,1.99,1.79,'pak 8 stuks'],[6,1.69,1.49,'pak 6 stuks']],kw:['wrap']},
+ krentenbol:{n:'Krentenbollen',d:'Brood',st:60,packs:[[6,1.79,1.49,'zak 6 stuks']],kw:['krentenbol']},
+ wokgroente:{n:'Wokgroente',d:'Diepvries',packs:[[750,2.29,1.99,'zak 750 g'],[400,1.49,1.29,'zak 400 g']],kw:['wokgroente','roerbak']},
+ spinazie:{n:'Spinazie',d:'Diepvries',packs:[[450,1.39,1.19,'zak 450 g']],kw:['spinazie']},
+ olie:{n:'Olijfolie',d:'Houdbaar',packs:[[500,5.49,4.99,'fles 500 ml']],kw:['olijfolie','olie']},
+ ketjap:{n:'Ketjap',d:'Houdbaar',packs:[[250,1.69,1.49,'fles 250 ml']],kw:['ketjap']},
+ creatine:{n:'Creatine monohydraat',d:'Overig',packs:[[300,null,null,'pot 300 g']],kw:[],note:'Niet bij AH of Dirk: drogist of online, ± €15.',prem:'Kies Creapure: zuiver en goed getest.',est:15}
+};
+const FOODBUY={'Banaan':'banaan','Appel':'appel','Avocado':'avocado','Paprika':'paprika','Ei':'eieren','Halfvolle melk':'melk','Magere kwark':'kwark','Magere yoghurt':'yoghurt','Havermout':'havermout','Volkoren brood':'brood','Kaas 30+':'kaas','Kipfilet (vleeswaren)':'kipbeleg','Kipfilet (bereid)':'kipfilet','Kipdijfilet (bereid)':'kipdij','Zalm':'zalm','Mager rundergehakt':'gehakt','Volkoren pasta (ongekookt)':'pasta','Zilvervliesrijst (ongekookt)':'rijst','Wokgroente':'wokgroente','Sperziebonen':'sperziebonen','Pindakaas':'pindakaas','Granola':'granola','Honing':'honing','Krentenbol':'krentenbol','Volkoren wrap':'wraps','Geraspte kaas':'geraspte','Olijfolie':'olie','Ketjap':'ketjap','Pastasaus':'pastasaus','Spinazie':'spinazie','Aardappelen':'krieltjes'};
+/* maaltijden uit het plan → [product, gram per portie, schaalbaar] */
+const MEALBUY={m1:[['havermout',80,1],['melk',300,1],['banaan',120],['pindakaas',15]],m2:[['kwark',250],['granola',30,1],['honing',8]],
+ m3:[['brood',140,1],['kaas',60],['kipbeleg',100],['appel',150]],m4:[['krentenbol',120,1],['banaan',120]],m5:[['kipdij',150],['rijst',90,1],['wokgroente',200],['olie',10],['ketjap',15]],m6:[['kwark',250],['pindakaas',15]]};
+const DINBUY=[[['gehakt',125],['pasta',90,1],['pastasaus',125],['spinazie',150]],[['wraps',120],['kipfilet',125],['paprika',150],['geraspte',30],['yoghurt',50]],
+ [['zalm',125],['krieltjes',250,1],['sperziebonen',200]],[['rijst',80,1],['eieren',165],['wokgroente',200],['ketjap',15]]];
+function gDefault(){return{days:7,store:'ah',meals:{m1:1,m2:1,m3:1,m4:1,m5:1,m6:1},din:[0,0,0,0],extras:[],dishes:{},have:{},cart:{},crea:1};}
+function G(){if(!S.glist||typeof S.glist!=='object')S.glist=gDefault();const g=S.glist;const d=gDefault();for(const k in d)if(g[k]===undefined)g[k]=d[k];if(!Array.isArray(g.din)||g.din.length!==4)g.din=[0,0,0,0];return g;}
+function packFor(b,need,store){const ps=b.packs.slice().sort((a,c)=>c[0]-a[0]);const si=store==='ah'?1:2;let left=need;const used=[];
+  while(left>0.0001){const big=ps[0];const fit=ps.slice().reverse().find(p=>p[0]>=left);if(left>big[0]){used.push(big);left-=big[0];}else{used.push(fit||big);left=0;}}
+  const cnt={};used.forEach(p=>{cnt[p[3]]=(cnt[p[3]]||{n:0,p});cnt[p[3]].n++;});const price=used.reduce((a,p)=>a+(p[si]||0),0);
+  return{txt:Object.values(cnt).map(c=>(c.n>1?c.n+' × ':'')+c.p[3]).join(' + '),price:b.packs[0][si]==null?null:price};}
+function gCompute(){const g=G();const need={};const extra=[];const days=g.days;const trainDays=Math.min(days,Math.ceil(days*DAYS.length/7));
+  const add=(id,grams)=>{need[id]=(need[id]||0)+grams;};
+  Object.entries(MEALBUY).forEach(([mid,arr])=>{if(!g.meals[mid])return;const n=mid==='m4'?trainDays:mid==='m5'?Math.max(0,days-g.din.reduce((a,b)=>a+b,0)):days;
+    arr.forEach(([id,gr,sc])=>add(id,gr*(sc?PL.f:1)*n));});
+  g.din.forEach((n,i)=>{if(n>0)DINBUY[i].forEach(([id,gr,sc])=>add(id,gr*(sc?PL.f:1)*n));});
+  if(g.crea)add('creatine',5*days);
+  const foodTo=(name,grams,label)=>{const id=FOODBUY[name];if(id)add(id,grams);else extra.push({n:name,g:grams,label});};
+  (g.extras||[]).forEach(x=>{const it=allFoods().find(f=>f.n===x.n);if(!it)return;const u=x.u==='gram'?GRAM:(unitsFor(it).find(u=>u.s===x.u)||GRAM);const mult=x.per==='dag'?days:1;foodTo(it.n,x.qn*u.g*mult,qtyLabel(x.qn*mult,u));});
+  Object.entries(g.dishes||{}).forEach(([i,n])=>{const d=(S.mydishes||[])[+i];if(!d||!(n>0))return;d.items.forEach(x=>foodTo(x.n,x.g*n,null));});
+  const deals=activeDeals(g.store);
+  const rows=Object.entries(need).filter(([id,gr])=>gr>0).map(([id,gr])=>{const b=BUY[id];const amount=b.st?Math.ceil(gr/b.st-0.15):gr;const pk=packFor(b,b.st?amount:gr,g.store);
+    const kw=b.kw||[];const deal=deals.find(d=>kw.some(k=>norm(d.n).includes(k)));
+    return{id,b,need:b.st?amount+' stuks':gr>=1000?nl((gr/1000).toFixed(1))+' kg':Math.round(gr)+' g',pk,deal};});
+  extra.forEach((x,i)=>rows.push({id:'x'+i+'_'+norm(x.n),b:{n:x.n,d:'Overig'},need:x.label||Math.round(x.g)+' g',pk:{txt:'',price:null},extra:1}));
+  return rows;}
+function gText(rows){const g=G();return '🛒 Boodschappenlijst ('+(g.store==='ah'?'Albert Heijn':'Dirk')+', '+g.days+' dagen)\n'+DEPTS.map(d=>{const r=rows.filter(x=>x.b.d===d&&!g.have[x.id]);return r.length?'\n'+d+'\n'+r.map(x=>'☐ '+x.b.n+(x.pk.txt?' · '+x.pk.txt:' · '+x.need)).join('\n'):'';}).join('')+'\n\nGemaakt met Gym Plan';}
+function renderGList(){const g=G();const rows=gCompute();let tot=0,unk=0;rows.forEach(r=>{if(g.have[r.id])return;if(r.pk.price!=null)tot+=r.pk.price;else if(r.b.est)tot+=r.b.est;else unk++;});
+  const left=rows.filter(r=>!g.have[r.id]&&!g.cart[r.id]).length;const nMeals=Object.values(g.meals).filter(Boolean).length;const nd=g.din.reduce((a,b)=>a+b,0);
+  return `<div class="card glhead"><div class="between"><div><div class="eyebrow">Boodschappenlijst</div><div class="gl-t">${g.store==='ah'?'Albert Heijn':'Dirk'} · ${g.days} dagen</div><div class="small">${nMeals} maaltijden uit je plan${nd?' · '+nd+' andere diners':''}${(g.extras||[]).length?' · '+g.extras.length+' extra':''}</div></div><button class="cta ghost gl-edit" id="glEdit">⚙️ Aanpassen</button></div>
+   <div class="gl-tot"><b>€ ${tot.toFixed(2).replace('.',',')}</b><span>geschatte prijs${unk?' (excl. '+unk+' extra)':''} · nog ${left} te pakken</span></div></div>
+   ${DEPTS.map(d=>{const r=rows.filter(x=>x.b.d===d);if(!r.length)return '';return `<div class="h-s sm">${d}</div><div class="card list">${r.map(x=>{const have=!!g.have[x.id],cart=!!g.cart[x.id];
+     return `<div class="glrow ${have?'have':''} ${cart?'cart':''}"><button class="glchk" data-cart="${x.id}" aria-label="In mandje">${cart?'✓':''}</button><div class="gl-m"><div class="t1">${esc(x.b.n)}</div>
+       <div class="t2">${x.pk.txt?esc(x.pk.txt)+' · ':''}nodig: ${esc(x.need)}${x.pk.price!=null?' · €\u00a0'+x.pk.price.toFixed(2).replace('.',','):x.b.note?' · '+esc(x.b.note):''}</div>
+       ${x.deal?`<span class="gtag2 bonus">🏷️ ${g.store==='ah'?'Bonus':'Aanbieding'}: ${esc(x.deal.n)} ${esc(x.deal.price||'')}</span>`:''}${x.b.prem?`<span class="gtag2 prem">💎 Mag iets duurder: ${esc(x.b.prem)}</span>`:''}${x.b.tip?`<span class="gtag2">💡 ${esc(x.b.tip)}</span>`:''}</div>
+       <button class="glhave" data-have="${x.id}">${have?'↺':'Heb ik al'}</button></div>`;}).join('')}</div>`;}).join('')||'<div class="note">Je lijst is leeg. Tik op Aanpassen en kies wat je wilt eten.</div>'}
+   <div class="small" style="margin:8px 2px">Standaard het goedkoopste goede product (huismerk). Prijzen zijn schattingen en kunnen per winkel verschillen.</div>
+   <div class="grid2" style="margin-top:10px"><button class="cta grad" id="glShare">📤 Deel lijst</button><button class="cta ghost" id="glClear">🗑 Leegmaken</button></div>`;}
+function glClick(e){const g=G();const c=e.target.closest('[data-cart]');if(c){const id=c.dataset.cart;g.cart[id]=!g.cart[id];if(!g.cart[id])delete g.cart[id];save();renderDeals();return true;}
+  const h=e.target.closest('[data-have]');if(h){const id=h.dataset.have;g.have[id]=!g.have[id];if(!g.have[id])delete g.have[id];save();renderDeals();return true;}
+  if(e.target.closest('#glEdit')){openGSettings();return true;}
+  if(e.target.closest('#glShare')){const t=gText(gCompute());(async()=>{try{if(navigator.share){await navigator.share({title:'Boodschappenlijst',text:t});return;}}catch(err){if(err&&err.name==='AbortError')return;}
+    try{await navigator.clipboard.writeText(t);toast('📋 Lijst gekopieerd. Plak hem in WhatsApp');}catch(err){toast('Kopiëren lukte niet');}})();return true;}
+  const cl=e.target.closest('#glClear');if(cl){if(!cl.dataset.armed){cl.dataset.armed=1;cl.textContent='Zeker? Tik nog eens';return true;}const keep=G();S.glist=Object.assign(gDefault(),{days:keep.days,store:keep.store});save();renderDeals();toast('🗑 Lijst leeggemaakt');return true;}
+  return false;}
+function openGSettings(){const g=G();
+  const mealsHtml=MEALS.map(m=>`<button class="chip mini ${g.meals[m.id]?'on':''}" data-gm="${m.id}">${esc(m.n)}</button>`).join('');
+  const dinRow=(i,lbl,ic)=>`<div class="glstep"><span>${ic} ${esc(lbl)}</span><div class="stepper"><button data-gd="${i}" data-v="-1" aria-label="Minder">−</button><b>${g.din[i]}×</b><button data-gd="${i}" data-v="1" aria-label="Meer">+</button></div></div>`;
+  const myd=(S.mydishes||[]).map((d,i)=>`<div class="glstep"><span>⭐ ${esc(d.n)}</span><div class="stepper"><button data-gx="${i}" data-v="-1">−</button><b>${(g.dishes||{})[i]||0}×</b><button data-gx="${i}" data-v="1">+</button></div></div>`).join('');
+  const planDin=Math.max(0,g.days-g.din.reduce((a,b)=>a+b,0));
+  openSheet(`<div class="h-l">Wat wil je eten?</div><div class="small">De app rekent uit wat je moet halen, afgestemd op jouw lengte, gewicht en doel.</div>
+   <div class="field"><label>Winkel</label><div class="seg" id="gStore" style="margin:0"><button data-k="ah" class="${g.store==='ah'?'on':''}">Albert Heijn</button><button data-k="dirk" class="${g.store==='dirk'?'on':''}">Dirk</button></div></div>
+   <div class="field"><label>Voor hoeveel dagen?</label><div class="seg" id="gDays" style="margin:0">${[3,5,7].map(d=>`<button data-k="${d}" class="${g.days===d?'on':''}">${d} dagen${d===7?' ⭐':''}</button>`).join('')}</div><div class="small">⭐ Aanrader: 1× per week boodschappen. Dat scheelt tijd en geld.</div></div>
+   <div class="field"><label>Maaltijden uit je plan</label><div class="chips wrap" id="gMeals">${mealsHtml}</div></div>
+   <div class="field"><label>Avondeten (${g.days} avonden)</label>
+    <div class="glstep"><span>🍗 Plan: kip met rijst</span><b>${planDin}×</b></div>
+    ${dinRow(0,'Pasta bolognese','🍝')}${dinRow(1,'Kip-wraps','🌯')}${dinRow(2,'Zalm & krieltjes','🐟')}${dinRow(3,'Ei-rijst','🍳')}</div>
+   ${myd?`<div class="field"><label>Mijn gerechten (aantal keer)</label>${myd}</div>`:''}
+   <div class="field"><label>Extra producten</label>${(g.extras||[]).map((x,i)=>`<div class="glstep"><span>${esc(x.n)} · ${esc(qtyLabel(x.qn,x.u==='gram'?GRAM:{s:x.u,p:x.up||x.u}))} ${x.per==='dag'?'per dag':'totaal'}</span><button class="xbtn" data-gxd="${i}" aria-label="Verwijder">✕</button></div>`).join('')}
+    <button class="cta ghost" id="gAddX">＋ Product toevoegen</button></div>
+   <div class="glstep"><span>💊 Creatine (5 g per dag)</span><button class="chip mini ${g.crea?'on':''}" id="gCrea">${g.crea?'Ja':'Nee'}</button></div>
+   <button class="cta grad" data-close style="margin-top:12px">Klaar</button>`);
+  const sb=$('sheetBody');const re=()=>{save();renderDeals();openGSettings();};
+  sb.querySelector('#gStore').onclick=e=>{const b=e.target.closest('[data-k]');if(b){g.store=b.dataset.k;re();}};
+  sb.querySelector('#gDays').onclick=e=>{const b=e.target.closest('[data-k]');if(b){g.days=+b.dataset.k;const tot=g.din.reduce((a,c)=>a+c,0);if(tot>g.days)g.din=[0,0,0,0];re();}};
+  sb.querySelector('#gMeals').onclick=e=>{const b=e.target.closest('[data-gm]');if(b){g.meals[b.dataset.gm]=g.meals[b.dataset.gm]?0:1;re();}};
+  sb.querySelectorAll('[data-gd]').forEach(b=>b.onclick=()=>{const i=+b.dataset.gd,v=+b.dataset.v;const tot=g.din.reduce((a,c)=>a+c,0);if(v>0&&tot>=g.days){toast('Alle '+g.days+' avonden zijn al ingevuld');return;}g.din[i]=Math.max(0,g.din[i]+v);re();});
+  sb.querySelectorAll('[data-gx]').forEach(b=>b.onclick=()=>{g.dishes=g.dishes||{};const i=b.dataset.gx;g.dishes[i]=Math.max(0,(g.dishes[i]||0)+(+b.dataset.v));re();});
+  sb.querySelectorAll('[data-gxd]').forEach(b=>b.onclick=()=>{g.extras.splice(+b.dataset.gxd,1);re();});
+  sb.querySelector('#gCrea').onclick=()=>{g.crea=g.crea?0:1;re();};
+  sb.querySelector('#gAddX').onclick=()=>openGExtra();}
+function openGExtra(){let pick=null,ui=0,n=1,per='tot';
+  const draw=()=>{const us=pick?unitsFor(pick):[];
+   openSheet(`<button class="backlink" id="gxBack">‹ Terug</button><div class="h-l">Product toevoegen</div>
+    ${pick?`<div class="t1" style="font-size:20px;margin-top:6px">${esc(pick.n)}</div>
+     <div class="field"><label>Hoeveel?</label><div class="cntrow" id="gxN">${[1,2,3,4,6].map(x=>`<button data-x="${x}" class="${x===n?'on':''}">${x}</button>`).join('')}</div></div>
+     ${us.length>1?`<div class="field"><label>Maat</label><div class="chips wrap" id="gxU">${us.map((u,j)=>`<button class="chip mini ${j===ui?'on':''}" data-j="${j}">${esc(u.s)}</button>`).join('')}</div></div>`:''}
+     <div class="field"><label>Per dag of totaal?</label><div class="seg" id="gxP" style="margin:0"><button data-k="tot" class="${per==='tot'?'on':''}">Totaal</button><button data-k="dag" class="${per==='dag'?'on':''}">Per dag</button></div></div>
+     <button class="cta grad" id="gxAdd">Toevoegen · ${esc(qtyLabel(n,us[ui]))}${per==='dag'?' per dag':''}</button>`:
+    `<div class="field"><input id="gxQ" placeholder="Zoek: avocado, eieren, zalm…" autocomplete="off"></div><div id="gxList"></div>`}`);
+   const sb=$('sheetBody');sb.querySelector('#gxBack').onclick=()=>{if(pick){pick=null;draw();}else openGSettings();};
+   if(!pick){const q=sb.querySelector('#gxQ');const L=sb.querySelector('#gxList');const dr=()=>{const t=norm(q.value.trim());const r=allFoods().filter(x=>!t||norm(x.n).includes(t)).sort((a,b)=>(FOODBUY[b.n]?1:0)-(FOODBUY[a.n]?1:0)).slice(0,30);
+      L.innerHTML=`<div class="card list">${r.map(x=>`<button class="li axitem" data-n="${esc(x.n)}"><div style="flex:1"><div class="t1">${esc(x.n)}</div><div class="t2">${FOODBUY[x.n]?'Met prijs':'Prijs onbekend'}</div></div><span class="chev">＋</span></button>`).join('')}</div>`;};
+     q.oninput=dr;dr();L.onclick=e=>{const b=e.target.closest('[data-n]');if(!b)return;pick=allFoods().find(x=>x.n===b.dataset.n);ui=0;n=1;draw();};setTimeout(()=>q.focus(),50);return;}
+   sb.querySelector('#gxN').onclick=e=>{const b=e.target.closest('[data-x]');if(b){n=+b.dataset.x;draw();}};
+   const U=sb.querySelector('#gxU');if(U)U.onclick=e=>{const b=e.target.closest('[data-j]');if(b){ui=+b.dataset.j;draw();}};
+   sb.querySelector('#gxP').onclick=e=>{const b=e.target.closest('[data-k]');if(b){per=b.dataset.k;draw();}};
+   sb.querySelector('#gxAdd').onclick=()=>{const u=us[ui];G().extras.push({n:pick.n,qn:n,u:u.s,up:u.p,per});save();renderDeals();openGSettings();toast('＋ '+pick.n+' op je lijst');};};
+  draw();}
+
 function renderDeals(){
   document.querySelectorAll('#dealSeg button').forEach(b=>b.classList.toggle('on',b.dataset.s===dealTab));
   let html='';
-  if(dealTab==='snacks'){
-    html=`<div class="note">Gezonde tussendoortjes met veel eiwit, allemaal te koop bij AH of Dirk. Tik op <b>＋</b> om er een aan je eetdagboek van vandaag toe te voegen.</div>
-     <div class="card" style="padding:2px 14px">${SNACKS.map((x,i)=>`<div class="li" style="align-items:center"><div style="font-size:26px;width:32px;text-align:center">${x[0]}</div><div style="flex:1;min-width:0"><div class="t1">${esc(x[1])}</div><div class="t2">${esc(x[2])}</div><div class="t2" style="margin-top:3px"><b style="color:var(--txt)">${x[3]} kcal · ${x[4]} g eiwit</b> · ${esc(x[7])}</div></div><button class="addbtn" data-snack="${i}" aria-label="Toevoegen aan vandaag">＋</button></div>`).join('')}</div>
-     <div class="small" style="margin:6px 2px">Waarden zijn gemiddelden per portie.</div>`;
+  if(dealTab==='list'){html=renderGList();
   }else{
     const arr=activeDeals(dealTab);const per=dealTab==='ah'?DEALS.ah_period:DEALS.dirk_period;
     const next=dealTab==='ah'?'De nieuwe AH Bonus start op maandag.':'De nieuwe Dirk-folder start op woensdag.';
@@ -1635,12 +2182,11 @@ function renderDeals(){
   $('dealBody').innerHTML=html;
 }
 $('dealSeg').addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(!b)return;dealTab=b.dataset.s;renderDeals();});
-$('dealBody').addEventListener('click',e=>{const b=e.target.closest('[data-snack]');if(!b)return;const x=SNACKS[+b.dataset.snack];const d=today();
-  S.food=S.food||{};(S.food[d]=S.food[d]||[]).push({n:x[1],q:'1 portie',g:0,m:'snack',k:x[3],p:x[4],c:x[5],f:x[6]});save();renderHome();
-  b.textContent='✓';b.classList.add('on');toast('✅ '+x[1]+' toegevoegd aan vandaag');setTimeout(()=>{b.textContent='＋';b.classList.remove('on');},1600);});
+$('dealBody').addEventListener('click',e=>{glClick(e);});
 
 /* ================= VOORTGANG ================= */
 function renderProg(){
+  renderCoach();
   $('progEyebrow').textContent=GOALS[INFO.goal].l;
   const lastCi=(S.checkins||[])[0];
   $('ciCard').innerHTML=`<div class="eyebrow" style="color:var(--eye)">AI body check-in</div><div class="big" style="font-size:26px">📸 Hoe sta je ervoor?</div><div class="small" style="color:var(--txt2)">Upload foto's wanneer je wilt. Je krijgt advies over je verhoudingen, wat achterloopt en hoe je je schema aanpast. Foto's worden niet opgeslagen.</div>
@@ -1669,11 +2215,11 @@ function renderProg(){
      const txt=r.done?(full?'Voltooid':'Deels')+' · '+Math.min(r.done,r.tot)+'/'+r.tot+' sets'+(r.when&&r.when!==r.key?' ('+WD[new Date(r.when+'T12:00').getDay()].toLowerCase()+')':'')+(r.as&&r.as!==r.D.name?' · als '+esc(r.as):''):r.before?'Voor je start':r.key<today()?'Overgeslagen':r.isToday?'Vandaag':'Gepland';
      return `<div class="li" style="padding:10px 0;align-items:center"><div style="font-size:20px;width:26px;text-align:center">${st}</div><div><div class="t1">${WD[r.D.wd]} · ${esc(r.D.name)}</div><div class="t2">${txt}</div></div></div>`;}).join('')+
    (ws.length>1?`<div class="note" style="margin-top:10px">Laatste ${ws.length} weken gemiddeld: <b>${Math.round(ws.reduce((a,b)=>a+b,0)/ws.length)}%</b> van je geplande sets gedaan.</div>`:'');}
-  $('progStats').innerHTML=`<div class="stat"><b>${keys.length}</b><span>trainingen</span></div><div class="stat"><b>${nl((totVol/1000).toFixed(1))}t</b><span>totaal volume</span></div><div class="stat"><b>${creaStreak()}</b><span>creatine-reeks</span></div>`;
+  {const ad=avgDur(28);$('progStats').innerHTML=`<div class="stat"><b>${keys.length}</b><span>trainingen</span></div><div class="stat"><b>${nl((totVol/1000).toFixed(1))}t</b><span>totaal volume</span></div><div class="stat"><b>${ad?ad.avg+'′':'–'}</b><span>gem. trainingstijd</span></div><div class="stat"><b>${creaStreak()}</b><span>creatine-reeks</span></div>`;}
   const pr={};keys.forEach(key=>{Object.entries(S.logs[key]).forEach(([k,sets])=>{const ex=LIB[k];if(!ex||isCardio(ex))return;(sets||[]).forEach(s=>{if(!s||!s.reps)return;const e1=(+s.kg||0)*(1+s.reps/30);if(!pr[ex.n]||e1>pr[ex.n].e1)pr[ex.n]={e1,kg:s.kg||0,reps:s.reps};});});});
   const names=Object.keys(pr).sort((a,b)=>pr[b].e1-pr[a].e1);
   $('prList').innerHTML=names.length?names.map(n=>`<div class="hist"><span>${n}</span><b style="font-family:var(--disp)">${nl(pr[n].kg)} kg × ${pr[n].reps}</b></div>`).join(''):'<div class="hist"><span class="mut">Je records verschijnen hier na je eerste training.</span></div>';
-  $('histList').innerHTML=keys.length?keys.sort().reverse().slice(0,30).map(k=>{const [d,id]=k.split('|');const st=dayStats(k);return `<div class="hist"><span>${fmtD(d)} · <b>${esc(dayName(id))}</b></span><span class="mut">${st.sets} ${st.sets===1?'set':'sets'} · ${st.vol.toLocaleString('nl-NL')} kg</span></div>`;}).join(''):'<div class="hist"><span class="mut">Nog geen trainingen.</span></div>';
+  $('histList').innerHTML=keys.length?keys.sort().reverse().slice(0,30).map(k=>{const [d,id]=k.split('|');const st=dayStats(k);return `<div class="hist"><span>${fmtD(d)} · <b>${esc(dayName(id))}</b></span><span class="mut">${durMin(k)?fmtDur(durMin(k))+' · ':''}${st.sets} ${st.sets===1?'set':'sets'} · ${st.vol.toLocaleString('nl-NL')} kg</span></div>`;}).join(''):'<div class="hist"><span class="mut">Nog geen trainingen.</span></div>';
 }
 $('ciCard').addEventListener('click',e=>{if(e.target.closest('#ciOpen'))openCheckin();if(e.target.closest('#ciHist'))openCiHistory();});
 $('wIn').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('wAdd').click();}});
@@ -1933,7 +2479,8 @@ function privacyHTML(){return ` <div class="small">Wat de app doet met jouw gege
  <div class="card"><div class="t1">✅ Wat de app doet</div><ul>
   <li>Je trainingsschema laten zien en bijhouden wat je hebt getraind.</li>
   <li>Je eten, je gewicht en je creatine bijhouden. Ook als je typt wat je at: dat wordt op je eigen telefoon herkend, zonder internet.</li>
-  <li>De aanbiedingen van AH en Dirk laten zien.</li></ul>
+  <li>De aanbiedingen van AH en Dirk laten zien en een boodschappenlijst maken.</li>
+  <li>Coach-advies geven op basis van je eigen logboek. Dat rekent de app uit op je telefoon, zonder AI en zonder internet.</li></ul>
   <div class="t1" style="margin-top:12px">❌ Wat de app niet doet</div><ul>
   <li>Geen account, geen wachtwoord en geen e-mailadres nodig.</li>
   <li>Geen toegang tot je foto's, contacten, locatie, camera of microfoon.</li>
@@ -2009,8 +2556,11 @@ function boostData(){
   // volume vergeleken met vorige keer dezelfde training
   let volUp=null;if(last){const id=last.key.split('|')[1];const prev=ses.filter(k=>k!==last.key&&k.split('|')[1]===id).pop();
     if(prev){const a=dayStats(prev).vol,b=dayStats(last.key).vol;if(a>0&&b>a*1.02)volUp=Math.round((b/a-1)*100);}}
-  const chips=[];
+  let eff=null;if(last){const id=last.key.split('|')[1];const prev=ses.filter(k=>k!==last.key&&k.split('|')[1]===id).pop();const d1=durMin(last.key),d0=prev?durMin(prev):null;
+    if(d1&&d0&&d1<=d0-5&&dayStats(last.key).vol>=dayStats(prev).vol)eff={d0,d1};}
+  const chips=[];const ld=last?durMin(last.key):null;
   if(n)chips.push(['🏋️',n+(n===1?' training':' trainingen')]);
+  if(ld&&daysAgo(last.d)<=3)chips.push(['⏱',fmtDur(ld)+' laatste training']);
   if(doneWk)chips.push(['📅',doneWk+'/'+DAYS.length+' deze week']);
   if(prs7)chips.push(['🏆',prs7+(prs7===1?' record':' records')+' deze week']);
   if(wGood)chips.push(['⚖️',(dif>0?'+':'')+nl(dif.toFixed(1))+' kg']);
@@ -2025,6 +2575,7 @@ function boostData(){
     m=ms===1?`De moeilijkste stap heb je al gezet, ${esc(name)}. Vanaf nu is het gewoon doorgaan. 💪`:`${ms} keer naar de gym. Dat is geen toeval meer, dat is een <b>gewoonte</b>. Respect, ${esc(name)}! 🙌`;}
   else if(volUp&&daysSince<=4){e='📈';t=pick(['Sterker dan vorige keer!','Vooruitgang!']);
     m=`Je vorige training was <b>${volUp}% zwaarder</b> dan de keer daarvoor. Zo groeien spieren, ${esc(name)}. Ga zo door! 💥`;}
+  else if(eff&&daysSince<=4){e='⚡';t='Efficiënt!';m=`Je trainde <b>${eff.d0-eff.d1} minuten korter</b> (${eff.d1} min), maar met minstens zoveel gewicht. Zo haal je meer uit je tijd, ${esc(name)}! 💪`;}
   else if(trainedToday){e='😤';t='Vandaag al geknald!';m=`Training staat erop, ${esc(name)}. Nu eten, slapen en groeien. 🍗😴💪`;}
   else if(daysSince!==null&&daysSince>=5){e='🔥';t=pick(['Welkom terug!','Tijd voor een comeback!']);
     m=`Even pauze gehad? Geen probleem. Spieren vergeten niets. ${td?'Vandaag: <b>'+esc(td.name)+'</b>. ':''}Eén training en je zit er weer in, ${esc(name)}! 💪`;}
@@ -2033,7 +2584,7 @@ function boostData(){
   else if(wGood){e='⚖️';t='Het gaat de goede kant op!';m=`Al <b>${(dif>0?'+':'')+nl(dif.toFixed(1))} kg</b> sinds je start. Je harde werk is gewoon te zien, ${esc(name)}! 👏`;}
   else if(n){e='😌';t='Rustdag = groeidag';m=pick([`Vandaag groeien je spieren. Eet goed, drink water en geniet ervan, ${esc(name)}. 🌱`,`Rust is ook trainen. Morgen kom je sterker terug! 💪`]);}
   else{e='🚀';t=`Klaar voor de start, ${name}?`;m=`Je eerste training staat klaar. Elke sterke sporter begon ooit bij dag 1. Vandaag is jouw dag 1! 💪`;}
-  return{e,t,m,chips:chips.slice(0,3)};}
+  return{e,t,m,chips:chips.slice(0,4)};}
 let boostShown=0;
 function showBoost(){
   if(!hasProfile()||$('sheet').classList.contains('show')||$('privNote').classList.contains('show'))return;
@@ -2068,7 +2619,7 @@ else setTimeout(showBoost,700);
 setInterval(()=>{if($('v-home').classList.contains('show')&&!document.activeElement.matches('input'))renderHome();},60000);
 
 /* automatische update (alleen losse website) */
-(function(){if(!STANDALONE)return;const B='1793913942';let busy=false;
+(function(){if(!STANDALONE)return;const B='1793917438';let busy=false;
  async function chk(){if(busy)return;busy=true;try{const r=await fetch('version.txt?t='+Date.now(),{cache:'no-store'});if(r.ok){const v=(await r.text()).trim();
    if(v&&v!==B&&!location.search.includes('v='+v)){toast('🔄 Nieuwe versie wordt geladen…');setTimeout(()=>location.replace(location.pathname+'?v='+v),900);}}}catch(e){}busy=false;}
  setTimeout(chk,1500);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')chk();});})();
