@@ -680,12 +680,14 @@ function renderHome(){
    <div class="card claude-only" id="ciHome"><div class="row"><div style="font-size:28px">📸</div><div style="flex:1"><div class="t1">Body check-in</div><div class="t2">${lastCi?'Laatste: '+fmtD(lastCi.d)+' · '+esc(lastCi.titel||''):'Upload foto\'s en krijg advies over je schema'}</div></div><span class="chev">›</span></div></div>
    ${nm?`<div class="card" data-go="food"><div class="row"><div style="font-size:28px">🍽️</div><div style="flex:1"><div class="time">VOLGENDE · ${nm.t}</div><div class="t1">${nm.n}</div><div class="t2">${mealText(nm)}</div></div><span class="chev">›</span></div></div>`:`<div class="card"><div class="row"><div style="font-size:28px">🎉</div><div><div class="t1">Alle maaltijden gegeten</div><div class="t2">Top gedaan vandaag, ${esc(INFO.name)}.</div></div></div></div>`}
    ${top?`<div class="card" data-go="deals" data-tab="${top.store}"><div class="between"><div class="eyebrow">Deal van de dag · ${top.store==='ah'?'AH Bonus':'Dirk'}</div><span class="chev">›</span></div><div class="deal" style="border:0;padding-bottom:0"><div class="disc ${top.store}">${esc(top.deal||'%')}</div><div><div class="t1">${esc(top.n)}</div><div class="t2">${esc(top.size||'')}${top.fit?' · '+esc(top.fit):''}</div></div><div class="pr"><b>${esc(top.price)}</b>${top.was?`<s>${esc(top.was)}</s>`:''}</div></div></div>`:''}
+   <div class="card" id="shareBtn"><div class="row"><div style="font-size:26px">📤</div><div style="flex:1"><div class="t1">Deel de app</div><div class="t2">Stuur Gym Plan naar vrienden via WhatsApp, AirDrop of berichten</div></div><span class="chev">›</span></div></div>
    <div class="card" id="infoBtn2"><div class="row"><div style="font-size:26px">📖</div><div style="flex:1"><div class="t1">Hoe werkt het schema?</div><div class="t2">Progressie, gewichten, creatine en herstel</div></div><span class="chev">›</span></div></div>`;
   animateRings($('homeWrap'));
 }
 $('homeWrap').addEventListener('click',e=>{
   if(e.target.closest('#profBtn'))return openProfiles();
   if(e.target.closest('#infoBtn2'))return openInfo();
+  if(e.target.closest('#shareBtn'))return shareApp();
   if(e.target.closest('#ciHome'))return openCheckin();
   if(e.target.closest('#hCrea')){toggleCrea();return;}
   const g=e.target.closest('[data-go]');if(g){if(g.dataset.day)curDay=g.dataset.day;if(g.dataset.tab)dealTab=g.dataset.tab;go(g.dataset.go);}
@@ -1105,6 +1107,7 @@ function openProfiles(){
    ${(INFO.focus||[]).length?`<button class="prof" id="prFocus"><div style="font-size:22px">⭐</div><div style="flex:1"><div class="t1">Focus wissen</div><div class="t2">${INFO.focus.map(m=>MUSCLES[m]).join(', ')} · +1 set</div></div></button>`:''}
    <button class="prof" id="prLook"><div style="font-size:22px">🎨</div><div style="flex:1"><div class="t1">Uiterlijk</div><div class="t2">Licht of donker thema, eigen kleur</div></div><span class="chev">›</span></button>
    <button class="prof" id="prBackup"><div style="font-size:22px">💾</div><div style="flex:1"><div class="t1">Backup</div><div class="t2">Gegevens kopiëren of terugzetten</div></div><span class="chev">›</span></button>
+   <button class="prof" id="prShare"><div style="font-size:22px">📤</div><div style="flex:1"><div class="t1">Deel de app</div><div class="t2">Via WhatsApp, AirDrop of QR-code</div></div><span class="chev">›</span></button>
    <button class="prof" id="prInfo"><div style="font-size:22px">📖</div><div style="flex:1"><div class="t1">Hoe werkt het?</div></div><span class="chev">›</span></button>
    <div class="note">${SIGNED?'☁︎ Je bent ingelogd bij Claude: je gegevens worden ook in je account bewaard.':'📱 Je gegevens staan alleen op deze telefoon. Zet de app op je beginscherm en maak af en toe een backup.'}</div>
    <button class="cta" data-close style="margin-top:6px">Sluiten</button>`);
@@ -1115,6 +1118,7 @@ function openProfiles(){
   sb.querySelector('#prBackup').onclick=openBackup;
   sb.querySelector('#prLook').onclick=openLook;
   sb.querySelector('#prInfo').onclick=openInfo;
+  sb.querySelector('#prShare').onclick=()=>{closeSheet();shareApp();};
   const pf=sb.querySelector('#prFocus');if(pf)pf.onclick=()=>{INFO.focus=[];save();closeSheet();renderAll();toast('Focus gewist');};
 }
 function openBackup(){
@@ -1248,6 +1252,21 @@ const AI_ERR={rate_limited:'Het is even druk of je limiet bij Claude is bereikt.
 function aiErr(e){const c=e&&e.code;return AI_ERR[c]||'Er ging iets mis met de verbinding. Probeer het nog een keer.';}
 function waitTicker(el,base){const t0=Date.now();const f=()=>{const s=Math.round((Date.now()-t0)/1000);el.innerHTML=base+`<div class="small" style="margin-top:6px">${s}s${s>=8?' · Eerste keer? Tik op <b>Toestaan</b> in de melding van Claude.':''}${s>=25?' Ik denk nog na, dit kan soms even duren.':''}</div>`;};f();return setInterval(f,1000);}
 
+/* ================= DELEN ================= */
+const SHARE_URL='https://heses007.github.io/gymplan/';
+const SHARE_TXT='💪 Train mee met Gym Plan: trainingsschema, voeding en de beste aanbiedingen van AH en Dirk. Gratis en zonder account.';
+async function shareApp(){
+  if(navigator.share){try{await navigator.share({title:'Gym Plan',text:SHARE_TXT,url:SHARE_URL});return;}catch(e){if(e&&e.name==='AbortError')return;}}
+  openShareSheet();}
+function openShareSheet(){
+  openSheet(`<div class="h-l">Deel <span class="gt">Gym Plan</span></div><div class="small">Je vrienden hebben geen account nodig. Ze openen de link en zetten de app op hun beginscherm.</div>
+   <div style="display:flex;justify-content:center;margin:18px 0 6px"><img src="qr.png" alt="QR-code van Gym Plan" width="200" height="200" style="border-radius:18px;background:#fff;padding:10px"></div>
+   <div class="small" style="text-align:center">Laat deze code scannen met de camera van de iPhone</div>
+   <div class="note" style="text-align:center;word-break:break-all;margin-top:14px"><b>${SHARE_URL}</b></div>
+   <a class="cta grad" href="https://wa.me/?text=${encodeURIComponent(SHARE_TXT+' '+SHARE_URL)}" target="_blank" rel="noopener" style="text-decoration:none;margin-top:12px">Deel via WhatsApp</a>
+   <button class="cta ghost" id="shCopy" style="margin-top:8px">Kopieer link</button>`);
+  $('shCopy').onclick=async()=>{try{await navigator.clipboard.writeText(SHARE_URL);toast('📋 Link gekopieerd');}catch(e){toast('Houd de link ingedrukt om te kopiëren');}};}
+
 /* ================= INFO ================= */
 function openInfo(){openSheet(`<div class="h-l">Zo werkt <span class="gt">jouw plan</span></div>
  <div class="card"><div class="t1">📅 Weekritme</div><ul><li>Jouw schema: ${esc(PRESETS[S.plan.preset]?PRESETS[S.plan.preset].n:'eigen schema')}. Wisselen of aanpassen doe je in de Training-tab.</li><li>Rustdagen zijn ook trainen: dan groeien je spieren.</li><li>Veel energie? Voeg in de Training-tab een extra oefening voor vandaag toe.</li><li>Elke 8 weken een lichtere week: halve sets, zelfde gewicht.</li></ul></div>
@@ -1275,7 +1294,7 @@ if(!hasProfile())setTimeout(()=>{if(!hasProfile())profileForm({name:'',age:'',h:
 setInterval(()=>{if($('v-home').classList.contains('show')&&!document.activeElement.matches('input'))renderHome();},60000);
 
 /* automatische update (alleen losse website) */
-(function(){if(!STANDALONE)return;const B='1793895090';let busy=false;
+(function(){if(!STANDALONE)return;const B='1793897695';let busy=false;
  async function chk(){if(busy)return;busy=true;try{const r=await fetch('version.txt?t='+Date.now(),{cache:'no-store'});if(r.ok){const v=(await r.text()).trim();
    if(v&&v!==B&&!location.search.includes('v='+v)){toast('🔄 Nieuwe versie wordt geladen…');setTimeout(()=>location.replace(location.pathname+'?v='+v),900);}}}catch(e){}busy=false;}
  setTimeout(chk,1500);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')chk();});})();
