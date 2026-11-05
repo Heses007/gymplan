@@ -2,6 +2,8 @@
 <html lang="nl" data-theme="dark" data-accent="sunset" class="sa">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-CQiz+GlknewKNOXOH54Iu9lWywjS4MKR4ZaMZ2H2EzU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -309,6 +311,16 @@ html.locked,html.locked body{overflow:hidden}
 .mv{flex-direction:row;gap:6px}.mv button{height:36px;width:40px;font-size:16px}
 
 .sa .claude-only{display:none!important}
+html:not(.sa) .sa-only{display:none!important}
+.welcome{text-align:center;padding:4px 2px 0}
+.welcome p{color:var(--txt2);font-size:16px;line-height:1.55;margin:10px 0}
+.welcome p b{color:var(--txt)}
+.welcome .note{text-align:left}
+.wl-av{width:76px;height:76px;border-radius:50%;margin:4px auto 12px;display:grid;place-items:center;font:800 34px/1 var(--disp);color:#fff;background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));box-shadow:0 10px 30px -8px var(--a2);animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+.pv-sum{border-color:color-mix(in srgb,var(--ok) 40%,transparent)}
+#sheet .card ul{padding-left:18px;margin:8px 0 0}
+#sheet .card li{margin:6px 0;line-height:1.5;color:var(--txt2)}
+#sheet .card li b{color:var(--txt)}
 </style>
 </head>
 <body>
@@ -547,13 +559,41 @@ const SEED_DEALS={updated:'2026-11-05',ah_period:'2 – 8 nov',dirk_period:'t/m 
  source:'supermarktscanner.nl & folderz.nl'};
 let DEALS=SEED_DEALS;
 
+/* ================= BEVEILIGING ================= */
+// Alles wat wordt opgeslagen of ingelezen (backup, aanbiedingen) wordt behandeld als gewone tekst, nooit als code.
+const BADCH=/[<>"`]/,BADCH_G=/[<>"`]/g,SAFECH={'<':'‹','>':'›','"':'”','`':"'"};
+function cleanData(o,d){d=d||0;if(d>14)return null;
+  if(typeof o==='string')return o.slice(0,5000).replace(BADCH_G,c=>SAFECH[c]);
+  if(typeof o==='number')return isFinite(o)?o:0;
+  if(typeof o==='boolean'||o===null)return o;
+  if(Array.isArray(o))return o.slice(0,5000).map(x=>cleanData(x,d+1));
+  if(typeof o==='object'){const r={};for(const k of Object.keys(o)){if(k==='__proto__'||k==='constructor'||k==='prototype'||BADCH.test(k)||k.length>80)continue;r[k]=cleanData(o[k],d+1);}return r;}
+  return null;}
+const isObj=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
+function validB(raw){const b=cleanData(raw);if(!isObj(b)||!isObj(b.profiles))throw new Error('ongeldig');
+  for(const [id,p] of Object.entries(b.profiles)){
+    if(!isObj(p)||!isObj(p.info)){delete b.profiles[id];continue;}
+    const i=p.info;i.name=String(i.name||'?').slice(0,40);
+    if(!GOALS[i.goal])i.goal='bulk';if(!EXP[i.exp])i.exp='mid';
+    ['age','h','w','db'].forEach(k=>{const v=parseFloat(i[k]);i[k]=isFinite(v)?v:0;});
+    if(!(i.h>120&&i.h<230))i.h=175;if(!(i.w>35&&i.w<250))i.w=75;if(!(i.age>10&&i.age<90))i.age=25;if(!(i.db>=0&&i.db<80))i.db=0;
+    i.focus=Array.isArray(i.focus)?i.focus.filter(m=>MUSCLES[m]):[];
+    if(i.theme!==undefined&&!isObj(i.theme))delete i.theme;
+    if(!isObj(p.S))p.S={};const e=emptyS();
+    for(const k in e){if(k in p.S&&(Array.isArray(e[k])!==Array.isArray(p.S[k])||typeof p.S[k]!=='object'||p.S[k]===null))p.S[k]=e[k];}
+    if(p.S.plan!==undefined&&!isObj(p.S.plan))delete p.S.plan;}
+  if(!b.profiles[b.active])b.active=Object.keys(b.profiles)[0]||null;
+  b.v=2;b.u=+b.u||0;return b;}
+// tekens die als code kunnen werken, worden tijdens het typen al weggehaald (niet in het backup-veld)
+document.addEventListener('input',e=>{const t=e.target;if(!t||!('value' in t)||t.id==='bkIn'||t.type==='file')return;if(BADCH.test(t.value))t.value=t.value.replace(BADCH_G,'');});
+
 /* ================= STATE ================= */
 const KEY2='gymplan_v2',KEY1='gymplan_v1';
 const emptyS=()=>({logs:{},weights:[],meals:{},crea:{},shop:{},checkins:[],chat:[],food:{},myfoods:[],recent:[]});
 const ronaldInfo=()=>({name:'Ronald',age:25,h:173,w:69,goal:'bulk',exp:'mid',db:26,focus:[],theme:{mode:'dark',accent:'sunset'}});
 function fromLegacy(old){return{v:2,active:'p1',profiles:{p1:{info:ronaldInfo(),S:Object.assign(emptyS(),old)}},u:old.u||Date.now()};}
 let B={v:2,active:null,profiles:{},u:0};
-try{const r2=localStorage.getItem(KEY2);if(r2)B=JSON.parse(r2);else{const r1=localStorage.getItem(KEY1);if(r1)B=fromLegacy(JSON.parse(r1));}}catch(e){}
+try{const r2=localStorage.getItem(KEY2);if(r2){try{B=validB(JSON.parse(r2));}catch(e){try{localStorage.setItem(KEY2+'_kapot',r2);}catch(_){}}}else{const r1=localStorage.getItem(KEY1);if(r1)B=validB(fromLegacy(JSON.parse(r1)));}}catch(e){}
 let S,INFO,PL;
 function hasProfile(){return B.active&&B.profiles[B.active];}
 function plan(i){const bmr=10*i.w+6.25*i.h-5*(i.age||25)+5;const T=Math.round((bmr*1.55+GOALS[i.goal].add)/50)*50;
@@ -562,15 +602,15 @@ function plan(i){const bmr=10*i.w+6.25*i.h-5*(i.age||25)+5;const T=Math.round((b
 function bind(){if(!hasProfile()){S=emptyS();INFO=ronaldInfo();INFO.name='';}else{const p=B.profiles[B.active];p.S=Object.assign(emptyS(),p.S);p.info.focus=p.info.focus||[];S=p.S;INFO=p.info;}PL=plan(INFO.w?INFO:ronaldInfo());migrateS();applyTheme();}
 
 let dbRef=null,dbTimer=null,SIGNED=false;
-function save(){B.u=Date.now();try{localStorage.setItem(KEY2,JSON.stringify(B));}catch(e){}if(dbRef){clearTimeout(dbTimer);dbTimer=setTimeout(pushDb,1200);}}
-async function pushDb(){try{await dbRef.set({json:JSON.stringify(B),u:B.u});setSync('☁︎ Ook bewaard in je Claude-account');}catch(e){setSync('Opgeslagen op deze telefoon');}}
+function save(){B.u=Date.now();try{localStorage.setItem(KEY2,JSON.stringify(cleanData(B)));}catch(e){}if(dbRef){clearTimeout(dbTimer);dbTimer=setTimeout(pushDb,1200);}}
+async function pushDb(){try{await dbRef.set({json:JSON.stringify(cleanData(B)),u:B.u});setSync('☁︎ Ook bewaard in je Claude-account');}catch(e){setSync('Opgeslagen op deze telefoon');}}
 function setSync(t){const el=document.getElementById('sync');if(el)el.textContent=t;}
 function snapData(snap){if(!snap)return null;if(typeof snap.data==='function')return snap.data();if(snap.data!==undefined)return snap.data;return snap;}
 let SAMPLE=undefined; // undefined = nog laden, null = niet beschikbaar
 const samplePromise=(async()=>{try{if(STANDALONE){SAMPLE=null;return null;}if(!window.claude||!claude.use){SAMPLE=null;return null;}const s=await claude.use('sample');SAMPLE=s||null;return SAMPLE;}catch(e){SAMPLE=null;return null;}})();
 (async()=>{
   // aanbiedingen: eerst deals.json (werkt ook zonder account)
-  try{const r=await fetch('deals.json',{cache:'no-store'});if(r.ok){const j=await r.json();if(j&&(j.ah||j.dirk)){DEALS=j;renderDeals();renderHome();}}}catch(e){}
+  try{const r=await fetch('deals.json',{cache:'no-store'});if(r.ok){const j=await r.json();if(isObj(j)&&(Array.isArray(j.ah)||Array.isArray(j.dirk))){DEALS=Object.assign({ah:[],dirk:[]},cleanData(j));renderDeals();renderHome();}}}catch(e){}
   try{
     if(!window.claude||!claude.use)return;
     const db=await claude.use('db');if(!db)return;
@@ -579,7 +619,7 @@ const samplePromise=(async()=>{try{if(STANDALONE){SAMPLE=null;return null;}if(!w
     SIGNED=true;
     dbRef=db.collection('data/users/'+id).doc('state');
     const d=snapData(await dbRef.get());
-    if(d&&d.json){let remote=JSON.parse(d.json);if(!remote.v)remote=fromLegacy(remote);
+    if(d&&d.json){let remote=JSON.parse(d.json);if(!remote.v)remote=fromLegacy(remote);remote=validB(remote);
       if((remote.u||0)>(B.u||0)||!hasProfile()){B=remote;try{localStorage.setItem(KEY2,JSON.stringify(B));}catch(e){}bind();renderAll();if(hasProfile()&&onboardOpen)closeSheet();}
       else if((B.u||0)>(remote.u||0))pushDb();}
     else if(hasProfile())pushDb();
@@ -1108,8 +1148,11 @@ function openProfiles(){
    <button class="prof" id="prLook"><div style="font-size:22px">🎨</div><div style="flex:1"><div class="t1">Uiterlijk</div><div class="t2">Licht of donker thema, eigen kleur</div></div><span class="chev">›</span></button>
    <button class="prof" id="prBackup"><div style="font-size:22px">💾</div><div style="flex:1"><div class="t1">Backup</div><div class="t2">Gegevens kopiëren of terugzetten</div></div><span class="chev">›</span></button>
    <button class="prof" id="prShare"><div style="font-size:22px">📤</div><div style="flex:1"><div class="t1">Deel de app</div><div class="t2">Via WhatsApp, AirDrop of QR-code</div></div><span class="chev">›</span></button>
+   <button class="prof sa-only" id="prWelcome"><div style="font-size:22px">👋</div><div style="flex:1"><div class="t1">Welkom van Ronald</div><div class="t2">Testversie · tips en ideeën</div></div><span class="chev">›</span></button>
+   <button class="prof sa-only" id="prPrivacy"><div style="font-size:22px">🔒</div><div style="flex:1"><div class="t1">Privacy & veiligheid</div><div class="t2">Waar je gegevens staan en wie ze ziet</div></div><span class="chev">›</span></button>
    <button class="prof" id="prInfo"><div style="font-size:22px">📖</div><div style="flex:1"><div class="t1">Hoe werkt het?</div></div><span class="chev">›</span></button>
    <div class="note">${SIGNED?'☁︎ Je bent ingelogd bij Claude: je gegevens worden ook in je account bewaard.':'📱 Je gegevens staan alleen op deze telefoon. Zet de app op je beginscherm en maak af en toe een backup.'}</div>
+   <div class="note sa-only">💬 ${FEEDBACK_TXT}</div>
    <button class="cta" data-close style="margin-top:6px">Sluiten</button>`);
   const sb=$('sheetBody');
   sb.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{B.active=b.dataset.p;save();bind();closeSheet();renderAll();go('home');toast('Hoi '+INFO.name+' 👋');});
@@ -1118,6 +1161,8 @@ function openProfiles(){
   sb.querySelector('#prBackup').onclick=openBackup;
   sb.querySelector('#prLook').onclick=openLook;
   sb.querySelector('#prInfo').onclick=openInfo;
+  sb.querySelector('#prWelcome').onclick=()=>openWelcome(false);
+  sb.querySelector('#prPrivacy').onclick=()=>openPrivacy(false);
   sb.querySelector('#prShare').onclick=()=>{closeSheet();shareApp();};
   const pf=sb.querySelector('#prFocus');if(pf)pf.onclick=()=>{INFO.focus=[];save();closeSheet();renderAll();toast('Focus gewist');};
 }
@@ -1127,7 +1172,7 @@ function openBackup(){
    <div class="h-s">Backup terugzetten</div><textarea class="backup" id="bkIn" placeholder="Plak hier je backup"></textarea>
    <button class="cta ghost" id="bkRestore" style="margin-top:10px">Terugzetten</button><button class="cta ghost" data-close style="margin-top:8px">Sluiten</button>`);
   $('bkCopy').onclick=async()=>{try{await navigator.clipboard.writeText(JSON.stringify(B));toast('📋 Backup gekopieerd');}catch(e){$('bkIn').value=JSON.stringify(B);$('bkIn').select();toast('Selecteer de tekst en kopieer hem');}};
-  let armed=false;$('bkRestore').onclick=()=>{try{const j=JSON.parse($('bkIn').value);if(!j.profiles)throw 0;if(!armed){armed=true;$('bkRestore').textContent='Huidige gegevens vervangen? Tik nogmaals';return;}B=j;save();bind();closeSheet();renderAll();toast('Backup teruggezet ✅');}catch(e){toast('Dit is geen geldige backup');}};
+  let armed=false;$('bkRestore').onclick=()=>{try{const j=validB(JSON.parse($('bkIn').value));if(!Object.keys(j.profiles).length)throw 0;if(!armed){armed=true;$('bkRestore').textContent='Huidige gegevens vervangen? Tik nogmaals';return;}B=j;save();bind();closeSheet();renderAll();toast('Backup teruggezet ✅');}catch(e){toast('Dit is geen geldige backup');}};
 }
 
 /* ================= CHECK-IN (AI) ================= */
@@ -1278,6 +1323,72 @@ function openInfo(){openSheet(`<div class="h-l">Zo werkt <span class="gt">jouw p
  <div class="small" style="margin:8px 2px 16px">Geen medisch advies. Bij blessures of klachten eerst naar een arts of fysio.</div>
  <button class="cta grad" data-close>Let's go 💪</button>`);}
 
+/* ================= WELKOM & PRIVACY (GitHub-versie) ================= */
+const INTRO_KEY='gymplan_intro',INTRO_V='1';
+const FEEDBACK_TXT='Zie je iets wat niet goed werkt, of heb je een idee? Stuur me een WhatsApp-berichtje.';
+function introSeen(){try{return localStorage.getItem(INTRO_KEY)===INTRO_V;}catch(e){return false;}}
+function setIntroSeen(){try{localStorage.setItem(INTRO_KEY,INTRO_V);}catch(e){}}
+function welcomeHTML(){return `<div class="welcome">
+   <div class="wl-av" aria-hidden="true">R</div>
+   <div class="h-l" style="text-align:center">Hoi! 👋 Ik ben <span class="gt">Ronald</span></div>
+   <p>Wat leuk dat je er bent! 🎉 Ik heb deze app gemaakt voor mijn vrienden, om samen te testen hoe hij werkt.</p>
+   <p>Het is nog een <b>testversie</b>, dus er kan weleens iets misgaan. Maar daar leren we van. 🙌</p>
+   <p><b>Heel veel succes en plezier met trainen, jullie gaan het top doen! 💪🔥</b></p>
+   <div class="note" style="margin-top:14px">💬 ${FEEDBACK_TXT}</div></div>`;}
+function privacyHTML(){return `<div class="h-l">Privacy & <span class="gt">veiligheid</span> 🔒</div>
+ <div class="small">Wat de app doet met jouw gegevens. Eerlijk en precies. Laatst bijgewerkt: 5 november 2026.</div>
+ <div class="card pv-sum"><div class="t1">In het kort</div><ul>
+  <li>📱 Alles wat je invult, blijft op <b>jouw eigen telefoon</b>.</li>
+  <li>🙈 Er is geen account en geen database. <b>Ronald kan jouw gegevens niet zien.</b></li>
+  <li>🚫 Geen reclame, geen tracking en geen cookies.</li>
+  <li>⚕️ Geen medisch advies.</li></ul></div>
+ <div class="card"><div class="t1">✅ Wat de app doet</div><ul>
+  <li>Je trainingsschema laten zien en bijhouden wat je hebt getraind.</li>
+  <li>Je eten, je gewicht en je creatine bijhouden.</li>
+  <li>De aanbiedingen van AH en Dirk laten zien.</li></ul>
+  <div class="t1" style="margin-top:12px">❌ Wat de app niet doet</div><ul>
+  <li>Geen account, geen wachtwoord en geen e-mailadres nodig.</li>
+  <li>Geen toegang tot je foto's, contacten, locatie, camera of microfoon.</li>
+  <li>Geen meldingen, geen reclame en geen bezoekers tellen.</li>
+  <li>Niets verkopen en niets doorsturen naar wie dan ook.</li></ul></div>
+ <div class="card"><div class="t1">📦 Welke gegevens, en waar staan ze?</div><ul>
+  <li>De app bewaart wat jij invult: je naam, leeftijd, lengte, gewicht, doel, je trainingen, wat je eet en je instellingen.</li>
+  <li>Dat staat <b>alleen in de browser op deze telefoon</b> (de opslag van Safari, ook wel "localStorage" genoemd). Het wordt nergens naartoe gestuurd.</li>
+  <li>Je mag ook een bijnaam gebruiken. Je echte naam is niet nodig.</li>
+  <li>Op een andere telefoon zie je je gegevens niet. Daarvoor is de backup.</li></ul></div>
+ <div class="card"><div class="t1">🌐 Welke andere diensten worden gebruikt?</div><ul>
+  <li><b>GitHub</b> (van Microsoft) host de app. Net als bij elke website ziet GitHub je IP-adres en welk soort telefoon en browser je hebt. GitHub kan dat een tijdje bewaren voor beveiliging. Wat je in de app invult, ziet GitHub <b>niet</b>.</li>
+  <li><b>Google Fonts</b> levert het lettertype. Google ziet daarbij ook je IP-adres en browser, maar niet wat je invult en niet welke site je bezoekt.</li>
+  <li>De aanbiedingen haalt de app op als een los bestand van dezelfde GitHub-site. Daarbij gaat niets van jou mee.</li>
+  <li>Tik je op een link naar <b>AH, Dirk of WhatsApp</b>? Dan ga je naar die site of app, en gelden hun eigen privacyregels.</li></ul></div>
+ <div class="card"><div class="t1">⚠️ Waar moet je op letten?</div><ul>
+  <li><b>Iemand anders gebruikt je telefoon.</b> Wie je ontgrendelde telefoon heeft, kan de app openen en alles zien. Profielen hebben geen wachtwoord. Zet dus een code of Face ID op je telefoon.</li>
+  <li><b>Je wist je browsergegevens.</b> Wis je in Instellingen de websitegegevens van Safari, of verwijder je de app van je beginscherm? Dan ben je alles kwijt. Maak daarom af en toe een backup.</li>
+  <li><b>Open de app vanaf je beginscherm.</b> Gebruik je hem alleen in Safari en open je hem een week niet? Dan kan je iPhone de gegevens vanzelf wissen. Vanaf het beginscherm gebeurt dat niet.</li>
+  <li><b>Je deelt je backup.</b> Een backup is gewone tekst met al je gegevens erin. Iedereen die hem heeft, kan alles lezen. Bewaar hem dus goed en deel hem alleen met iemand die je vertrouwt.</li>
+  <li><b>Backup van een ander.</b> Zet alleen een backup terug die je zelf hebt gemaakt. Die vervangt namelijk al je huidige gegevens.</li></ul></div>
+ <div class="card"><div class="t1">🛡️ Hoe veilig is het tegen hackers?</div><ul>
+  <li>Eerlijk is eerlijk: 100% veilig bestaat niet, bij geen enkele app.</li>
+  <li>Maar er is <b>geen server of database</b> met gegevens van gebruikers. Er is dus geen centrale plek waar een hacker jouw gegevens kan stelen.</li>
+  <li>De verbinding is versleuteld (https, het slotje in je browser).</li>
+  <li>Alles wat je typt of terugzet, wordt behandeld als gewone tekst en nooit als code. Een beveiligingsregel in de app zorgt er ook voor dat alleen de eigen code van de app kan draaien.</li>
+  <li>Wat overblijft: de beveiliging van je eigen telefoon (code en updates), en het GitHub-account van Ronald. Als iemand dat account zou overnemen, kan die de app aanpassen.</li></ul></div>
+ <div class="card"><div class="t1">⚕️ Gezondheid</div><ul>
+  <li>Gym Plan geeft <b>algemene tips</b> over trainen, eten en creatine. Dat is geen medisch advies.</li>
+  <li>Heb je een blessure, pijn, een ziekte of gebruik je medicijnen? Of ben je jonger dan 18 of zwanger? Overleg dan eerst met je huisarts of een fysiotherapeut.</li>
+  <li>Creatine: heb je problemen met je nieren, vraag het dan eerst aan je arts.</li>
+  <li>Voel je je niet goed tijdens het sporten? Stop dan meteen.</li></ul></div>
+ <div class="card"><div class="t1">🧪 Testversie</div><ul>
+  <li>Dit is een testversie voor vrienden. Er kunnen nog foutjes in zitten. Maak daarom af en toe een backup.</li>
+  <li>${FEEDBACK_TXT}</li></ul></div>`;}
+function openWelcome(first){
+  openSheet(welcomeHTML()+(first?`<button class="cta grad" id="wlNext" style="margin-top:16px">Verder 👉</button>`:`<button class="cta grad" data-close style="margin-top:16px">Sluiten</button>`),first);
+  if(first)$('wlNext').onclick=()=>openPrivacy(true);}
+function openPrivacy(first){
+  openSheet(privacyHTML()+(first?`<button class="cta grad" id="pvOk" style="margin-top:6px">Ik begrijp het 👍</button>`:`<button class="cta grad" data-close style="margin-top:6px">Sluiten</button>`),first);
+  if(first)$('pvOk').onclick=()=>{setIntroSeen();closeSheet();if(!hasProfile())newProfile();else toast('Veel plezier met trainen! 💪');};}
+function newProfile(){profileForm({name:'',age:'',h:'',w:'',goal:'bulk',exp:'mid',db:0,focus:[]},true);}
+
 /* ================= NAV ================= */
 function go(v){
   document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));
@@ -1290,11 +1401,12 @@ $('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(b)go
 function renderAll(){renderHome();renderTrain();renderFood();renderDeals();renderProg();}
 renderAll();
 const hv=(location.hash||'').slice(1);if(['train','food','deals','prog'].includes(hv))go(hv);
-if(!hasProfile())setTimeout(()=>{if(!hasProfile())profileForm({name:'',age:'',h:'',w:'',goal:'bulk',exp:'mid',db:0,focus:[]},true);},1200);
+if(STANDALONE&&!introSeen())setTimeout(()=>openWelcome(true),hasProfile()?600:900);
+else if(!hasProfile())setTimeout(()=>{if(!hasProfile()&&!$('sheet').classList.contains('show'))newProfile();},1200);
 setInterval(()=>{if($('v-home').classList.contains('show')&&!document.activeElement.matches('input'))renderHome();},60000);
 
 /* automatische update (alleen losse website) */
-(function(){if(!STANDALONE)return;const B='1793897695';let busy=false;
+(function(){if(!STANDALONE)return;const B='1793909394';let busy=false;
  async function chk(){if(busy)return;busy=true;try{const r=await fetch('version.txt?t='+Date.now(),{cache:'no-store'});if(r.ok){const v=(await r.text()).trim();
    if(v&&v!==B&&!location.search.includes('v='+v)){toast('🔄 Nieuwe versie wordt geladen…');setTimeout(()=>location.replace(location.pathname+'?v='+v),900);}}}catch(e){}busy=false;}
  setTimeout(chk,1500);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')chk();});})();
