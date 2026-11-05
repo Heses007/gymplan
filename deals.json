@@ -1,0 +1,111 @@
+{
+ "updated": "2026-11-05",
+ "ah_period": "2 – 8 nov",
+ "dirk_period": "t/m di 10 nov",
+ "tip": "Deze week: pasta en basmati bij Dirk voor de helft, volle melk 79 cent. Bij AH is rundergehakt en mozzarella goedkoper. Perfect voor de bolognese.",
+ "ah": [
+  {
+   "n": "AH Rundergehakt",
+   "size": "300 g",
+   "price": "€3,79",
+   "was": "€4,19",
+   "deal": "-10%",
+   "until": "zo 8 nov",
+   "end": "2026-11-08",
+   "fit": "Eiwit · bolognese"
+  },
+  {
+   "n": "AH Kogelbiefstuk",
+   "size": "100 g",
+   "price": "€2,99",
+   "was": "€3,65",
+   "deal": "-18%",
+   "until": "zo 8 nov",
+   "end": "2026-11-08",
+   "fit": "Mager eiwit"
+  },
+  {
+   "n": "AH Mozzarella",
+   "size": "200 g",
+   "price": "€0,86",
+   "was": "",
+   "deal": "Bonus",
+   "until": "zo 8 nov",
+   "end": "2026-11-08",
+   "fit": "Eiwit + vet"
+  },
+  {
+   "n": "AH Liefde & Passie spelt-boekweit brood",
+   "size": "heel",
+   "price": "€2,49",
+   "was": "€3,19",
+   "deal": "-22%",
+   "until": "zo 8 nov",
+   "end": "2026-11-08",
+   "fit": "Lunch"
+  }
+ ],
+ "dirk": [
+  {
+   "n": "Melkunie Volle melk",
+   "size": "1 L",
+   "price": "€0,79",
+   "was": "€1,99",
+   "deal": "-60%",
+   "until": "di 10 nov",
+   "end": "2026-11-10",
+   "fit": "Ontbijt · extra kcal"
+  },
+  {
+   "n": "Grand'Italia pasta (penne, fusilli…)",
+   "size": "500 g",
+   "price": "€0,89",
+   "was": "€1,87",
+   "deal": "-52%",
+   "until": "di 10 nov",
+   "end": "2026-11-10",
+   "fit": "Koolhydraten · inslaan!"
+  },
+  {
+   "n": "Tilda basmati / volkoren basmati",
+   "size": "500 g",
+   "price": "€1,29",
+   "was": "€2,69",
+   "deal": "-52%",
+   "until": "di 10 nov",
+   "end": "2026-11-10",
+   "fit": "Rijst voor je diner"
+  },
+  {
+   "n": "Optimel Drinkyoghurt",
+   "size": "1 L",
+   "price": "€0,99",
+   "was": "€2,15",
+   "deal": "-54%",
+   "until": "di 10 nov",
+   "end": "2026-11-10",
+   "fit": "Eiwit tussendoor"
+  },
+  {
+   "n": "Beemster kaasplakken 30+/48+",
+   "size": "pak",
+   "price": "€1,99",
+   "was": "",
+   "deal": "Actie",
+   "until": "di 10 nov",
+   "end": "2026-11-10",
+   "fit": "Lunch"
+  },
+  {
+   "n": "Aardappelen",
+   "size": "zak",
+   "price": "€0,99",
+   "was": "€1,19",
+   "deal": "-17%",
+   "until": "di 10 nov",
+   "end": "2026-11-10",
+   "fit": "Koolhydraten"
+  }
+ ],
+ "source": "supermarktscanner.nl & folderz.nl"
+}
