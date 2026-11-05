@@ -295,6 +295,19 @@ nav button{font-size:10px}
 .mv button:disabled{opacity:.25}
 .axitem:disabled{opacity:.45}
 
+html.locked,html.locked body{overflow:hidden}
+#sheet{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.sheethead{position:sticky;top:-10px;z-index:2;background:var(--sheet);margin:-10px -20px 6px;padding:10px 20px 4px;display:flex;justify-content:center;align-items:center;min-height:44px}
+.sheethead .grab{margin:0}
+.sheetx{position:absolute;right:14px;top:8px;width:36px;height:36px;border-radius:50%;border:0;background:var(--w10);color:var(--txt);font-size:16px;font-weight:700;display:grid;place-items:center}
+
+.addbtn{flex:0 0 40px;height:40px;border-radius:50%;border:0;background:var(--grad);color:#fff;font-size:20px;font-weight:700}
+.addbtn.on{background:var(--ok);color:#06210f}
+
+.stepper button,.mv button{width:40px;height:36px;font-size:18px}
+.stepper b{min-width:56px;font-size:15px}
+.mv{flex-direction:row;gap:6px}.mv button{height:36px;width:40px;font-size:16px}
+
 .sa .claude-only{display:none!important}
 </style>
 </head>
@@ -310,7 +323,7 @@ nav button{font-size:10px}
 <div id="toast"></div>
 <div id="timer"><div><div class="tt" id="tt">0:00</div><div class="tl" id="tl">rust</div></div><button id="tPlus">+15s</button><button id="tSkip">Klaar</button></div>
 <div id="scrim"></div>
-<div id="sheet"><div class="grab"></div><div id="sheetBody"></div></div>
+<div id="sheet" role="dialog" aria-modal="true"><div class="sheethead"><div class="grab"></div><button class="sheetx" id="sheetX" aria-label="Sluiten">✕</button></div><div id="sheetBody"></div></div>
 
 <section class="v show" id="v-home"><div class="stagger" id="homeWrap"></div></section>
 
@@ -349,8 +362,8 @@ nav button{font-size:10px}
 
 <section class="v" id="v-deals">
   <div class="eyebrow" id="dealEyebrow">Albert Heijn & Dirk</div>
-  <div class="h-l">Slim boodschappen</div>
-  <div class="seg" id="dealSeg"><button data-s="list" class="on">AH-lijst</button><button data-s="ah">AH Bonus</button><button data-s="dirk">Dirk</button></div>
+  <div class="h-l">Shopping</div>
+  <div class="seg" id="dealSeg"><button data-s="ah" class="on">AH Bonus</button><button data-s="dirk">Dirk</button><button data-s="snacks">Tussendoortjes</button></div>
   <div id="dealBody"></div>
 </section>
 
@@ -633,6 +646,8 @@ function renderHome(){
   let hero;
   if(!D){const wdn=new Date().getDay();const nxt=DAYS.find(d=>d.wd>wdn)||DAYS[0]||{name:'',focus:'',wd:1,id:''};
     hero=`<div class="card hero"><div class="eyebrow" style="color:var(--eye)">Vandaag</div><div class="big">Rustdag 😴</div><div class="small" style="color:var(--txt2)">Vandaag groeien je spieren. Eet je maaltijden, neem je creatine en slaap goed.</div><div class="pills"><span class="pill">${WDL[nxt.wd][0].toUpperCase()+WDL[nxt.wd].slice(1)}: ${esc(nxt.name)}</span><span class="pill">${nxt.focus}</span></div><button class="cta" data-go="train" data-day="${nxt.id}">Bekijk ${WDL[nxt.wd]} →</button></div>`;
+  }else if(!totalSets){
+    hero=`<div class="card hero"><div class="eyebrow" style="color:var(--eye)">Vandaag</div><div class="big">${esc(D.name)}</div><div class="small" style="color:var(--txt2)">Deze training heeft nog geen oefeningen.</div><div style="height:14px"></div><button class="cta" data-go="train">Oefeningen toevoegen →</button></div>`;
   }else if(st.sets>=totalSets){
     hero=`<div class="card hero"><div class="eyebrow" style="color:var(--ok)">Voltooid</div><div class="big">${D.name} gedaan ✅</div><div class="small" style="color:var(--txt2)">${st.sets} sets · ${st.vol.toLocaleString('nl-NL')} kg totaal verplaatst. Nu eten en herstellen.</div><div class="pills"><span class="pill">Volgende: ${(DAYS[DAYS.indexOf(D)+1]||DAYS[0]).name}</span></div><button class="cta ghost" data-go="train">Bekijk training</button></div>`;
   }else{
@@ -641,7 +656,7 @@ function renderHome(){
   }
   const mon=new Date(now);mon.setDate(now.getDate()-((now.getDay()+6)%7));
   let week='';['Ma','Di','Wo','Do','Vr','Za','Zo'].forEach((l,i)=>{const d=new Date(mon);d.setDate(mon.getDate()+i);const key=dk(d);const pd=DAYS.find(x=>x.wd===(i+1)%7);const plan=!!pd;const done=trainedOn(key);
-    week+=`<div class="wd ${plan?'plan':''} ${done?'done':''} ${key===today()?'today':''}"><span>${l}</span><div class="dot">${done?'✓':plan?esc(pd.name[0]):'·'}</div></div>`;});
+    week+=`<div class="wd ${plan?'plan':''} ${done?'done':''} ${key===today()?'today':''}"><span>${l}</span><div class="dot">${done?'✓':plan?esc((w=>w.length>1&&w[w.length-1].length===1?w[w.length-1]:pd.name[0])(pd.name.split(' '))):'·'}</div></div>`;});
   const weekDone=DAYS.filter(D=>{const d=new Date(mon);d.setDate(mon.getDate()+((D.wd+6)%7));return trainedOn(dk(d));}).length;
   const f=foodToday();const cr=!!S.crea[today()];const streak=creaStreak();const K=KCAL();
   const nm=MEALS.find(m=>!f.m[m.id]&&m.h>=h-1)||MEALS.find(m=>!f.m[m.id]);
@@ -689,7 +704,7 @@ function renderTrain(){
   $('trEyebrow').textContent=(isToday?'Vandaag · ':WDL[D.wd]+' · ')+D.type;
   $('trTitle').textContent=D.name+(/day$/i.test(D.name)?'':' day');
   $('trFocus').textContent=D.focus+' · ± 60 min';
-  $('trPlanName').textContent=PRESETS[S.plan.preset]?PRESETS[S.plan.preset].n:'Eigen schema';
+  $('trPlanName').textContent='Schema: '+(PRESETS[S.plan.preset]?PRESETS[S.plan.preset].n.split(' · ')[0]:'eigen');
   $('dayChips').innerHTML=DAYS.map(d=>`<button class="chip ${d.id===curDay?'on':''}" data-d="${d.id}"><b>${d.short}</b><span>${esc(d.name)}</span></button>`).join('');
   $('trEdit').textContent=trEdit?'✓ Klaar':'✏️ Aanpassen';$('trEdit').classList.toggle('on',trEdit);
   $('trProgress').style.display=trEdit?'none':'';$('finish').style.display=trEdit?'none':'';$('trHint').style.display=trEdit?'none':'';
@@ -712,11 +727,10 @@ function renderTrain(){
 function renderEditor(D){
   const P=planDay(D.id);
   $('exList').innerHTML=`<div class="note">Pas je <b>${esc(D.name)}</b>-training aan. Wijzigingen gelden voor alle volgende weken. Je logboek blijft bewaard.</div>
-   <div class="card" style="padding:4px 14px">${P.ex.map((e,i)=>{const L=EXLIB[e.k];if(!L)return '';return `<div class="li" style="align-items:center;padding:12px 0">
-     <div style="flex:1;min-width:0"><div class="t1">${esc(L.n)}</div><div class="t2">${MUSCLES[L.m]||''} · ${L.r} reps</div></div>
-     <div class="stepper"><button data-ed="minus" data-i="${i}" aria-label="Minder sets">−</button><b>${e.s}</b><button data-ed="plus" data-i="${i}" aria-label="Meer sets">+</button></div>
-     <div class="mv"><button data-ed="up" data-i="${i}" ${i===0?'disabled':''} aria-label="Omhoog">↑</button><button data-ed="down" data-i="${i}" ${i===P.ex.length-1?'disabled':''} aria-label="Omlaag">↓</button></div>
-     <button class="xbtn" data-ed="del" data-i="${i}" aria-label="Verwijder">✕</button></div>`;}).join('')||'<div class="li"><div class="t2">Nog geen oefeningen. Voeg er hieronder een toe.</div></div>'}</div>
+   <div class="card" style="padding:4px 14px">${P.ex.map((e,i)=>{const L=EXLIB[e.k];if(!L)return '';return `<div style="padding:12px 0;border-bottom:1px solid var(--stroke)">
+     <div class="row" style="align-items:flex-start"><div style="flex:1;min-width:0"><div class="t1">${i+1}. ${esc(L.n)}</div><div class="t2">${MUSCLES[L.m]||''} · ${L.r} reps</div></div><button class="xbtn" data-ed="del" data-i="${i}" aria-label="Verwijder">✕</button></div>
+     <div class="row" style="margin-top:10px;justify-content:space-between"><div class="stepper"><button data-ed="minus" data-i="${i}" aria-label="Minder sets">−</button><b>${e.s} sets</b><button data-ed="plus" data-i="${i}" aria-label="Meer sets">+</button></div>
+     <div class="mv"><button data-ed="up" data-i="${i}" ${i===0?'disabled':''} aria-label="Omhoog">↑</button><button data-ed="down" data-i="${i}" ${i===P.ex.length-1?'disabled':''} aria-label="Omlaag">↓</button></div></div></div>`;}).join('')||'<div class="li"><div class="t2">Nog geen oefeningen. Voeg er hieronder een toe.</div></div>'}</div>
    <div class="field"><label>Naam van deze dag</label><input id="edName" value="${esc(P.name)}" maxlength="24"></div>
    ${PRESETS[S.plan.preset]&&PRESETS[S.plan.preset].days.some(d=>d.id===D.id)?'<button class="cta ghost" id="edReset" style="margin-top:4px">↺ Standaard voor deze dag herstellen</button>':''}`;
   const n=$('edName');n.onchange=()=>{P.name=n.value.trim()||P.name;save();buildDays();renderTrain();renderHome();};
@@ -881,7 +895,7 @@ function renderFood(){
   $('fdLog').innerHTML=items.length?MOMENTS.map(([mk,ml])=>{const its=items.map((e,i)=>({...e,i})).filter(e=>e.m===mk);if(!its.length)return '';
     const sk=its.reduce((a,e)=>a+e.k,0);
     return `<div class="between" style="margin:14px 2px 0"><b style="font-family:var(--disp)">${ml}</b><span class="small">${sk} kcal</span></div><div class="card" style="padding-top:2px;padding-bottom:2px;margin-top:6px">`+
-      its.map(e=>`<div class="li" style="padding:11px 0;align-items:center"><div style="flex:1;min-width:0"><div class="t1">${esc(e.n)}</div><div class="t2">${e.g} g · ${e.k} kcal · <b style="color:var(--txt)">${Math.round(e.p)} g eiwit</b> · ${Math.round(e.c)} g koolh · ${Math.round(e.f)} g vet</div></div><button class="xbtn" data-del="${e.i}" aria-label="Verwijder">✕</button></div>`).join('')+'</div>';}).join('')
+      its.map(e=>`<div class="li" style="padding:11px 0;align-items:center"><div style="flex:1;min-width:0"><div class="t1">${esc(e.n)}</div><div class="t2">${e.g?e.g+' g':esc(e.q||'1 portie')} · ${e.k} kcal · <b style="color:var(--txt)">${Math.round(e.p)} g eiwit</b> · ${Math.round(e.c)} g koolh · ${Math.round(e.f)} g vet</div></div><button class="xbtn" data-del="${e.i}" aria-label="Verwijder">✕</button></div>`).join('')+'</div>';}).join('')
     :`<div class="small" style="margin:10px 2px 0">At je iets anders of extra? Voeg het toe, dan rekent de app de voedingswaarden voor je uit.</div>`;
   $('fCrea').style.display=isToday?'':'none';
   $('fCrea').className='tile'+(cr?' on':'');
@@ -958,58 +972,43 @@ function openOwnFood(){
 }
 
 /* ================= AH-LIJST & DEALS ================= */
-let dealTab='list';
-function shopList(){const f=PL.f,c=x=>Math.max(1,Math.ceil(x-0.05));const kg=x=>nl((Math.round(x*10)/10).toFixed(1));
- return [
-  ['Ontbijt & snacks',[
-   ['AH Havermout',c(80*7*f/1000)+'× pak 1 kg',['havermout']],
-   ['AH Halfvolle melk',c(300*7*f/1500)+'× fles 1,5 liter',['melk']],
-   ['AH Bananen','12 stuks',['banaan','bananen']],
-   ['AH Pindakaas','1 pot',['pindakaas']],
-   ['AH Granola','1 pak',['granola','muesli']],
-   ['AH Krentenbollen',c(2*5*f/6)+'× zak (6 stuks)',['krentenbol']],
-   ['AH Honing','1 pot · gaat lang mee',['honing']]]],
-  ['Eiwit',[
-   ['AH Magere kwark','± 3,5 kg per week (grote bakken)',['kwark','skyr']],
-   ['AH Kipdijfilet','± '+kg(150*7/1000)+' kg (of kipfilet)',['kipdij','kipfilet','kip ']],
-   ['AH Kipfilet vleeswaren','± 5 bakjes',['kipfilet','vleeswaren']],
-   ['AH Scharreleieren','10 stuks',['eieren','ei ']],
-   ['AH 30+ kaas plakken','2 pakken',['kaas','plakken']]]],
-  ['Koolhydraten',[
-   ['AH Volkoren brood',c(4*7*f/20)+'× heel brood',['brood']],
-   ['AH Zilvervliesrijst',c(90*7*f/1000)+'× pak 1 kg',['rijst','basmati']]]],
-  ['Groente & fruit',[
-   ['AH Wokgroente (diepvries)','4 zakken',['wokgroente','roerbak','groente']],
-   ['AH Appels','7 stuks',['appel']]]],
-  ['Overig',[
-   ['AH Olijfolie','1 fles · gaat lang mee',['olijfolie']],
-   ['AH Ketjap manis of sweet chili','1 fles',['ketjap','sweet chili']],
-   ['Creatine monohydraat','niet bij AH: Kruidvat, Etos of online · ± 1× per 3 mnd',[]]]]
- ];}
-function bonusFor(kws){if(!kws.length)return null;const deals=activeDeals('ah');for(const d of deals){const n=(' '+d.n.toLowerCase()+' ');if(kws.some(k=>n.includes(k)))return d;}return null;}
+let dealTab='ah';
+const SNACKS=[
+ ['🫐','Kwark met blauwe bessen','250 g AH magere kwark + 75 g blauwe bessen',186,23,19,1,'Veel eiwit, bijna geen vet. Ideaal als avondsnack.'],
+ ['🥛','Skyr met honing','150 g skyr naturel + 1 theelepel honing',118,17,12,0,'Romig en eiwitrijk, klaar in 10 seconden.'],
+ ['🥚','2 gekookte eieren','Kook er een paar tegelijk: 3 dagen houdbaar in de koelkast',154,14,1,11,'Makkelijk mee te nemen naar werk of school.'],
+ ['🍮','Eiwitpudding of eiwityoghurt','1 bakje (± 200 g), bijvoorbeeld uit het AH-zuivelschap',150,20,13,2,'Zoet trekje met veel eiwit.'],
+ ['🌯','Mini tonijnwrap','½ volkoren wrap + ½ blikje tonijn + komkommer',150,17,14,3,'Bijna een maaltijd, maar licht.'],
+ ['🧀','Cottage cheese op crackers','100 g cottage cheese + 2 volkoren crackers',173,13,16,5,'Hartig en eiwitrijk.'],
+ ['🫛','Edamame','100 g edamame uit de diepvries, 4 minuten koken',121,12,9,5,'Plantaardig eiwit en veel vezels.'],
+ ['🍌','Banaan + glas melk','1 banaan + 250 ml halfvolle melk',223,10,36,4,'Perfect vlak na de training.'],
+ ['🥯','Krentenbol met 30+ kaas','1 krentenbol + 1 plak 30+ kaas',224,11,30,6,'Klassieker, goed vóór de training.'],
+ ['🥜','Rijstwafels met pindakaas','2 rijstwafels + 1 eetlepel pindakaas',154,5,15,8,'Snelle energie vóór de training.'],
+ ['🍎','Appel met kaasblokjes','1 appel + 30 g 30+ kaas',162,10,18,5,'Zoet en hartig tegelijk.'],
+ ['🌰','Handje ongezouten noten','25 g gemengde noten',152,5,3,13,'Gezonde vetten. Klein handje: het zijn veel calorieën.']
+];
 function renderDeals(){
   document.querySelectorAll('#dealSeg button').forEach(b=>b.classList.toggle('on',b.dataset.s===dealTab));
   let html='';
-  if(dealTab==='list'){
-    const L=shopList();const totalItems=L.reduce((a,c)=>a+c[1].length,0);const got=L.reduce((a,c)=>a+c[1].filter(i=>S.shop[i[0]]).length,0);
-    html=`<div class="card tight"><div class="between"><span class="small">${got} van ${totalItems} in je mandje · voor 1 week, ${esc(INFO.name)}</span><button id="shopReset" style="border:0;background:none;color:var(--a2);font-weight:700;font-size:13px">Nieuwe week</button></div><div class="bar" style="margin-top:8px"><i style="width:${got/totalItems*100}%"></i></div></div>`+
-      L.map(([cat,items])=>`<div class="h-s" style="margin-top:18px;font-size:16px">${cat}</div><div class="card" style="padding-top:2px;padding-bottom:2px;margin-top:0">`+items.map(([n,q,kw])=>{const b=bonusFor(kw);return `<div class="li ${S.shop[n]?'done':''}" data-i="${esc(n)}" style="padding:12px 0"><div class="check">${S.shop[n]?'✓':''}</div><div style="flex:1"><div class="t1">${esc(n)}</div><div class="qty">${esc(q)}</div>${b?`<span class="bonus">🔥 In de Bonus: ${esc(b.n)} ${esc(b.price)} (${esc(b.deal)})</span>`:''}</div></div>`;}).join('')+'</div>').join('')+
-      `<div class="small" style="margin:10px 2px">Hoeveelheden zijn berekend op jouw profiel. Tip: koop de AH-huismerken, dat scheelt veel.</div>`;
+  if(dealTab==='snacks'){
+    html=`<div class="note">Gezonde tussendoortjes met veel eiwit, allemaal te koop bij AH of Dirk. Tik op <b>＋</b> om er een aan je eetdagboek van vandaag toe te voegen.</div>
+     <div class="card" style="padding:2px 14px">${SNACKS.map((x,i)=>`<div class="li" style="align-items:center"><div style="font-size:26px;width:32px;text-align:center">${x[0]}</div><div style="flex:1;min-width:0"><div class="t1">${esc(x[1])}</div><div class="t2">${esc(x[2])}</div><div class="t2" style="margin-top:3px"><b style="color:var(--txt)">${x[3]} kcal · ${x[4]} g eiwit</b> · ${esc(x[7])}</div></div><button class="addbtn" data-snack="${i}" aria-label="Toevoegen aan vandaag">＋</button></div>`).join('')}</div>
+     <div class="small" style="margin:6px 2px">Waarden zijn gemiddelden per portie.</div>`;
   }else{
     const arr=activeDeals(dealTab);const per=dealTab==='ah'?DEALS.ah_period:DEALS.dirk_period;
     const next=dealTab==='ah'?'De nieuwe AH Bonus start op maandag.':'De nieuwe Dirk-folder start op woensdag.';
-    html=`${DEALS.tip&&arr.length?`<div class="card hero" style="padding:18px"><div class="eyebrow" style="color:var(--eye)">Tip van de week</div><div style="margin-top:6px;color:var(--txt)">${esc(DEALS.tip)}</div></div>`:''}
+    html=`${DEALS.tip&&(activeDeals('ah').length||activeDeals('dirk').length)?`<div class="card hero" style="padding:18px"><div class="eyebrow" style="color:var(--eye)">Tip van de week</div><div style="margin-top:6px;color:var(--txt)">${esc(DEALS.tip)}</div></div>`:''}
       <div class="between" style="margin:18px 2px 0"><b style="font-family:var(--disp);font-size:18px">${dealTab==='ah'?'Albert Heijn Bonus':'Dirk aanbiedingen'}</b><span class="small">${arr.length?esc(per||''):''}</span></div>
       <div class="card" style="padding-top:2px;padding-bottom:2px">${arr.length?arr.map(d=>`<div class="deal"><div class="disc ${dealTab}">${esc(d.deal||'%')}</div><div style="min-width:0"><div class="t1">${esc(d.n)}</div><div class="t2">${esc(d.size||'')}${d.until?' · t/m '+esc(d.until):''}</div>${d.fit?`<span class="fit">✓ ${esc(d.fit)}</span>`:''}</div><div class="pr"><b>${esc(d.price)}</b>${d.was?`<s>${esc(d.was)}</s>`:''}</div></div>`).join(''):`<div class="li"><div class="t2">Er lopen nu geen acties die bij je schema passen. ${next}</div></div>`}</div>
-      <div class="small" style="margin:4px 2px">Alleen acties die passen bij je schema, en alleen zolang ze lopen. Bijgewerkt op maandag (AH) en woensdag (Dirk). Prijzen kunnen per winkel verschillen${DEALS.source?' · bron: '+esc(DEALS.source):''}.</div>
-      <div class="linkrow"><a href="https://www.ah.nl/bonus" target="_blank" rel="noopener">Alle AH Bonus ↗</a><a href="https://www.dirk.nl/aanbiedingen" target="_blank" rel="noopener">Alle Dirk deals ↗</a></div>`;
+      <div class="small" style="margin:4px 2px">Alleen acties die passen bij je schema, zolang ze lopen. Nieuwe acties op maandag (AH) en woensdag (Dirk). Prijzen kunnen per winkel verschillen.</div>
+      <div class="linkrow"><a href="${dealTab==='ah'?'https://www.ah.nl/bonus':'https://www.dirk.nl/aanbiedingen'}" target="_blank" rel="noopener">Alle ${dealTab==='ah'?'AH Bonus':'Dirk-aanbiedingen'} bekijken ↗</a></div>`;
   }
   $('dealBody').innerHTML=html;
 }
 $('dealSeg').addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(!b)return;dealTab=b.dataset.s;renderDeals();});
-$('dealBody').addEventListener('click',e=>{
-  if(e.target.closest('#shopReset')){S.shop={};save();renderDeals();toast('Lijst klaar voor een nieuwe week');return;}
-  const el=e.target.closest('[data-i]');if(!el)return;const k=el.dataset.i;S.shop[k]=!S.shop[k];save();renderDeals();});
+$('dealBody').addEventListener('click',e=>{const b=e.target.closest('[data-snack]');if(!b)return;const x=SNACKS[+b.dataset.snack];const d=today();
+  S.food=S.food||{};(S.food[d]=S.food[d]||[]).push({n:x[1],q:'1 portie',g:0,m:'snack',k:x[3],p:x[4],c:x[5],f:x[6]});save();renderHome();
+  b.textContent='✓';b.classList.add('on');toast('✅ '+x[1]+' toegevoegd aan vandaag');setTimeout(()=>{b.textContent='＋';b.classList.remove('on');},1600);});
 
 /* ================= VOORTGANG ================= */
 function renderProg(){
@@ -1048,13 +1047,20 @@ function renderProg(){
   $('histList').innerHTML=keys.length?keys.sort().reverse().slice(0,30).map(k=>{const [d,id]=k.split('|');const st=dayStats(k);return `<div class="hist"><span>${fmtD(d)} · <b>${esc(dayName(id))}</b></span><span class="mut">${st.sets} ${st.sets===1?'set':'sets'} · ${st.vol.toLocaleString('nl-NL')} kg</span></div>`;}).join(''):'<div class="hist"><span class="mut">Nog geen trainingen.</span></div>';
 }
 $('ciCard').addEventListener('click',e=>{if(e.target.closest('#ciOpen'))openCheckin();if(e.target.closest('#ciHist'))openCiHistory();});
+$('wIn').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('wAdd').click();}});
 $('wAdd').addEventListener('click',()=>{const v=parseFloat(String($('wIn').value).replace(',','.'));if(!v||v<30||v>250){toast('Vul een geldig gewicht in');return;}
   S.weights=S.weights.filter(x=>x.d!==today());S.weights.push({d:today(),kg:v});$('wIn').value='';$('wIn').blur();save();renderProg();renderHome();toast('⚖️ Gewicht opgeslagen');});
 
 /* ================= SHEET ================= */
 let onboardOpen=false,sheetLocked=false;
-function openSheet(html,lock){$('sheetBody').innerHTML=html;$('scrim').classList.add('show');$('sheet').classList.add('show');$('sheet').scrollTop=0;sheetLocked=!!lock;}
-function closeSheet(){$('scrim').classList.remove('show');$('sheet').classList.remove('show');onboardOpen=false;sheetLocked=false;}
+function openSheet(html,lock){const sh=$('sheet');$('sheetBody').innerHTML=html;sh.style.transform='';$('scrim').classList.add('show');sh.classList.add('show');sh.scrollTop=0;sheetLocked=!!lock;$('sheetX').style.display=lock?'none':'';document.documentElement.classList.add('locked');}
+function closeSheet(){const sh=$('sheet');sh.style.transform='';sh.style.transition='';$('scrim').classList.remove('show');sh.classList.remove('show');onboardOpen=false;sheetLocked=false;document.documentElement.classList.remove('locked');}
+$('sheetX').addEventListener('click',()=>{if(!sheetLocked)closeSheet();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!sheetLocked&&$('sheet').classList.contains('show'))closeSheet();});
+(function(){const sh=$('sheet');let y0=null,dy=0;
+ sh.addEventListener('touchstart',e=>{if(sheetLocked||sh.scrollTop>2){y0=null;return;}y0=e.touches[0].clientY;dy=0;},{passive:true});
+ sh.addEventListener('touchmove',e=>{if(y0===null)return;dy=e.touches[0].clientY-y0;if(dy>0&&sh.scrollTop<=0){sh.style.transition='none';sh.style.transform='translateY('+dy+'px)';}},{passive:true});
+ sh.addEventListener('touchend',()=>{if(y0===null)return;sh.style.transition='';if(dy>110)closeSheet();else sh.style.transform='';y0=null;dy=0;});})();
 $('scrim').addEventListener('click',()=>{if(!sheetLocked)closeSheet();});
 $('sheet').addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeSheet();});
 
@@ -1269,7 +1275,7 @@ if(!hasProfile())setTimeout(()=>{if(!hasProfile())profileForm({name:'',age:'',h:
 setInterval(()=>{if($('v-home').classList.contains('show')&&!document.activeElement.matches('input'))renderHome();},60000);
 
 /* automatische update (alleen losse website) */
-(function(){if(!STANDALONE)return;const B='1793893664';let busy=false;
+(function(){if(!STANDALONE)return;const B='1793895090';let busy=false;
  async function chk(){if(busy)return;busy=true;try{const r=await fetch('version.txt?t='+Date.now(),{cache:'no-store'});if(r.ok){const v=(await r.text()).trim();
    if(v&&v!==B&&!location.search.includes('v='+v)){toast('🔄 Nieuwe versie wordt geladen…');setTimeout(()=>location.replace(location.pathname+'?v='+v),900);}}}catch(e){}busy=false;}
  setTimeout(chk,1500);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')chk();});})();
