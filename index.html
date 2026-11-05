@@ -879,11 +879,12 @@ async function runCheckin(){
   if(!keys.length){toast('Kies minimaal één foto van nu');return;}
   let who=INFO;
   if(ciWho==='other'){const g=id=>$(id).value.trim();const n=parseFloat;who={name:g('coName')||'deze persoon',age:n(g('coAge'))||25,h:n(g('coH'))||0,w:n(g('coW'))||0,goal:$('coGoal').value,exp:'mid',focus:[]};}
-  out.innerHTML='<div class="loader"><div class="spin"></div><div>Ik bekijk de foto\'s…</div><div class="small">Dit duurt meestal 20–40 seconden</div></div>';
+  out.innerHTML='<div class="loader"><div class="spin"></div><div id="ciMsg"></div><button class="cta ghost" id="ciStop" style="margin-top:4px;width:auto;padding:10px 18px">Stoppen</button></div>';
+  let ciTick=waitTicker($('ciMsg'),'<div>Ik bekijk de foto\'s…</div><div class="small">Meestal 30–90 seconden</div>');const ciCtl=new AbortController();$('ciStop').onclick=()=>ciCtl.abort();
   $('ciGo').disabled=true;out.scrollIntoView({behavior:'smooth',block:'start'});
   const sample=SAMPLE===undefined?await samplePromise:SAMPLE;
-  if(!sample){$('ciGo').disabled=false;out.innerHTML=`<div class="note">🔒 <b>Foto-advies werkt alleen als je bent ingelogd bij Claude.</b><br>Geen account? Stuur je foto's naar iemand met de app die wel is ingelogd (zoals Ronald). Die kiest dan "Iemand anders" en vult jouw gegevens in. De rest van de app werkt gewoon zonder account.</div>`;return;}
-  try{if(sample.limits){const lim=await sample.limits();if(lim&&lim.images===false){$('ciGo').disabled=false;out.innerHTML='<div class="note">Foto-analyse is hier niet beschikbaar.</div>';return;}}}catch(e){}
+  if(!sample){clearInterval(ciTick);$('ciGo').disabled=false;out.innerHTML=`<div class="note">🔒 <b>Foto-advies werkt alleen als je bent ingelogd bij Claude.</b><br>Geen account? Stuur je foto's naar iemand met de app die wel is ingelogd (zoals Ronald). Die kiest dan "Iemand anders" en vult jouw gegevens in. De rest van de app werkt gewoon zonder account.</div>`;return;}
+  try{if(sample.limits){const lim=await sample.limits();if(lim&&!lim.images){clearInterval(ciTick);$('ciGo').disabled=false;out.innerHTML='<div class="note">Foto-analyse is hier niet beschikbaar.</div>';return;}}}catch(e){}
   const order=[...keys,...(ciFiles.old?['old']:[])];
   const labels=order.map((k,i)=>`Foto ${i+1}: ${k==='front'?'voorkant (nu)':k==='side'?'zijkant (nu)':k==='back'?'achterkant (nu)':'OUDERE foto ter vergelijking'}`).join('\n');
   const prev=(ciWho==='me'&&S.checkins&&S.checkins[0])?`Vorige check-in (${S.checkins[0].d}): ${S.checkins[0].samenvatting} Aandachtspunten toen: ${(S.checkins[0].focus||[]).join(', ')||'geen'}.`:'Geen eerdere check-in.';
@@ -913,11 +914,13 @@ Antwoord ALLEEN met geldige JSON, zonder uitleg eromheen, in exact dit formaat:
   const images=order.map(k=>ciFiles[k]);
   let res;
   try{
-    if(typeof sample.json==='function'){res=await sample.json(prompt,{images,modelTier:'complex'});}
-    else{const r=await sample(prompt,{images,modelTier:'complex'});const t=(r.text||'').replace(/```json|```/g,'').trim();res=JSON.parse(t.slice(t.indexOf('{'),t.lastIndexOf('}')+1));}
+    const opts={images,modelTier:'default',signal:ciCtl.signal,onText:()=>{if(ciTick){clearInterval(ciTick);ciTick=null;const m=$('ciMsg');if(m)m.innerHTML='<div>Je advies wordt geschreven…</div>';}}};
+    if(typeof sample.json==='function'){res=await sample.json(prompt,opts);}
+    else{const r=await sample(prompt,opts);const t=(r.text||'').replace(/```json|```/g,'').trim();res=JSON.parse(t.slice(t.indexOf('{'),t.lastIndexOf('}')+1));}
   }catch(e){
-    $('ciGo').disabled=false;const code=e&&e.code;
-    out.innerHTML=`<div class="note">${code==='not_granted'?'Je hebt geen toestemming gegeven voor de analyse. Probeer opnieuw en kies "Toestaan".':code==='rate_limited'?'Het is even te druk. Probeer het over een paar minuten opnieuw.':'Er ging iets mis bij de analyse. Probeer het nog een keer, eventueel met andere foto\'s.'}</div>`;return;}
+    if(ciTick)clearInterval(ciTick);$('ciGo').disabled=false;
+    out.innerHTML=e&&e.code==='cancelled'?'<div class="note">Gestopt. Je kunt het opnieuw proberen.</div>':`<div class="note">${aiErr(e)}</div>`;return;}
+  if(ciTick)clearInterval(ciTick);
   if(typeof res==='string'){try{res=JSON.parse(res.slice(res.indexOf('{'),res.lastIndexOf('}')+1));}catch(e){res={titel:'Advies',samenvatting:res};}}
   const valid=['chest','back','shoulders','arms','quads','hams','glutes','calves','core'];
   res.focus=(Array.isArray(res.focus)?res.focus:[]).filter(m=>valid.includes(m)).slice(0,2);
@@ -958,6 +961,11 @@ function openLook(){const t=INFO.theme||{mode:'dark',accent:'sunset'};
  sb.querySelector('#lkAcc').onclick=e=>{const b=e.target.closest('[data-k]');if(!b)return;set('accent',b.dataset.k);sb.querySelectorAll('#lkAcc .sw').forEach(x=>x.classList.toggle('on',x===b));};
 }
 
+/* ================= AI-HULP ================= */
+const AI_ERR={rate_limited:'Het is even druk of je limiet bij Claude is bereikt. Probeer het later opnieuw.',not_granted:'Je hebt geen toestemming gegeven. Probeer opnieuw en kies "Toestaan" in de melding van Claude.',session_expired:'Je bent uitgelogd bij Claude. Log opnieuw in en open de app opnieuw.',sampling_disabled:'De AI is niet beschikbaar voor je Claude-account.',image_rejected:'Deze foto kon niet worden gebruikt. Probeer een andere foto (JPG of PNG).',images_unavailable:'Foto\'s versturen werkt hier niet. Open de app via claude.ai in Safari.',refused:'Daar kan ik geen antwoord op geven. Probeer het anders te formuleren.',invalid_json:'Het advies kwam niet goed door. Probeer het nog een keer.',empty_completion:'Er kwam geen antwoord. Probeer het nog een keer.'};
+function aiErr(e){const c=e&&e.code;return AI_ERR[c]||'Er ging iets mis met de verbinding. Probeer het nog een keer.';}
+function waitTicker(el,base){const t0=Date.now();const f=()=>{const s=Math.round((Date.now()-t0)/1000);el.innerHTML=base+`<div class="small" style="margin-top:6px">${s}s${s>=8?' · Eerste keer? Tik op <b>Toestaan</b> in de melding van Claude.':''}${s>=25?' Ik denk nog na, dit kan soms even duren.':''}</div>`;};f();return setInterval(f,1000);}
+
 /* ================= COACH ================= */
 const SUGG=['Hoe word ik sneller sterker op bankdrukken?','Wat eet ik het beste vlak voor de training?','Ik heb spierpijn. Kan ik vandaag trainen?','Hoe gingen mijn trainingen deze week?','Ik heb vandaag maar 40 minuten. Wat doe ik?'];
 let coachBusy=false;
@@ -986,7 +994,7 @@ const COACH_RULES=`Je bent de personal trainer in de app "Gym Plan": een ervaren
 - Geen medische diagnoses. Bij gewrichtspijn, scherpe pijn, duizeligheid, borstpijn of blessures: stop die oefening en raad een fysio of huisarts aan.
 - Geen advies over anabole steroïden, SARMs of andere prestatieverhogende middelen, geen extreme diëten of uitdrogen. Zie je signalen van een eetstoornis, reageer dan vriendelijk, zonder getallen, en raad de huisarts aan.
 - Creatine monohydraat 3–5 g per dag is prima; andere supplementen nuchter en kort bespreken.`;
-function mdLite(t){const h=esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');const out=[];let ul=false;
+function mdLite(t){const h=esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/(^|\s)_(.+?)_(?=\s|$)/g,'$1<i>$2</i>');const out=[];let ul=false;
  h.split('\n').forEach(l=>{const m=l.match(/^\s*(?:[-•*]|\d+[.)])\s+(.*)/);if(m){if(!ul){out.push('<ul>');ul=true;}out.push('<li>'+m[1]+'</li>');}else{if(ul){out.push('</ul>');ul=false;}if(l.trim())out.push('<p>'+l+'</p>');}});
  if(ul)out.push('</ul>');return out.join('');}
 function renderCoach(){
@@ -1001,23 +1009,27 @@ function renderCoach(){
 }
 function scrollChat(){window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});}
 function autoGrow(){const t=$('chatIn');t.style.height='auto';t.style.height=Math.min(120,t.scrollHeight)+'px';}
+let coachCtl=null;
 async function sendCoach(q){
-  q=(q||'').trim();if(!q||coachBusy)return;
-  coachBusy=true;$('chatSend').disabled=true;
+  if(coachBusy){if(coachCtl)coachCtl.abort();return;}
+  q=(q||'').trim();if(!q)return;
+  coachBusy=true;setSendBtn(true);
   const sample=SAMPLE===undefined?await samplePromise:SAMPLE;
-  if(!sample){coachBusy=false;$('chatSend').disabled=false;renderCoach();return;}
+  if(!sample){coachBusy=false;setSendBtn(false);renderCoach();return;}
   S.chat.push({r:'user',c:q});S.chat=S.chat.slice(-40);save();
   $('chatIn').value='';autoGrow();renderCoach();
-  const bub=document.createElement('div');bub.className='msg ai';bub.innerHTML='<span class="typing"><i></i><i></i><i></i></span>';$('msgs').appendChild(bub);scrollChat();
+  const bub=document.createElement('div');bub.className='msg ai';$('msgs').appendChild(bub);scrollChat();
+  let tick=waitTicker(bub,'<span class="typing"><i></i><i></i><i></i></span>');
   let hist=S.chat.slice(-12).map(m=>({role:m.r==='user'?'user':'assistant',content:m.c}));
   while(hist.length&&hist[0].role!=='user')hist.shift();
-  hist[0]={role:'user',content:COACH_RULES+'\n\n=== GEGEVENS VAN DE SPORTER ===\n'+coachContext()+'\n=== EINDE GEGEVENS ===\n\nBericht van '+INFO.name+': '+hist[0].content};
-  let text='';
-  try{const r=await sample(hist,{modelTier:'default',cache:false,onText:({text:t})=>{if(t&&!/^Thinking/.test(t)){text=t;bub.innerHTML=mdLite(t);}}});text=(r&&r.text)||text;}
-  catch(e){const code=e&&e.code;text=code==='rate_limited'?'Het is even druk. Probeer het over een paar minuten opnieuw.':code==='not_granted'?'Ik kreeg geen toestemming. Stuur je bericht opnieuw en kies "Toestaan".':((e&&e.text)||'Er ging iets mis. Probeer het nog eens.');}
-  coachBusy=false;$('chatSend').disabled=false;
+  hist.unshift({role:'user',content:COACH_RULES+'\n\n=== GEGEVENS VAN DE SPORTER ===\n'+coachContext()+'\n=== EINDE GEGEVENS ==='});
+  let text='';coachCtl=new AbortController();
+  try{const r=await sample(hist,{modelTier:'quick',cache:false,signal:coachCtl.signal,onText:({text:t})=>{if(tick){clearInterval(tick);tick=null;}text=t;bub.innerHTML=mdLite(t);}});text=(r&&r.text)||text;}
+  catch(e){text=(e&&e.text)?e.text+(e.code==='cancelled'?'\n\n_(gestopt)_':''):(e&&e.code==='cancelled'?'(gestopt)':aiErr(e));}
+  finally{if(tick)clearInterval(tick);coachBusy=false;coachCtl=null;setSendBtn(false);}
   S.chat.push({r:'ai',c:text||'…'});save();renderCoach();scrollChat();
 }
+function setSendBtn(busy){const b=$('chatSend');b.textContent=busy?'■':'↑';b.setAttribute('aria-label',busy?'Stop':'Verstuur');}
 $('coachBody').addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b)return sendCoach(b.dataset.q);if(e.target.closest('#chatNew')){S.chat=[];save();renderCoach();}});
 $('chatSend').addEventListener('click',()=>sendCoach($('chatIn').value));
 $('chatIn').addEventListener('input',autoGrow);
