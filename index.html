@@ -2,7 +2,7 @@
 <html lang="nl" data-theme="dark" data-accent="sunset" class="sa">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-CQiz+GlknewKNOXOH54Iu9lWywjS4MKR4ZaMZ2H2EzU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-Pn5PVKJ257h5GUKiFH4gWC1McZ84WSr1oy+/HtFTyEg='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -321,6 +321,34 @@ html:not(.sa) .sa-only{display:none!important}
 #sheet .card ul{padding-left:18px;margin:8px 0 0}
 #sheet .card li{margin:6px 0;line-height:1.5;color:var(--txt2)}
 #sheet .card li b{color:var(--txt)}
+#v-privacy #pvBody{margin-top:8px}
+#v-privacy .card ul{padding-left:18px;margin:8px 0 0}
+#v-privacy .card li{margin:6px 0;line-height:1.5;color:var(--txt2)}
+#v-privacy .card li b{color:var(--txt)}
+#v-privacy>.small{margin-bottom:8px}
+#privNote{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom) + 86px);z-index:35;display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;padding:14px 16px;border-radius:22px;background:var(--float);border:1px solid var(--w12);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 18px 50px rgba(0,0,0,.35);transform:translateY(30px);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.2,.9,.2,1);max-width:520px;margin:0 auto}
+#privNote.show{transform:none;opacity:1;pointer-events:auto}
+.pn-ic{font-size:26px}
+.pn-tx{flex:1;min-width:0;font-size:14px;line-height:1.4}
+.pn-tx b{display:block;font-size:15px}
+.pn-tx span{color:var(--txt2)}
+.pn-btns{display:flex;gap:8px;width:100%}
+.pn-btns button{flex:1;min-height:44px;border-radius:14px;font-weight:700;font-size:15px;background:var(--glass2);color:var(--txt);border:1px solid var(--stroke)}
+.pn-btns .pn-ok{background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));color:#fff;border:0}
+#boost{position:fixed;inset:0;z-index:45;display:grid;place-items:center;padding:24px;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .3s}
+#boost.show{opacity:1;pointer-events:auto}
+.bst-card{width:100%;max-width:380px;text-align:center;padding:26px 22px 20px;border-radius:30px;background:var(--sheet);border:1px solid var(--w12);box-shadow:0 30px 80px -20px var(--a2);transform:scale(.85) translateY(20px);transition:transform .45s cubic-bezier(.2,1.5,.4,1);position:relative;overflow:hidden}
+.bst-card:before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--a1),var(--a2),var(--a3))}
+#boost.show .bst-card{transform:none}
+.bst-emoji{font-size:64px;line-height:1;margin:6px 0 10px}
+#boost.show .bst-emoji{animation:pop .7s cubic-bezier(.2,1.6,.4,1) .1s both,wig 1.2s ease-in-out .8s 2}
+@keyframes wig{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+.bst-title{font:800 26px/1.15 var(--disp);letter-spacing:-.02em;background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));-webkit-background-clip:text;background-clip:text;color:transparent;overflow-wrap:break-word}
+.bst-msg{margin:10px 0 4px;font-size:16px;line-height:1.5;color:var(--txt2)}
+.bst-msg b{color:var(--txt)}
+.bst-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:14px 0 16px}
+.bchip{font-size:13px;font-weight:650;padding:7px 11px;border-radius:99px;background:var(--glass2);border:1px solid var(--stroke)}
+@media (prefers-reduced-motion:reduce){#boost.show .bst-emoji{animation:none}.bst-card{transition:none}}
 </style>
 </head>
 <body>
@@ -399,6 +427,30 @@ html:not(.sa) .sa-only{display:none!important}
   <div class="card" id="histList" style="padding-top:4px;padding-bottom:4px"></div>
   <div class="sync" id="sync">Opgeslagen op deze telefoon</div>
 </section>
+
+
+<section class="v" id="v-privacy">
+  <button class="pillbtn" id="pvBack">← Terug</button>
+  <div class="h-l" style="margin-top:14px">Privacy & <span class="gt">veiligheid</span> 🔒</div>
+  <div id="pvBody"></div>
+  <button class="cta grad" id="pvDone" style="margin-top:6px">Klaar 👍</button>
+</section>
+
+<div id="privNote" role="status">
+  <div class="pn-ic">🔒</div>
+  <div class="pn-tx"><b>Je gegevens blijven op jouw telefoon.</b><span>Wil je precies weten hoe dat zit? Lees het onder Privacy & veiligheid.</span></div>
+  <div class="pn-btns"><button id="pnRead">Lezen</button><button id="pnOk" class="pn-ok">Oké</button></div>
+</div>
+
+<div id="boost" role="dialog" aria-modal="true" aria-labelledby="bstTitle">
+  <div class="bst-card">
+    <div class="bst-emoji" id="bstEmoji">💪</div>
+    <div class="bst-title" id="bstTitle"></div>
+    <div class="bst-msg" id="bstMsg"></div>
+    <div class="bst-chips" id="bstChips"></div>
+    <button class="cta grad" id="bstGo">Let's go! 💪</button>
+  </div>
+</div>
 
 <nav id="nav">
   <button data-v="home" class="on"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
@@ -1110,7 +1162,7 @@ $('sheet').addEventListener('click',e=>{if(e.target.closest('[data-close]'))clos
 let draft=null;
 function profileForm(info,isNew){
   draft=JSON.parse(JSON.stringify(info));
-  const intro=isNew&&!Object.keys(B.profiles).length?`<div class="done-hero" style="padding-top:0"><div class="big">💪</div><div class="h-l">Welkom bij <span class="gt">Gym Plan</span></div><div class="small">Vul je gegevens in. Je schema, gewichten en voeding worden op jou afgestemd. Alles blijft op deze telefoon, je hebt geen account nodig.</div></div>`:`<div class="h-l">${isNew?'Nieuw profiel':'Profiel bewerken'}</div>`;
+  const intro=isNew&&!Object.keys(B.profiles).length?`<div class="welcome" style="padding-top:0"><div class="wl-av" aria-hidden="true">R</div><div class="h-l" style="text-align:center">Welkom, toekomstige <span class="gt">beast</span>! 🦍</div><p>${WELCOME_SHORT}</p></div>`:`<div class="h-l">${isNew?'Nieuw profiel':'Profiel bewerken'}</div>`;
   openSheet(`${intro}
    <div class="field"><label>Naam</label><input id="pfName" value="${esc(draft.name)}" placeholder="Bijv. Ronald" autocomplete="off"></div>
    <div class="f3"><div class="field"><label>Leeftijd</label><input id="pfAge" type="number" inputmode="numeric" value="${draft.age||''}" placeholder="25"></div>
@@ -1134,7 +1186,7 @@ function profileForm(info,isNew){
     Object.assign(draft,{name,age:age>10&&age<90?Math.round(age):25,h,w,db:db>0&&db<80?db:0});
     if(isNew){const id='p'+Date.now().toString(36);B.profiles[id]={info:draft,S:emptyS()};B.active=id;}
     else{B.profiles[B.active].info=draft;}
-    save();bind();closeSheet();renderAll();go('home');toast(isNew?'🚀 Plan gemaakt voor '+name:'Profiel opgeslagen');};
+    const first=isNew&&Object.keys(B.profiles).length===1;save();bind();closeSheet();renderAll();go('home');toast(isNew?'🚀 Plan gemaakt voor '+name:'Profiel opgeslagen');if(first)afterFirstProfile();};
   const del=sb.querySelector('#pfDel');if(del){let armed=false;del.onclick=()=>{if(!armed){armed=true;del.textContent='Zeker weten? Tik nogmaals (alle gegevens weg)';return;}
     delete B.profiles[B.active];B.active=Object.keys(B.profiles)[0];save();bind();closeSheet();renderAll();toast('Profiel verwijderd');};}
 }
@@ -1148,7 +1200,7 @@ function openProfiles(){
    <button class="prof" id="prLook"><div style="font-size:22px">🎨</div><div style="flex:1"><div class="t1">Uiterlijk</div><div class="t2">Licht of donker thema, eigen kleur</div></div><span class="chev">›</span></button>
    <button class="prof" id="prBackup"><div style="font-size:22px">💾</div><div style="flex:1"><div class="t1">Backup</div><div class="t2">Gegevens kopiëren of terugzetten</div></div><span class="chev">›</span></button>
    <button class="prof" id="prShare"><div style="font-size:22px">📤</div><div style="flex:1"><div class="t1">Deel de app</div><div class="t2">Via WhatsApp, AirDrop of QR-code</div></div><span class="chev">›</span></button>
-   <button class="prof sa-only" id="prWelcome"><div style="font-size:22px">👋</div><div style="flex:1"><div class="t1">Welkom van Ronald</div><div class="t2">Testversie · tips en ideeën</div></div><span class="chev">›</span></button>
+   <button class="prof sa-only" id="prWelcome"><div style="font-size:22px">👋</div><div style="flex:1"><div class="t1">Welkom van Ronald</div><div class="t2">Testversie · foutjes en ideeën</div></div><span class="chev">›</span></button>
    <button class="prof sa-only" id="prPrivacy"><div style="font-size:22px">🔒</div><div style="flex:1"><div class="t1">Privacy & veiligheid</div><div class="t2">Waar je gegevens staan en wie ze ziet</div></div><span class="chev">›</span></button>
    <button class="prof" id="prInfo"><div style="font-size:22px">📖</div><div style="flex:1"><div class="t1">Hoe werkt het?</div></div><span class="chev">›</span></button>
    <div class="note">${SIGNED?'☁︎ Je bent ingelogd bij Claude: je gegevens worden ook in je account bewaard.':'📱 Je gegevens staan alleen op deze telefoon. Zet de app op je beginscherm en maak af en toe een backup.'}</div>
@@ -1161,8 +1213,8 @@ function openProfiles(){
   sb.querySelector('#prBackup').onclick=openBackup;
   sb.querySelector('#prLook').onclick=openLook;
   sb.querySelector('#prInfo').onclick=openInfo;
-  sb.querySelector('#prWelcome').onclick=()=>openWelcome(false);
-  sb.querySelector('#prPrivacy').onclick=()=>openPrivacy(false);
+  sb.querySelector('#prWelcome').onclick=openWelcome;
+  sb.querySelector('#prPrivacy').onclick=openPrivacyPage;
   sb.querySelector('#prShare').onclick=()=>{closeSheet();shareApp();};
   const pf=sb.querySelector('#prFocus');if(pf)pf.onclick=()=>{INFO.focus=[];save();closeSheet();renderAll();toast('Focus gewist');};
 }
@@ -1323,20 +1375,19 @@ function openInfo(){openSheet(`<div class="h-l">Zo werkt <span class="gt">jouw p
  <div class="small" style="margin:8px 2px 16px">Geen medisch advies. Bij blessures of klachten eerst naar een arts of fysio.</div>
  <button class="cta grad" data-close>Let's go 💪</button>`);}
 
-/* ================= WELKOM & PRIVACY (GitHub-versie) ================= */
-const INTRO_KEY='gymplan_intro',INTRO_V='1';
+/* ================= WELKOM, PRIVACY & MOTIVATIE ================= */
 const FEEDBACK_TXT='Zie je iets wat niet goed werkt, of heb je een idee? Stuur me een WhatsApp-berichtje.';
-function introSeen(){try{return localStorage.getItem(INTRO_KEY)===INTRO_V;}catch(e){return false;}}
-function setIntroSeen(){try{localStorage.setItem(INTRO_KEY,INTRO_V);}catch(e){}}
+const LS={get(k){try{return localStorage.getItem(k);}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,v);}catch(e){}}};
+const PRIVNOTE_KEY='gymplan_privnote';
+function privNoteSeen(){return LS.get(PRIVNOTE_KEY)==='1'||LS.get('gymplan_intro')==='1';}
+const WELCOME_SHORT=`Ik ben Ronald. Deze app is nog in de testfase, net als jouw biceps 😄 Vul je gegevens in en we gaan knallen!`;
 function welcomeHTML(){return `<div class="welcome">
    <div class="wl-av" aria-hidden="true">R</div>
-   <div class="h-l" style="text-align:center">Hoi! 👋 Ik ben <span class="gt">Ronald</span></div>
-   <p>Wat leuk dat je er bent! 🎉 Ik heb deze app gemaakt voor mijn vrienden, om samen te testen hoe hij werkt.</p>
-   <p>Het is nog een <b>testversie</b>, dus er kan weleens iets misgaan. Maar daar leren we van. 🙌</p>
-   <p><b>Heel veel succes en plezier met trainen, jullie gaan het top doen! 💪🔥</b></p>
-   <div class="note" style="margin-top:14px">💬 ${FEEDBACK_TXT}</div></div>`;}
-function privacyHTML(){return `<div class="h-l">Privacy & <span class="gt">veiligheid</span> 🔒</div>
- <div class="small">Wat de app doet met jouw gegevens. Eerlijk en precies. Laatst bijgewerkt: 5 november 2026.</div>
+   <div class="h-l" style="text-align:center">Welkom, toekomstige <span class="gt">beast</span>! 🦍</div>
+   <p>${WELCOME_SHORT.replace(' Vul je gegevens in en we gaan knallen!',' Samen trainen we de foutjes eruit. 💪')}</p>
+   <div class="note" style="margin-top:12px">💬 ${FEEDBACK_TXT}</div></div>`;}
+function openWelcome(){openSheet(welcomeHTML()+`<button class="cta grad" data-close style="margin-top:16px">Let's go 💪</button>`);}
+function privacyHTML(){return ` <div class="small">Wat de app doet met jouw gegevens. Eerlijk en precies. Laatst bijgewerkt: 5 november 2026.</div>
  <div class="card pv-sum"><div class="t1">In het kort</div><ul>
   <li>📱 Alles wat je invult, blijft op <b>jouw eigen telefoon</b>.</li>
   <li>🙈 Er is geen account en geen database. <b>Ronald kan jouw gegevens niet zien.</b></li>
@@ -1381,19 +1432,92 @@ function privacyHTML(){return `<div class="h-l">Privacy & <span class="gt">veili
  <div class="card"><div class="t1">🧪 Testversie</div><ul>
   <li>Dit is een testversie voor vrienden. Er kunnen nog foutjes in zitten. Maak daarom af en toe een backup.</li>
   <li>${FEEDBACK_TXT}</li></ul></div>`;}
-function openWelcome(first){
-  openSheet(welcomeHTML()+(first?`<button class="cta grad" id="wlNext" style="margin-top:16px">Verder 👉</button>`:`<button class="cta grad" data-close style="margin-top:16px">Sluiten</button>`),first);
-  if(first)$('wlNext').onclick=()=>openPrivacy(true);}
-function openPrivacy(first){
-  openSheet(privacyHTML()+(first?`<button class="cta grad" id="pvOk" style="margin-top:6px">Ik begrijp het 👍</button>`:`<button class="cta grad" data-close style="margin-top:6px">Sluiten</button>`),first);
-  if(first)$('pvOk').onclick=()=>{setIntroSeen();closeSheet();if(!hasProfile())newProfile();else toast('Veel plezier met trainen! 💪');};}
+
+/* --- privacy als eigen pagina --- */
+let pvFrom='home';
+function openPrivacyPage(){closeSheet();hideNote();const cur=document.querySelector('section.v.show');pvFrom=cur&&cur.id!=='v-privacy'?cur.id.slice(2):'home';$('pvBody').innerHTML=privacyHTML();go('privacy');}
+$('pvBack').addEventListener('click',()=>go(pvFrom||'home'));
+$('pvDone').addEventListener('click',()=>go(pvFrom||'home'));
+
+/* --- kleine melding: privacy staat in de app --- */
+function hideNote(){const n=$('privNote');if(n)n.classList.remove('show');}
+function showPrivNote(){const n=$('privNote');n.classList.add('show');}
+$('pnRead').addEventListener('click',()=>{LS.set(PRIVNOTE_KEY,'1');openPrivacyPage();});
+$('pnOk').addEventListener('click',()=>{LS.set(PRIVNOTE_KEY,'1');hideNote();});
 function newProfile(){profileForm({name:'',age:'',h:'',w:'',goal:'bulk',exp:'mid',db:0,focus:[]},true);}
+function afterFirstProfile(){if(STANDALONE&&!privNoteSeen())setTimeout(showPrivNote,900);}
+
+/* --- motivatie bij elke keer openen --- */
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function sessions(){return Object.keys(S.logs).filter(k=>dayStats(k).sets).sort();}
+function prTimeline(){ // records per training, in volgorde
+  const best={},out=[];
+  sessions().forEach(key=>{const prs=[];Object.entries(S.logs[key]).forEach(([k,sets])=>{const ex=EXLIB[k];if(!ex)return;let top=null;
+      (sets||[]).forEach(st=>{if(!st||!st.reps)return;const e1=(+st.kg||0)*(1+st.reps/30);if(!top||e1>top.e1)top={e1,kg:+st.kg||0,reps:+st.reps};});
+      if(!top)return;const prev=best[ex.n];if(prev&&top.e1>prev.e1+0.01&&top.kg>0)prs.push({n:ex.n,kg:top.kg,reps:top.reps,was:prev});
+      if(!prev||top.e1>prev.e1)best[ex.n]=top;});
+    out.push({key,d:key.split('|')[0],prs});});
+  return{best,out};}
+function boostData(){
+  const name=(INFO.name||'').split(' ')[0]||'kampioen';
+  const ses=sessions(),n=ses.length,tl=prTimeline();
+  const last=tl.out[tl.out.length-1];
+  const daysSince=last?Math.round((new Date(today()+'T12:00')-new Date(last.d+'T12:00'))/864e5):null;
+  const wk=weekReport(0);const doneWk=wk.rows.filter(r=>r.done>0).length;
+  const prs7=tl.out.filter(o=>(new Date(today()+'T12:00')-new Date(o.d+'T12:00'))/864e5<=7).reduce((a,o)=>a+o.prs.length,0);
+  const td=todayDay();const tdKey=td?today()+'|'+td.id:null;const trainedToday=tdKey&&dayStats(tdKey).sets>0;
+  const W=S.weights.slice().sort((a,b)=>a.d<b.d?-1:1);const dif=W.length?W[W.length-1].kg-INFO.w:0;
+  const wGood=W.length&&Math.abs(dif)>=0.3&&(INFO.goal==='cut'?dif<0:INFO.goal==='bulk'?dif>0:false);
+  const crea=creaStreak();
+  // volume vergeleken met vorige keer dezelfde training
+  let volUp=null;if(last){const id=last.key.split('|')[1];const prev=ses.filter(k=>k!==last.key&&k.split('|')[1]===id).pop();
+    if(prev){const a=dayStats(prev).vol,b=dayStats(last.key).vol;if(a>0&&b>a*1.02)volUp=Math.round((b/a-1)*100);}}
+  const chips=[];
+  if(n)chips.push(['🏋️',n+(n===1?' training':' trainingen')]);
+  if(doneWk)chips.push(['📅',doneWk+'/'+DAYS.length+' deze week']);
+  if(prs7)chips.push(['🏆',prs7+(prs7===1?' record':' records')+' deze week']);
+  if(wGood)chips.push(['⚖️',(dif>0?'+':'')+nl(dif.toFixed(1))+' kg']);
+  if(crea>=3)chips.push(['💊',crea+' dagen creatine']);
+  let e,t,m;
+  const milestones=[100,75,50,25,10,5,1];const ms=milestones.find(x=>x===n);
+  if(last&&last.prs.length&&daysSince<=3){const r=last.prs.sort((a,b)=>(b.e1||0)-(a.e1||0))[0];
+    e='🏆';t=pick(['NIEUW RECORD!','Beast mode: aan!','Wie is deze machine?!']);
+    m=`${r.n}: <b>${nl(r.kg)} kg × ${r.reps}</b>. Vorige keer was het ${nl(r.was.kg)} kg × ${r.was.reps}. ${last.prs.length>1?'En nog '+(last.prs.length-1)+' record'+(last.prs.length>2?'s':'')+' erbij! ':''}Jij wordt gewoon elke week sterker, ${esc(name)}! 🔥`;}
+  else if(ms&&daysSince!==null&&daysSince<=3){e=ms===1?'🎉':'🥇';
+    t=ms===1?'Eerste training: gedaan!':ms+' trainingen!';
+    m=ms===1?`De moeilijkste stap heb je al gezet, ${esc(name)}. Vanaf nu is het gewoon doorgaan. 💪`:`${ms} keer naar de gym. Dat is geen toeval meer, dat is een <b>gewoonte</b>. Respect, ${esc(name)}! 🙌`;}
+  else if(volUp&&daysSince<=4){e='📈';t=pick(['Sterker dan vorige keer!','Vooruitgang!']);
+    m=`Je vorige training was <b>${volUp}% zwaarder</b> dan de keer daarvoor. Zo groeien spieren, ${esc(name)}. Ga zo door! 💥`;}
+  else if(trainedToday){e='😤';t='Vandaag al geknald!';m=`Training staat erop, ${esc(name)}. Nu eten, slapen en groeien. 🍗😴💪`;}
+  else if(daysSince!==null&&daysSince>=5){e='🔥';t=pick(['Welkom terug!','Tijd voor een comeback!']);
+    m=`Even pauze gehad? Geen probleem. Spieren vergeten niets. ${td?'Vandaag: <b>'+esc(td.name)+'</b>. ':''}Eén training en je zit er weer in, ${esc(name)}! 💪`;}
+  else if(td){e=pick(['💪','⚡','🚀']);t=pick([`Hé ${name}, het is ${td.name}!`,`Vandaag: ${td.name}`]);
+    m=pick([`Jouw spieren hebben er zin in. Jij ook? ${doneWk?'Al '+doneWk+' van de '+DAYS.length+' trainingen deze week gedaan!':'Begin de week sterk!'}`,`Over een uur ben je trots op jezelf. Let's go! 🔥`,`Elke set telt. Elke rep telt. Vandaag word je weer een beetje sterker. 💥`]);}
+  else if(wGood){e='⚖️';t='Het gaat de goede kant op!';m=`Al <b>${(dif>0?'+':'')+nl(dif.toFixed(1))} kg</b> sinds je start. Je harde werk is gewoon te zien, ${esc(name)}! 👏`;}
+  else if(n){e='😌';t='Rustdag = groeidag';m=pick([`Vandaag groeien je spieren. Eet goed, drink water en geniet ervan, ${esc(name)}. 🌱`,`Rust is ook trainen. Morgen kom je sterker terug! 💪`]);}
+  else{e='🚀';t=`Klaar voor de start, ${name}?`;m=`Je eerste training staat klaar. Elke sterke sporter begon ooit bij dag 1. Vandaag is jouw dag 1! 💪`;}
+  return{e,t,m,chips:chips.slice(0,3)};}
+let boostShown=0;
+function showBoost(){
+  if(!hasProfile()||$('sheet').classList.contains('show')||$('privNote').classList.contains('show'))return;
+  const d=boostData();
+  $('bstEmoji').textContent=d.e;$('bstTitle').textContent=d.t;$('bstMsg').innerHTML=d.m;
+  $('bstChips').innerHTML=d.chips.map(([i,l])=>`<span class="bchip">${i} ${esc(l)}</span>`).join('');
+  $('boost').classList.add('show');boostShown=Date.now();
+}
+function hideBoost(){$('boost').classList.remove('show');}
+$('bstGo').addEventListener('click',hideBoost);
+$('boost').addEventListener('click',e=>{if(e.target.id==='boost')hideBoost();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hideBoost();});
+let hiddenAt=0;
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){hiddenAt=Date.now();return;}
+  if(hiddenAt&&Date.now()-hiddenAt>20*60*1000)setTimeout(showBoost,500);});
 
 /* ================= NAV ================= */
 function go(v){
   document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));
   document.querySelectorAll('section.v').forEach(s=>s.classList.toggle('show',s.id==='v-'+v));
-  if(v==='home')renderHome();if(v==='train')renderTrain();if(v==='food'){fdDate=today();renderFood();}if(v==='deals')renderDeals();if(v==='prog')renderProg();
+  if(v==='home')renderHome();if(v==='train')renderTrain();if(v==='food'){fdDate=today();renderFood();}if(v==='deals')renderDeals();if(v==='prog')renderProg();if(v!=='privacy')hideNote();
   try{history.replaceState(null,'','#'+v);}catch(e){}
   window.scrollTo(0,0);
 }
@@ -1401,12 +1525,13 @@ $('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(b)go
 function renderAll(){renderHome();renderTrain();renderFood();renderDeals();renderProg();}
 renderAll();
 const hv=(location.hash||'').slice(1);if(['train','food','deals','prog'].includes(hv))go(hv);
-if(STANDALONE&&!introSeen())setTimeout(()=>openWelcome(true),hasProfile()?600:900);
-else if(!hasProfile())setTimeout(()=>{if(!hasProfile()&&!$('sheet').classList.contains('show'))newProfile();},1200);
+if(!hasProfile())setTimeout(()=>{if(!hasProfile()&&!$('sheet').classList.contains('show'))newProfile();},900);
+else if(STANDALONE&&!privNoteSeen())setTimeout(showPrivNote,900);
+else setTimeout(showBoost,700);
 setInterval(()=>{if($('v-home').classList.contains('show')&&!document.activeElement.matches('input'))renderHome();},60000);
 
 /* automatische update (alleen losse website) */
-(function(){if(!STANDALONE)return;const B='1793909394';let busy=false;
+(function(){if(!STANDALONE)return;const B='1793910726';let busy=false;
  async function chk(){if(busy)return;busy=true;try{const r=await fetch('version.txt?t='+Date.now(),{cache:'no-store'});if(r.ok){const v=(await r.text()).trim();
    if(v&&v!==B&&!location.search.includes('v='+v)){toast('🔄 Nieuwe versie wordt geladen…');setTimeout(()=>location.replace(location.pathname+'?v='+v),900);}}}catch(e){}busy=false;}
  setTimeout(chk,1500);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')chk();});})();
