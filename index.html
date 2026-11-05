@@ -1268,6 +1268,12 @@ const hv=(location.hash||'').slice(1);if(['train','food','deals','prog'].include
 if(!hasProfile())setTimeout(()=>{if(!hasProfile())profileForm({name:'',age:'',h:'',w:'',goal:'bulk',exp:'mid',db:0,focus:[]},true);},1200);
 setInterval(()=>{if($('v-home').classList.contains('show')&&!document.activeElement.matches('input'))renderHome();},60000);
 
+/* automatische update (alleen losse website) */
+(function(){if(!STANDALONE)return;const B='1793893664';let busy=false;
+ async function chk(){if(busy)return;busy=true;try{const r=await fetch('version.txt?t='+Date.now(),{cache:'no-store'});if(r.ok){const v=(await r.text()).trim();
+   if(v&&v!==B&&!location.search.includes('v='+v)){toast('🔄 Nieuwe versie wordt geladen…');setTimeout(()=>location.replace(location.pathname+'?v='+v),900);}}}catch(e){}busy=false;}
+ setTimeout(chk,1500);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')chk();});})();
+
 </script>
 </body>
 </html>
