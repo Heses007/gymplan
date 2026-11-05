@@ -354,7 +354,6 @@ nav button{font-size:10px}
 <nav id="nav">
   <button data-v="home" class="on"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
   <button data-v="train"><svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg>Training</button>
-  <button data-v="coach" class="claude-only"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>Coach</button>
   <button data-v="food"><svg viewBox="0 0 24 24"><path d="M7 3v8a3 3 0 0 0 3 3v7M7 3v5M10 3v5M13 3v5M17 3c-1.5 2-2 4-2 7h3v11"/></svg>Voeding</button>
   <button data-v="deals"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg>AH</button>
   <button data-v="prog"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 16l4-5 3 3 5-7"/></svg>Voortgang</button>
@@ -590,7 +589,6 @@ function renderHome(){
      <button class="tile" data-go="prog"><span class="ic">⚖️</span><div><b>${nl(lw||INFO.w)} kg</b><div class="small">${lw?'laatste meting':'startgewicht · tik om te wegen'}</div></div></button>
    </div>
    <div class="card claude-only" id="ciHome"><div class="row"><div style="font-size:28px">📸</div><div style="flex:1"><div class="t1">Body check-in</div><div class="t2">${lastCi?'Laatste: '+fmtD(lastCi.d)+' · '+esc(lastCi.titel||''):'Upload foto\'s en krijg advies over je schema'}</div></div><span class="chev">›</span></div></div>
-   <div class="card claude-only" data-go="coach"><div class="row"><div class="coachav" style="width:42px;height:42px;font-size:20px;border-radius:14px">💬</div><div style="flex:1"><div class="t1">Vraag je coach</div><div class="t2">Je personal trainer kent je schema, gewichten en voeding</div></div><span class="chev">›</span></div></div>
    ${nm?`<div class="card" data-go="food"><div class="row"><div style="font-size:28px">🍽️</div><div style="flex:1"><div class="time">VOLGENDE · ${nm.t}</div><div class="t1">${nm.n}</div><div class="t2">${mealText(nm)}</div></div><span class="chev">›</span></div></div>`:`<div class="card"><div class="row"><div style="font-size:28px">🎉</div><div><div class="t1">Alle maaltijden gegeten</div><div class="t2">Top gedaan vandaag, ${esc(INFO.name)}.</div></div></div></div>`}
    ${top?`<div class="card" data-go="deals" data-tab="${top.store}"><div class="between"><div class="eyebrow">Deal van de dag · ${top.store==='ah'?'AH Bonus':'Dirk'}</div><span class="chev">›</span></div><div class="deal" style="border:0;padding-bottom:0"><div class="disc ${top.store}">${esc(top.deal||'%')}</div><div><div class="t1">${esc(top.n)}</div><div class="t2">${esc(top.size||'')}${top.fit?' · '+esc(top.fit):''}</div></div><div class="pr"><b>${esc(top.price)}</b>${top.was?`<s>${esc(top.was)}</s>`:''}</div></div></div>`:''}
    <div class="card" id="infoBtn2"><div class="row"><div style="font-size:26px">📖</div><div style="flex:1"><div class="t1">Hoe werkt het schema?</div><div class="t2">Progressie, gewichten, creatine en herstel</div></div><span class="chev">›</span></div></div>`;
@@ -1041,7 +1039,6 @@ function openInfo(){openSheet(`<div class="h-l">Zo werkt <span class="gt">jouw p
  <div class="card"><div class="t1">📈 Progressie (het belangrijkste!)</div><ul><li>Elke oefening heeft een bereik, bv. 8–10 reps.</li><li>Haal je bij alle sets de bovenkant? Dan ga je de volgende keer zwaarder: barbell +2,5, dumbbells +2, machines +5 kg. De app laat het groen zien.</li><li>Niet gehaald? Zelfde gewicht, 1 rep meer proberen.</li><li>Stop elke set met nog 1–2 reps over.</li></ul></div>
  <div class="card"><div class="t1">⚖️ Startgewichten</div><ul><li>Geschat op basis van je profiel (ervaring of dumbbell press).</li><li>Week 1 = kalibreren: te makkelijk? Omhoog. Haal je de onderkant niet? Omlaag.</li><li>Machines verschillen per gym, dus zie die getallen als richtlijn.</li></ul></div>
  <div class="card claude-only"><div class="t1">📸 Body check-in</div><ul><li>Upload zo vaak als je wilt foto's (voor, zij, achter). Elke 3–4 weken is ideaal.</li><li>Je krijgt advies over wat achterloopt. Met "Focus toepassen" krijgen die spiergroepen +1 set.</li><li>Foto's worden niet bewaard, alleen het advies.</li><li>Werkt alleen als je bent ingelogd bij Claude.</li></ul></div>
- <div class="card claude-only"><div class="t1">💬 Coach</div><ul><li>Je personal trainer kent je schema, je gelogde trainingen, je gewicht en je voeding.</li><li>Vraag alles: techniek, een oefening vervangen, wat te eten, spierpijn, minder tijd.</li><li>Werkt alleen als je bent ingelogd bij Claude.</li></ul></div>
  <div class="card"><div class="t1">💊 Creatine</div><ul><li>Elke dag 5 g creatine monohydraat, ook in het weekend.</li><li>Tijdstip maakt niet uit. Geen laadfase nodig.</li><li>1–2 kg erbij in het begin is water in je spier. Normaal.</li></ul></div>
  <div class="card"><div class="t1">📱 Jouw gegevens</div><ul><li>Alles wordt op je eigen telefoon bewaard. Je hebt geen account nodig.</li><li>Zet de app op je beginscherm: Safari → deelknop → Zet op beginscherm. Open hem altijd zo.</li><li>Maak af en toe een backup via je profiel (tik op je letter rechtsboven).</li></ul></div>
  <div class="small" style="margin:8px 2px 16px">Geen medisch advies. Bij blessures of klachten eerst naar een arts of fysio.</div>
@@ -1058,7 +1055,7 @@ function go(v){
 $('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(b.dataset.v);});
 function renderAll(){renderHome();renderTrain();renderFood();renderDeals();renderProg();renderCoach();}
 renderAll();
-const hv=(location.hash||'').slice(1);if(['train','food','deals','prog','coach'].includes(hv))go(hv);
+const hv=(location.hash||'').slice(1);if(['train','food','deals','prog'].includes(hv))go(hv);
 if(!hasProfile())setTimeout(()=>{if(!hasProfile())profileForm({name:'',age:'',h:'',w:'',goal:'bulk',exp:'mid',db:0,focus:[]},true);},1200);
 setInterval(()=>{if($('v-home').classList.contains('show')&&!document.activeElement.matches('input'))renderHome();},60000);
 
